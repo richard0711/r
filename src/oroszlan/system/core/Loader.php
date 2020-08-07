@@ -528,7 +528,6 @@ class CI_Loader {
 		$vars = is_string($vars)
 			? array($vars => $val)
 			: $this->_ci_prepare_view_vars($vars);
-
 		foreach ($vars as $key => $val)
 		{
 			$this->_ci_cached_vars[$key] = $val;

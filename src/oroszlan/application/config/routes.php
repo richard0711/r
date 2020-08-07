@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'front_controller';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -17,11 +17,16 @@ if ($method == 'OPTIONS')
 }
 
 if ($method == 'GET') {
+    /** HOMEPAGE routes: **/
+    $route['fooldal'] = 'Front_controller/index';
+    $route['index'] = 'Front_controller/index';
+    $route['home'] = 'Front_controller/index';
     
+    /** **/
+    $route['p/(:any)/(:any)/(:any)'] = 'Front_controller/page/$1/$2/$3';
 }
 
 if ($method == 'POST') {
-    $route['login'] = 'Login_controller/login';
     
 }
 

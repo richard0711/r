@@ -22,7 +22,7 @@ if ($method == 'GET') {
     $route['index'] = 'Front_controller/index';
     $route['home'] = 'Front_controller/index';
     
-    /** **/
+    /** OTHER routes: **/
     $route['p/(:any)/(:any)/(:any)'] = 'Front_controller/page/$1/$2/$3';
 }
 

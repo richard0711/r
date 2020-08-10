@@ -1,0 +1,17 @@
+.oroszlan_logo { 
+    width: 115px;
+    top: -12px;
+    position: relative;
+    border-radius: 70px;
+}
+
+.oroszlan_logo_xs { 
+    width: 115px;
+    border-radius: 70px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.logo_text {
+    font-size: 18px;
+}

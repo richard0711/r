@@ -105,3 +105,5 @@ else
 define('BASE_URL', $base_url);
 define('BASE_URI', $base_uri);
 define('APPPATH_URI', BASE_URI.APPPATH);
+define('FULL_BASE_URL', $base_url.'index.php/');
+define('VIEWS_URL', $base_url."application/views/");

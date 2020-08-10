@@ -6,23 +6,47 @@ class Front_controller extends Public_controller {
 
     public function index() {
         try {
-            $this->load->view("index", array("kisnyul" => 1));
+            $this->load->view("index", 
+                array(
+                    "content" => $this->_getContent()
+                )
+            );
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
     }
-    
+
     /**
      * page request handler
-     * @param string $module
-     * @param string $controller
+     * @param string $page
      * @param string $action
+     * @param string $params
      */
-    public function page($module = null, $controller = null, $action = null) {
+    public function page($page = null, $action = null, $params = null) {
         try {
-            echo json_encode(array("ok"=>1));
+            $this->load->view("index", 
+                array(
+                    "content" => $this->_getContent(
+                        array(
+                            "page" => $page,
+                            "action" => $action,
+                            "params" => $params
+                        )
+                    )
+                )
+            );
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
+        }
+    }
+
+    private function _getContent($params = array()) {
+        $page = (isset($params["page"])) ?: '';
+        switch ($page) {
+            case 'news':
+                return $this->load->view('pages/news', array(), true);
+            default:
+                return $this->load->view('pages/home', array(), true);
         }
     }
 

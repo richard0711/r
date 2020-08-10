@@ -1,8 +1,17 @@
 <head>
-    <meta charset="utf-8">
-    <title>Oroszlán Gyógyszertár Nagykőrös</title>
-    
-    <link rel="stylesheet" href="application/views/css/bootstrap.css">
-    <script src="application/views/js/jquery-3.5.1.min.js"></script>
-    <script src="application/views/js/bootstrap.js"></script>
+    <title>Nagykőrösi Oroszlán Gyógyszertár</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Tooplate">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="<?php echo VIEWS_URL; ?>css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo VIEWS_URL; ?>css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?php echo VIEWS_URL; ?>css/animate.css">
+    <link rel="stylesheet" href="<?php echo VIEWS_URL; ?>css/owl.carousel.css">
+    <link rel="stylesheet" href="<?php echo VIEWS_URL; ?>css/owl.theme.default.min.css">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="<?php echo VIEWS_URL; ?>css/tooplate-style.css">
+    <link rel="stylesheet" href="<?php echo VIEWS_URL; ?>css/style.css">
 </head>

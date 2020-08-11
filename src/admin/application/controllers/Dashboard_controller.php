@@ -8,7 +8,7 @@ class Dashboard_controller extends Private_controller {
         try {
             $this->load->view("index", 
                 array(
-                    "content" => $this->load->view('partials/dashboard', array(), true)
+                    "content" => $this->load->view('pages/dashboard/dashboard', array(), true)
                 )
             );
         } catch (Exception $exc) {

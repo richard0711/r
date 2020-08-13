@@ -28,19 +28,19 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link nav-link-custom" href="<?php echo FULL_BASE_URL.'content/list'; ?>">
             <i class="fas fa-fw fa-file"></i>
             <span>Tartalmak</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-            <i class="fa fa-newspaper" aria-hidden="true"></i>
+        <a class="nav-link nav-link-custom" href="charts.html">
+            <i class="fas fa-fw fa-newspaper" aria-hidden="true"></i>
             <span>Hírek</span></a>
     </li>
 
     <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
+    <hr class="sidebar-divider d-none d-md-block margin-top-1rem">
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

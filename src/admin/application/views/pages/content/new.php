@@ -1,8 +1,25 @@
-<?php
+<h1 class="h3 mb-2 text-gray-800">Tartalom létrehozása</h1>
+<p class="mb-4">Szerkessz saját tartalmat ízlés szerint</p>
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+<div id="editor">a</div>
 
+<script src="<?php echo VIEWS_URL; ?>/vendor/ckeditor5/ckeditor.js"></script>
+
+<script>
+    ClassicEditor.create(document.querySelector('#editor'), {
+        
+        image: {
+            toolbar: [
+                'imageStyle:full',
+                'imageStyle:side',
+                '|',
+                'imageTextAlternative'
+            ]
+        },
+        language: 'de'
+    }).then(editor => {
+        window.editor = editor;
+    }).catch(err => {
+        console.error(err.stack);
+    });
+</script>

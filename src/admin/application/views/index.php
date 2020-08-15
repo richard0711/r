@@ -13,7 +13,7 @@
         <!-- Custom styles for this template-->
         <link href="<?php echo VIEWS_URL; ?>css/sb-admin-2.min.css" rel="stylesheet">
         <link href="<?php echo VIEWS_URL; ?>css/style.css" rel="stylesheet" type="text/css">
-    </head>
+    </head> 
     <body id="page-top">
 
         <!-- Page Wrapper -->

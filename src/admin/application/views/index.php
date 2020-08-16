@@ -13,6 +13,7 @@
         <!-- Custom styles for this template-->
         <link href="<?php echo VIEWS_URL; ?>css/sb-admin-2.min.css" rel="stylesheet">
         <link href="<?php echo VIEWS_URL; ?>css/style.css" rel="stylesheet" type="text/css">
+        <script src="<?php echo VIEWS_URL; ?>vendor/jquery/jquery.min.js"></script>
     </head> 
     <body id="page-top">
 
@@ -154,7 +155,6 @@
             </div>
         </div>
         <!-- Bootstrap core JavaScript-->
-        <script src="<?php echo VIEWS_URL; ?>vendor/jquery/jquery.min.js"></script>
         <script src="<?php echo VIEWS_URL; ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- Core plugin JavaScript-->
         <script src="<?php echo VIEWS_URL; ?>vendor/jquery-easing/jquery.easing.min.js"></script>

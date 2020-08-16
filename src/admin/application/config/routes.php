@@ -19,8 +19,8 @@ if ($method == 'OPTIONS')
 if ($method == 'GET') {
     /** HOMEPAGE routes: **/
     $route['login'] = 'Login_controller/index';
-    $route['content/list'] = 'Content_controller/list';
-    $route['content/new'] = 'Content_controller/new';
+    $route['content/list'] = 'Content_controller/contentList';
+    $route['content/new'] = 'Content_controller/newContent';
 }
 
 if ($method == 'POST') {

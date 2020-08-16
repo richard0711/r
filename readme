@@ -1,2 +1,17 @@
-1)initial commit
-2)test_feature
+admin:
+- tartalom rögzítés funkció 1 h
+- tartalmak lekérdezése funkció 0,5 h
+- tartalom visszanyitás funkció 0,5 h
+
+- hír rögzítés funkció 0,5 h
+- hírek lekérdezése funkció 0,5 h
+- hír visszanyitása funkció 0,5 h
+
+- menüpont rögzítő funkció 1 h
+- tartalom menüponthoz kötése funkció 0,5 h
+- tartalom helyének megadása 0,5 h
+
+public:
+- tartalom lekérése api használata 1 h
+- hírek lekérése api használata 1 h
+- a kapott anyagok beépítése 2 h

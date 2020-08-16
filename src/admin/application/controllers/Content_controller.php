@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Content_controller extends Private_controller {
 
-    public function list() {
+    public function contentList() {
         try {
             $this->load->view("index", 
                 array(
@@ -16,7 +16,7 @@ class Content_controller extends Private_controller {
         }
     }
     
-    public function new() {
+    public function newContent() {
         try {
             $this->load->view("index", 
                 array(

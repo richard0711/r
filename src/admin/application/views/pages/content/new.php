@@ -3,27 +3,72 @@
 
 <div id="editor"></div>
 
+<script src="<?php echo VIEWS_URL; ?>/vendor/ckfinder3511/ckfinder.js"></script>
 <script src="<?php echo VIEWS_URL; ?>/vendor/ckeditor5/ckeditor.js"></script>
+
 <script>
     ClassicEditor.create(document.querySelector('#editor'), {
-//        fontFamily: {
-//            options: [
-//                // ...
-//            ],
-//            supportAllValues: true
-//        },
-        toolbar: [
-            "alignment:left", "alignment:right", "alignment:center", "alignment:justify", "alignment", "blockQuote", "bold", "ckfinder", "code", "codeBlock", "selectAll", "undo", "redo", "exportPdf", "fontBackgroundColor", "fontColor", "fontFamily", "fontSize", "heading", "highlight:yellowMarker", "highlight:greenMarker", "highlight:pinkMarker", "highlight:blueMarker", "highlight:redPen", "highlight:greenPen", "removeHighlight", "highlight", "horizontalLine", "imageTextAlternative", "imageResize:original", "imageResize:25", "imageResize:50", "imageResize:75", "imageResize", "imageStyle:full", "imageStyle:side", "imageUpload", "indent", "outdent", "italic", "link", "numberedList", "bulletedList", "removeFormat", "specialCharacters", "strikethrough", "insertTable", "tableColumn", "tableRow", "mergeTableCells", "tableCellProperties", "tableProperties", "todoList", "underline"
-        ],
+        toolbar: {
+            items: [
+                'undo',
+                'redo',
+                'heading',
+                '|',
+                'removeFormat',
+                'bold',
+                'italic',
+                'underline',
+                'strikethrough',
+                'fontFamily',
+                'fontBackgroundColor',
+                'fontColor',
+                'fontSize',
+                'highlight',
+                'todoList',
+                'bulletedList',
+                'numberedList',
+                'indent',
+                'outdent',
+                'alignment',
+                '|',
+                'insertTable',
+                'horizontalLine',
+                'blockQuote',
+                'codeBlock',
+                '|',
+                'CKFinder',
+                'imageUpload',
+                'link',
+                //'mediaEmbed',
+                'code',
+                'exportPdf',
+                'specialCharacters'
+            ]
+        },
+        ckfinder: {
+            uploadUrl: '<?php echo VIEWS_URL; ?>/vendor/ckfinder3511/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+            // Open the file manager in the pop-up window.
+            openerMethod: 'popup'
+        },
+        language: 'hu',
+        
         image: {
             toolbar: [
+                'imageTextAlternative',
                 'imageStyle:full',
-                'imageStyle:side',
-                '|',
-                'imageTextAlternative'
+                'imageStyle:side'
             ]
-        }
-//        language: 'hu'
+        },
+        table: {
+            contentToolbar: [
+                'tableColumn',
+                'tableRow',
+                'mergeTableCells',
+                'tableCellProperties',
+                'tableProperties'
+            ]
+        },
+        licenseKey: ''
     }).then(editor => {
         window.editor = editor;
     }).catch(err => {

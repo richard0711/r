@@ -13,7 +13,7 @@ class Content_controller extends Private_controller {
             $this->load->model('tables/Contents');
             $post = $this->input->post();
             
-            $Content = new Contents();
+            $Content = new Content();
             if (array_key_exists('idcontent', $post) &&
                 $post["idcontent"] > 1) {
                 $content_row = $Content->get($post["idcontent"]);

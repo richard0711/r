@@ -16,7 +16,7 @@ class Menu_controller extends Private_controller {
             $Menu = new Menus();
             if (array_key_exists('idmenu', $post) &&
                 $post["idmenu"] > 1) {
-                $content_row = $Menu->get($post["idcontent"]);
+                $content_row = $Menu->get($post["idmenu"]);
             }
             
             

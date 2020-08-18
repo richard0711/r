@@ -34,9 +34,15 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link nav-link-custom" href="charts.html">
+        <a class="nav-link nav-link-custom" href="<?php echo FULL_BASE_URL.'news/list'; ?>">
             <i class="fas fa-fw fa-newspaper" aria-hidden="true"></i>
             <span>Hírek</span></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-link-custom" href="<?php echo FULL_BASE_URL.'menu/list'; ?>">
+            <i class="fas fa-fw fa-file"></i>
+            <span>Menüpontok</span></a>
     </li>
 
     <!-- Divider -->

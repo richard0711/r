@@ -12,8 +12,11 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
         <!-- Custom styles for this template-->
         <link href="<?php echo VIEWS_URL; ?>css/sb-admin-2.min.css" rel="stylesheet">
+        <link href="<?php echo VIEWS_URL; ?>css/jquery-ui-1.10.4.custom.css" rel="stylesheet" type="text/css">
         <link href="<?php echo VIEWS_URL; ?>css/style.css" rel="stylesheet" type="text/css">
         <script src="<?php echo VIEWS_URL; ?>vendor/jquery/jquery.min.js"></script>
+        <script src="<?php echo VIEWS_URL; ?>vendor/jquery/jquery-ui-1.10.4.custom.js"></script>
+        <script src="<?php echo VIEWS_URL; ?>js/common.js"></script>
     </head> 
     <body id="page-top">
 

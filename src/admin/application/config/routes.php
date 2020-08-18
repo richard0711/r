@@ -17,10 +17,25 @@ if ($method == 'OPTIONS')
 }
 
 if ($method == 'GET') {
-    /** HOMEPAGE routes: **/
+    
+    /** auth routes: **/
     $route['login'] = 'Login_controller/index';
+    
+    /** content routes: **/
     $route['content/list'] = 'Content_controller/contentList';
     $route['content/new'] = 'Content_controller/newContent';
+    $route['content/edit'] = 'Content_controller/editContent';
+    
+    /** menu routes: **/
+    $route['menu/list'] = 'Menu_controller/menuList';
+    $route['menu/new'] = 'Menu_controller/newMenu';
+    $route['menu/edit'] = 'Menu_controller/editMenu';
+    
+    /** news routes: **/
+    $route['news/list'] = 'News_controller/newsList';
+    $route['news/new'] = 'News_controller/newNews';
+    $route['news/edit'] = 'News_controller/editNews';
+    
 }
 
 if ($method == 'POST') {

@@ -1,10 +1,10 @@
-<h1 class="h3 mb-2 text-gray-800">Tartalom létrehozása</h1>
+<h1 class="h3 mb-2 text-gray-800">hír létrehozása</h1>
 <p class="mb-4">Szerkessz saját tartalmat ízlés szerint</p>
 
 <div class="form-group row">
     <div class="col-sm-6 mb-3 mb-sm-0">
-        <label for="customCheck">Tartalom címe</label>
-        <input type="text" class="form-control form-control-user" id="contentTitle" placeholder="Tartalom címe">
+        <label for="customCheck">hír címe</label>
+        <input type="text" class="form-control form-control-user" id="contentTitle" placeholder="hír címe">
     </div> 
     <div class="col-sm-3">
         <label for="contentPublished">Publikálás kezdete</label>

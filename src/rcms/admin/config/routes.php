@@ -67,8 +67,10 @@ if ($method == 'OPTIONS')
 if ($method == "POST") {
     $route["content"] = "Content_controller/save";
     $route["menu"] = "Menu_controller/save";
+    $route["menu_item"] = "MenuItem_controller/save";
 }
 if ($method == "GET") {
     $route["content"] = "Content_controller/get";
     $route["menu"] = "Menu_controller/get";
+    $route["menu/(:num)"] = "Menu_controller/get/$1";
 }

@@ -24,17 +24,19 @@ if ($method == 'GET') {
     /** content routes: **/
     $route['content/list'] = 'Content_controller/contentList';
     $route['content/new'] = 'Content_controller/newContent';
-    $route['content/edit'] = 'Content_controller/editContent';
+    $route['content/edit/(:num)'] = 'Content_controller/editContent/$1';
     
     /** menu routes: **/
     $route['menu/list'] = 'Menu_controller/menuList';
     $route['menu/new'] = 'Menu_controller/newMenu';
-    $route['menu/edit'] = 'Menu_controller/editMenu';
+    $route['menu/edit/(:num)'] = 'Menu_controller/editMenu/$1';
+    $route['menu/del/(:num)'] = 'Menu_controller/delMenu/$1';
     
     /** news routes: **/
     $route['news/list'] = 'News_controller/newsList';
     $route['news/new'] = 'News_controller/newNews';
-    $route['news/edit'] = 'News_controller/editNews';
+    $route['news/edit/(:num)'] = 'News_controller/editNews/$1';
+    $route['news/del/(:num)'] = 'News_controller/delNews/$1';
     
 }
 

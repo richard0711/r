@@ -9,7 +9,6 @@ class Menu_controller extends Private_controller {
         $this->load->model('tables/Menu');
         $this->load->model('tables/MenuItem');
     }
-        
 
     /**
      * Menu save

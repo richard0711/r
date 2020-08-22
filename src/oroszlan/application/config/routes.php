@@ -23,7 +23,7 @@ if ($method == 'GET') {
     $route['home'] = 'Front_controller/index';
     
     /** OTHER routes: **/
-    $route['p/(:any)/(:any)/(:any)'] = 'Front_controller/page/$1/$2/$3';
+    $route['p/(:any)/(:any)'] = 'Front_controller/page/$1/$2';
 }
 
 if ($method == 'POST') {

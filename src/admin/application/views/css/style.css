@@ -10,3 +10,10 @@
 .margin-top-1rem {
     margin-top: 1rem !important;
 }
+
+fieldset {
+    min-width: 0;
+    padding: 5px;
+    margin: 5px;
+    border: solid gray 1px;
+}

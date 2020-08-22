@@ -166,7 +166,7 @@
                     </a>
                     <div class="news-info">
                         <span>March 08, 2018</span>
-                        <h3><a href="<?php echo FULL_BASE_URL.'p/news/1'; ?>">About Amazing Technology</a></h3>
+                        <h3><a href="<?php echo FULL_BASE_URL.'news/1'; ?>">About Amazing Technology</a></h3>
                         <p>Maecenas risus neque, placerat volutpat tempor ut, vehicula et felis.</p>
                         <div class="author">
                             <img src="<?php echo VIEWS_URL; ?>images/author-image.jpg" class="img-responsive" alt="">

@@ -15,10 +15,40 @@
         <input type="text" class="form-control form-control-user" id="contentPublishedTo" placeholder="Publikálás vége">
     </div> 
 </div>
+<div class="form-group row">
+    <div class="col-sm-6">
+        <label for="contentPosition">Pozíció</label>
+        <select type="text" 
+                class="form-control contentPosition" 
+                value="1" 
+                id="contentPosition" 
+                placeholder="Pozíció">
+            <option value="1">--nincs kiválasztva--</option>>
+            <?php 
+                if (isset($positions) && isset($positions["data"])) {
+                    foreach ($positions["data"] as $position) {
+                    ?>
+            <option 
+                value="<?php echo $position["idposition"]; ?>">
+                    <?php echo $position["name"] ?></option>
+                    <?php
+                    }
+                } 
+            ?>
+        </select>
+    </div> 
+</div>
 
 <div class="form-group">
     <div id="editor"></div>
 </div>
+
+<div class="form-group row">
+    <div class="col-sm-12 text-right">
+        <small id="errorMessage" class="form-text text-danger"></small>
+    </div> 
+</div>
+
 <div class="text-right">
     <a onclick="save()" href="javascript:void(0);" class="btn btn-primary" role="button">
         <i class="fas fa-save fa-sm"></i>
@@ -44,9 +74,15 @@
         var content_editor;
 
         function save() {
+            debugger;
             var content = btoa(unescape(encodeURIComponent(content_editor.getData())));
             var data = {
-                content: content
+                content: content,
+                title: jQuery("#contentTitle").val(),
+                published: jQuery("#contentPublished").val(),
+                published_to: jQuery("#contentPublishedTo").val(),
+                idposition: jQuery("#contentPosition").val(),
+                status: 1
             };
             jQuery.ajax({
                 url: "<?php echo ADMIN_API_URL; ?>content",
@@ -57,14 +93,18 @@
                 contentType: 'application/json',
                 //headers: ko.toJS(headers)
             }).done(function (response) {
-                debugger;
+                if (response.errorCode == 0) {
+                    if (response.data && Number(response.data.idcontent) > 1) {
+                        window.location = '<?php echo FULL_BASE_URL.'content/edit/'; ?>' + response.data.idcontent;
+                    }
+                } else {
+                    jQuery("#errorMessage").html(response.msg);
+                }
             }).fail(function (response) {
-                debugger;
-                alert("ERROR");
+                console.log('error log : ', response);
+                jQuery("#errorMessage").html('Hiba a mentés közben!');
             });
         }
-
-
 
         ClassicEditor.create(document.querySelector('#editor'), {
             toolbar: {

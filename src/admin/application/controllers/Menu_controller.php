@@ -47,11 +47,15 @@ class Menu_controller extends Private_controller {
             //need to get menu data with curl 
             $AdminAPI = new AdminAPI();
             $menu = $AdminAPI->get('menu/'.$idmenu);
+            $contents = $AdminAPI->get('contents');
+            $positions = $AdminAPI->get('positions', array("type"=>'menu'));
             $this->load->view("index", 
                 array(
                     "content" => $this->load->view('pages/menu/edit', 
                         array(
-                            "menu" => $menu
+                            "menu" => $menu,
+                            "contents" => $contents,
+                            "positions" => $positions
                         ), 
                         true)
                 )

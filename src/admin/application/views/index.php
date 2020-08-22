@@ -16,6 +16,7 @@
         <link href="<?php echo VIEWS_URL; ?>css/style.css" rel="stylesheet" type="text/css">
         <script src="<?php echo VIEWS_URL; ?>vendor/jquery/jquery.min.js"></script>
         <script src="<?php echo VIEWS_URL; ?>vendor/jquery/jquery-ui-1.10.4.custom.js"></script>
+        <script src="<?php echo VIEWS_URL; ?>vendor/jquery/jquery.datetimepicker.js"></script>
         <script src="<?php echo VIEWS_URL; ?>js/common.js"></script>
     </head> 
     <body id="page-top">

@@ -22,11 +22,24 @@
         <!-- MENU LINKS -->
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
+                <?php if(isset($top_menu)) { ?>
+                    <?php 
+                        foreach ($top_menu["data"] as $menu) { 
+                            foreach ($menu["menu_items"]["data"] as $menu_item) { 
+                    ?>
+                        <li><a href="<?php echo getMenuItemURL($menu_item); ?>" class="smoothScroll"><?php echo $menu_item["title"]; ?></a></li>
+                    <?php 
+                            }
+                       } 
+                    ?>
+                <?php } ?>
+                <!--                
                 <li><a href="#top" class="smoothScroll">Főoldal</a></li>
                 <li><a href="#about" class="smoothScroll">Rólunk</a></li>
                 <li><a href="#team" class="smoothScroll">Szolgáltatásaink</a></li>
                 <li><a href="#news" class="smoothScroll">Aktualitások</a></li>
                 <li><a href="#appointment" class="smoothScroll">Elérhetőségeink</a></li>
+                -->
             </ul>
         </div>
     </div>

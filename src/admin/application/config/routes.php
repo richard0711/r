@@ -38,6 +38,17 @@ if ($method == 'GET') {
     $route['news/edit/(:num)'] = 'News_controller/editNews/$1';
     $route['news/del/(:num)'] = 'News_controller/delNews/$1';
     
+    /** banner routes: **/
+    $route['banner/list'] = 'Banner_controller/bannerList';
+    $route['banner/new'] = 'Banner_controller/newBanner';
+    $route['banner/edit/(:num)'] = 'Banner_controller/editBanner/$1';
+    $route['banner/del/(:num)'] = 'Banner_controller/delBanner/$1';
+    
+    /** gallery routes: **/
+    $route['gallery/list'] = 'Gallery_controller/galleryList';
+    $route['gallery/new'] = 'Gallery_controller/newGallery';
+    $route['gallery/edit/(:num)'] = 'Gallery_controller/editGallery/$1';
+    $route['gallery/del/(:num)'] = 'Gallery_controller/delGallery/$1';
 }
 
 if ($method == 'POST') {

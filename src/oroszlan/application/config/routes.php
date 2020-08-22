@@ -15,7 +15,7 @@ if ($method == 'OPTIONS')
     header('Access-Control-Allow-Credentials: true');  
     die();
 }
-
+ 
 if ($method == 'GET') {
     /** HOMEPAGE routes: **/
     $route['fooldal'] = 'Front_controller/index';

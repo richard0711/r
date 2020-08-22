@@ -27,12 +27,18 @@ if ($method == 'GET') {
     /** news routes: **/
     $route['news/list'] = 'News_controller/get';
     
+    /** banner routes: **/
+    $route['banner/list'] = 'Banner_controller/get';
+    
+    /** gallery routes: **/
+    $route['gallery/list'] = 'Gallery_controller/get';
+    
 }
 
 if ($method == 'POST') {
     
 }
 
-if ($method == 'PUT') {
+if ($method == 'PUT') { 
     
 }

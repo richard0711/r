@@ -107,4 +107,4 @@ define('BASE_URI', $base_uri);
 define('APPPATH_URI', BASE_URI.APPPATH);
 define('FULL_BASE_URL', $base_url.'index.php/');
 define('VIEWS_URL', $base_url."application/views/");
-define('RCMS_URL', "http://localhost/rcms/rcms_api/public.php/");
+define('RCMS_URL', "http://localhost/rcms/rcms_api/public.php/"); 

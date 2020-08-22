@@ -44,6 +44,18 @@
             <i class="far fa-fw fa-hand-pointer"></i>
             <span>Menüpontok</span></a>
     </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-link-custom" href="<?php echo FULL_BASE_URL.'banner/list'; ?>">
+            <i class="fab fa-fw fa-line"></i>
+            <span>Bannerek</span></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-link-custom" href="<?php echo FULL_BASE_URL.'gallery/list'; ?>">
+            <i class="far fa-fw fa-images"></i>
+            <span>Galériák</span></a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block margin-top-1rem">

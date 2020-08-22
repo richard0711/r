@@ -19,7 +19,7 @@
                 </span>
             </div>
         </div>
-        <!-- MENU LINKS -->
+        <!-- MENU LINKS --> 
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <?php if(isset($top_menu)) { ?>

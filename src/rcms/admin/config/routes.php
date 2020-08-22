@@ -66,13 +66,27 @@ if ($method == 'OPTIONS')
 
 if ($method == "POST") {
     $route["content"] = "Content_controller/save";
+    
     $route["menu"] = "Menu_controller/save";
+    
     $route["menu_item"] = "MenuItem_controller/save";
+    
+    $route["banner"] = "Banner_controller/save";
+    
+    $route["gallery"] = "Gallery_controller/save";
 }
 if ($method == "GET") {
     $route["contents"] = "Content_controller/get";
     $route["content/(:num)"] = "Content_controller/get/$1";
+    
     $route["menu"] = "Menu_controller/get";
     $route["menu/(:num)"] = "Menu_controller/get/$1";
+    
     $route["positions"] = "Position_controller/get";
+    
+    $route["banners"] = "Banner_controller/get";
+    $route["banner/(:num)"] = "Banner_controller/get/$1";
+    
+    $route["gallery"] = "Gallery_controller/get";
+    $route["gallery/(:num)"] = "Gallery_controller/get/$1";
 }

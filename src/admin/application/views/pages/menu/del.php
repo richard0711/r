@@ -11,12 +11,12 @@
     <a onclick="save()" href="javascript:void(0);" class="btn btn-danger" role="button">
         <i class="fas fa-save fa-sm"></i>
         Törlés
-    </a>
+    </a> 
     <a href="<?php echo FULL_BASE_URL . 'menu/list'; ?>" class="btn btn-secondary" role="button">
         <i class="fas fa-cancel fa-sm"></i>
         Mégsem
     </a>
-</div>
+</div> 
 
 <script>
 

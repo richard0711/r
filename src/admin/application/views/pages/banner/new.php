@@ -8,6 +8,42 @@
         <small id="bannerNameHelp" class="form-text text-danger"></small>
     </div> 
 </div>
+<div class="form-group row">
+    <div class="col-sm-12">
+        <label for="bannerType">Típus</label>
+        <select type="text" 
+                class="form-control bannerType" 
+                value="1" 
+                id="bannerType" 
+                placeholder="Banner típusa">
+            <option value="normal">Normál</option>
+            <option value="slideshow">SlideShow</option>
+        </select>
+        <small id="bannerTypeHelp" class="form-text text-danger"></small>
+    </div> 
+</div>
+<div class="form-group row">
+    <div class="col-sm-12">
+        <label for="bannerPosition">Pozíció</label>
+        <select type="text" 
+                class="form-control bannerPosition" 
+                value="1" 
+                id="bannerPosition" 
+                placeholder="Pozíció">
+            <option value="1">--nincs kiválasztva--</option>
+            <?php
+            if (isset($positions) && isset($positions["data"])) {
+                foreach ($positions["data"] as $position) {
+                    ?>
+                    <option value="<?php echo $position["idposition"]; ?>">
+                        <?php echo $position["name"] ?></option>
+                    <?php
+                }
+            }
+            ?>
+        </select>
+    </div>
+</div>
 
 <div class="form-group row">
     <div class="col-sm-12 text-right">
@@ -33,16 +69,18 @@
 
     function save() {
         var data = {
-            title: jQuery("#bannerName").val(),
+            idposition: jQuery("#bannerPosition").val(),
+            name: jQuery("#bannerName").val(),
+            type: jQuery("#bannerType").val(),
             status: 1
         };
-        
+
         //validation:
-        if (data.title == null | data.title == '') {
+        if (data.name == null | data.name == '') {
             jQuery("#bannerNameHelp").html('A megnevezés kitöltése kötelező!');
             return;
         }
-        
+
         jQuery.ajax({
             url: "<?php echo ADMIN_API_URL; ?>banner",
             type: "POST",
@@ -54,7 +92,7 @@
         }).done(function (response) {
             if (response.errorCode == 0) {
                 if (response.data && Number(response.data.idbanner) > 1) {
-                    window.location = '<?php echo FULL_BASE_URL.'banner/edit/'; ?>' + response.data.idbanner;
+                    window.location = '<?php echo FULL_BASE_URL . 'banner/edit/'; ?>' + response.data.idbanner;
                 }
             } else {
                 jQuery("#errorMessage").html(response.msg);

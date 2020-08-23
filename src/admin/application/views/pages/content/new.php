@@ -74,7 +74,6 @@
         var content_editor;
 
         function save() {
-            debugger;
             var content = btoa(unescape(encodeURIComponent(content_editor.getData())));
             var data = {
                 content: content,

@@ -1,30 +1,38 @@
-<h1 class="h3 mb-2 text-gray-800">hír létrehozása</h1>
+<h1 class="h3 mb-2 text-gray-800">Hír létrehozása</h1>
 <p class="mb-4">Szerkessz saját tartalmat ízlés szerint</p>
 
 <div class="form-group row">
     <div class="col-sm-6 mb-3 mb-sm-0">
-        <label for="customCheck">hír címe</label>
-        <input type="text" class="form-control form-control-user" id="contentTitle" placeholder="hír címe">
+        <label for="newsTitle">Hír címe</label>
+        <input type="text" class="form-control form-control-user" id="newsTitle" placeholder="Hír címe">
+        <small id="newsTitleHelp" class="form-text text-danger"></small>
     </div> 
     <div class="col-sm-3">
-        <label for="contentPublished">Publikálás kezdete</label>
-        <input type="text" class="form-control form-control-user" id="contentPublished" placeholder="Publikálás kezdete">
+        <label for="newsPublished">Publikálás kezdete</label>
+        <input type="text" class="form-control form-control-user" id="newsPublished" placeholder="Publikálás kezdete">
     </div> 
     <div class="col-sm-3">
-        <label for="contentPublishedTo">Publikálás vége</label>
-        <input type="text" class="form-control form-control-user" id="contentPublishedTo" placeholder="Publikálás vége">
+        <label for="newsPublishedTo">Publikálás vége</label>
+        <input type="text" class="form-control form-control-user" id="newsPublishedTo" placeholder="Publikálás vége">
     </div> 
 </div>
 
 <div class="form-group">
     <div id="editor"></div>
 </div>
+
+<div class="form-group row">
+    <div class="col-sm-12 text-right">
+        <small id="errorMessage" class="form-text text-danger"></small>
+    </div> 
+</div>
+
 <div class="text-right">
     <a onclick="save()" href="javascript:void(0);" class="btn btn-primary" role="button">
         <i class="fas fa-save fa-sm"></i>
         Mentés
     </a>
-    <a href="<?php echo FULL_BASE_URL . 'content/list'; ?>" class="btn btn-secondary" role="button">
+    <a href="<?php echo FULL_BASE_URL . 'news/list'; ?>" class="btn btn-secondary" role="button">
         <i class="fas fa-cancel fa-sm"></i>
         Mégsem
     </a>
@@ -35,37 +43,46 @@
 <script src="<?php echo VIEWS_URL; ?>/vendor/ckeditor5/ckeditor.js"></script>
 
 <script>
-
         jQuery(document).ready(function () {
-            jQuery("#contentPublished").datepicker();
-            jQuery("#contentPublishedTo").datepicker();
+            jQuery("#newsPublished").datepicker();
+            jQuery("#newsPublishedTo").datepicker();
         });
-
-        var content_editor;
-
+        var news_editor;
         function save() {
-            var content = btoa(unescape(encodeURIComponent(content_editor.getData())));
+            var content = btoa(unescape(encodeURIComponent(news_editor.getData())));
             var data = {
-                content: content
+                title: jQuery("#newsTitle").val(),
+                content: content,
+                published: jQuery("#newsPublished").val(),
+                published_to: jQuery("#newsPublishedTo").val(),
+                status: 1
             };
+            //validation:
+            if (data.title == null | data.title == '') {
+                jQuery("#newsTitleHelp").html('A hír címének kitöltése kötelező!');
+                return;
+            }
             jQuery.ajax({
-                url: "<?php echo ADMIN_API_URL; ?>content",
+                url: "<?php echo ADMIN_API_URL; ?>news",
                 type: "POST",
                 async: false,
                 dataType: 'json',
                 data: JSON.stringify(data),
-                contentType: 'application/json',
+                newsType: 'application/json',
                 //headers: ko.toJS(headers)
             }).done(function (response) {
-                debugger;
+                if (response.errorCode == 0) {
+                    if (response.data && Number(response.data.idnew) > 1) {
+                        window.location = '<?php echo FULL_BASE_URL.'news/edit/'; ?>' + response.data.idnew;
+                    }
+                } else {
+                    jQuery("#errorMessage").html(response.msg);
+                }
             }).fail(function (response) {
-                debugger;
-                alert("ERROR");
+                console.log('error log : ', response);
+                jQuery("#errorMessage").html('Hiba a mentés közben!');
             });
         }
-
-
-
         ClassicEditor.create(document.querySelector('#editor'), {
             toolbar: {
                 items: [
@@ -118,7 +135,7 @@
                 ]
             },
             table: {
-                contentToolbar: [
+                newsToolbar: [
                     'tableColumn',
                     'tableRow',
                     'mergeTableCells',
@@ -128,7 +145,7 @@
             },
             licenseKey: ''
         }).then(editor => {
-            content_editor = editor;
+            news_editor = editor;
         }).catch(err => {
             console.error(err.stack);
         });

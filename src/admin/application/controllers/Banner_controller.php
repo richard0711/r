@@ -32,9 +32,15 @@ class Banner_controller extends Private_controller {
     
     public function newBanner() {
         try {
+            $AdminAPI = new AdminAPI();
+            $positions = $AdminAPI->get('positions', array("type"=>'banner'));
             $this->load->view("index", 
                 array(
-                    "content" => $this->load->view('pages/banner/new', array(), true)
+                    "content" => $this->load->view('pages/banner/new', 
+                        array(
+                            "positions" => $positions
+                        ), 
+                        true)
                 )
             );
         } catch (Exception $exc) {

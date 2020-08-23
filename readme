@@ -1,22 +1,26 @@
-admin:
 + menüpont rögzítő funkció 1 h
 + menüponthoz  tartalom kötése funkció 0,5 h
 + menü helyének megadása (positions type = menu, ezekből lehet választani, jelenleg oroszlánnál egy ilyen lesz: top_menu
 + tartalom rögzítés funkció 1 h
 + tartalom helyének megadása 0,5 h
-- tartalomhoz képfeltöltés funkció
 + tartalmak lekérdezése funkció 0,5 h
 + tartalom visszanyitás funkció 0,5 h
++ banner rögzítése
 
-- banner rögzítése
-
+admin:
 - hír rögzítés funkció 0,5 h
 - hírek lekérdezése funkció 0,5 h
 - hír visszanyitása funkció 0,5 h
+- tartalomhoz képfeltöltés funkció 0,5
+- login 1,5 h 
+szumma: 3,5h
 
 public:
-- tartalom lekérése api használata 1 h
-- hírek lekérése api használata 1 h
-- a kapott anyagok beépítése 2 h
+- tartalom lekérése api használata, publikált nem publikált flag! 0,5 h
+- hírek lekérése api használata, publikélkt nem publikált flag! 0,5 h
+- a kapott anyagok beépítése (nem kaptam még meg) 1 h
+- facebook linkek kezelése! 1 h
+szumma: 3h
 
 
+összesen 6,5 óra plusz tesztek és szépítések 4 óra -> 10 óra munka van még vele nagyjából hogy az első verzió kikerülhessen

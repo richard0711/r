@@ -1,56 +1,46 @@
 <!-- HOME -->
-<section id="home" class="slider" data-stellar-background-ratio="0.5">
-    <div class="container">
-        <div class="row">
-
-            <div class="owl-carousel owl-theme">
-                <div class="item item-first">
-                    <div class="caption">
-                        <div class="col-md-offset-1 col-md-10">
-                            <h3>Let's make your life happier</h3>
-                            <h1>Healthy Living</h1>
-                            <a href="#team" class="section-btn btn btn-default smoothScroll">Meet Our Doctors</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item item-second">
-                    <div class="caption">
-                        <div class="col-md-offset-1 col-md-10">
-                            <h3>Aenean luctus lobortis tellus</h3>
-                            <h1>New Lifestyle</h1>
-                            <a href="#about" class="section-btn btn btn-default btn-gray smoothScroll">More About Us</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item item-third">
-                    <div class="caption">
-                        <div class="col-md-offset-1 col-md-10">
-                            <h3>Pellentesque nec libero nisi</h3>
-                            <h1>Your Health Benefits</h1>
-                            <a href="#news" class="section-btn btn btn-default btn-blue smoothScroll">Read Stories</a>
-                        </div>
+<?php if (isset($home_page_banners) && count($home_page_banners["data"]) > 0) { ?>
+    <section id="home" class="slider" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="row">
+                <div class="owl-carousel owl-theme">
+                    <?php foreach ($home_page_banners["data"] as $banner) { ?>
+                        <?php foreach ($banner["banner_items"]["data"] as $banner_item) { ?>
+                            <?php if ($banner_item["image_path"] != null && $banner_item["image_path"] != '') { ?>
+                                <div class="item" style="background-image: url('<?php echo str_replace("public.php/", "", RCMS_URL) . $banner_item["image_path"]; ?>');">
+                                <?php } else { ?>    
+                                    <div class="item" style="background-image: url('<?php echo VIEWS_URL; ?>images/slider2.jpg');">    
+                                    <?php } ?>    
+                                    <div class="caption">
+                                        <div class="col-md-offset-1 col-md-10">
+                                            <h3><?php echo $banner_item["name"] ?></h3>
+                                            <h1><?php echo $banner_item["text"] ?></h1>
+                                            <?php if ($banner_item["url"] != null && $banner_item["url"] != '') { ?>
+                                                <a href="<?php echo $banner_item["url"] ?>" class="section-btn btn btn-default smoothScroll">Megtekintés</a>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
-
-        </div>
-    </div>
-</section>
+    </section>
+<?php } ?>
 
 
 <!-- ABOUT -->
+<?php if (isset($home_page_welcome) && isset($home_page_welcome["data"][0]) ) { ?>
 <section id="about">
     <div class="container">
         <div class="row">
 
             <div class="col-md-6 col-sm-6">
                 <div class="about-info">
-                    <h2 class="wow fadeInUp" data-wow-delay="0.6s">Welcome to Your <i class="fa fa-h-square"></i>ealth Center</h2>
+                    <h2 class="wow fadeInUp" data-wow-delay="0.6s">Oroszlán Gyógyszertár</h2>
                     <div class="wow fadeInUp" data-wow-delay="0.8s">
-                        <p>Aenean luctus lobortis tellus, vel ornare enim molestie condimentum. Curabitur lacinia nisi vitae velit volutpat venenatis.</p>
-                        <p>Sed a dignissim lacus. Quisque fermentum est non orci commodo, a luctus urna mattis. Ut placerat, diam a tempus vehicula.</p>
+                        <?php echo $home_page_welcome["data"][0]["content"]; ?>
                     </div>
                     <figure class="profile wow fadeInUp" data-wow-delay="1s">
                         <img src="<?php echo VIEWS_URL; ?>images/author-image.jpg" class="img-responsive" alt="">
@@ -65,6 +55,7 @@
         </div>
     </div>
 </section>
+<?php } ?>
 
 
 <!-- TEAM -->
@@ -166,7 +157,7 @@
                     </a>
                     <div class="news-info">
                         <span>March 08, 2018</span>
-                        <h3><a href="<?php echo FULL_BASE_URL.'news/1'; ?>">About Amazing Technology</a></h3>
+                        <h3><a href="<?php echo FULL_BASE_URL . 'news/1'; ?>">About Amazing Technology</a></h3>
                         <p>Maecenas risus neque, placerat volutpat tempor ut, vehicula et felis.</p>
                         <div class="author">
                             <img src="<?php echo VIEWS_URL; ?>images/author-image.jpg" class="img-responsive" alt="">

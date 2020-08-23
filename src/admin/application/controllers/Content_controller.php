@@ -68,5 +68,23 @@ class Content_controller extends Private_controller {
             echo $exc->getTraceAsString();
         }
     }
+    
+    public function delContent($idcontent = 1) {
+        try {
+            $AdminAPI = new AdminAPI();
+            $content = $AdminAPI->get('content/'.$idcontent);
+            $this->load->view("index", 
+                array(
+                    "content" => $this->load->view('pages/content/del', 
+                        array(
+                            "content" => $content
+                        ), 
+                        true)
+                )
+            );
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
 }

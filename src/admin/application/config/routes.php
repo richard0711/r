@@ -25,6 +25,7 @@ if ($method == 'GET') {
     $route['content/list'] = 'Content_controller/contentList';
     $route['content/new'] = 'Content_controller/newContent';
     $route['content/edit/(:num)'] = 'Content_controller/editContent/$1';
+    $route['content/del/(:num)'] = 'Content_controller/delContent/$1';
     
     /** menu routes: **/
     $route['menu/list'] = 'Menu_controller/menuList';

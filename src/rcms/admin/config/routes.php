@@ -67,17 +67,25 @@ if ($method == 'OPTIONS')
 if ($method == "POST") {
     $route["content"] = "Content_controller/save";
     
-    $route["menu"] = "Menu_controller/save";
+    $route["news"] = "News_controller/save";
     
+    $route["menu"] = "Menu_controller/save";
     $route["menu_item"] = "MenuItem_controller/save";
     
     $route["banner"] = "Banner_controller/save";
+    $route["banner_item"] = "BannerItem_controller/save";
     
     $route["gallery"] = "Gallery_controller/save";
+    
+    $route["image/upload"] = "Image_controller/upload";
+    
 }
 if ($method == "GET") {
     $route["contents"] = "Content_controller/get";
     $route["content/(:num)"] = "Content_controller/get/$1";
+    
+    $route["news"] = "News_controller/get";
+    $route["news/(:num)"] = "News_controller/get/$1";
     
     $route["menu"] = "Menu_controller/get";
     $route["menu/(:num)"] = "Menu_controller/get/$1";

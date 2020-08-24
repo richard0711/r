@@ -65,7 +65,7 @@
 
             <div class="col-md-6 col-sm-6">
                 <div class="about-info">
-                    <h2 class="wow fadeInUp" data-wow-delay="0.1s">Our Doctors</h2>
+                    <h2 class="wow fadeInUp" data-wow-delay="0.1s">Doktoraink</h2>
                 </div>
             </div>
 

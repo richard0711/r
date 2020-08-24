@@ -50,9 +50,9 @@
                     </div> 
 
                     <ul class="social-icon">
-                        <li><a href="https://www.facebook.com/tooplate" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                        <li><a href="#" class="fa fa-twitter"></a></li>
-                        <li><a href="#" class="fa fa-instagram"></a></li>
+                        <li><a href="https://www.facebook.com/oroszlannagykoros" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                        <!--<li><a href="#" class="fa fa-twitter"></a></li>-->
+                        <li><a href="https://www.instagram.com/oroszlannagykoros/" class="fa fa-instagram"></a></li>
                     </ul>
                 </div>
             </div>

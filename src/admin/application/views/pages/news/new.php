@@ -1,5 +1,5 @@
 <h1 class="h3 mb-2 text-gray-800">Hír létrehozása</h1>
-<p class="mb-4">Szerkessz saját tartalmat ízlés szerint</p>
+<p class="mb-4">Szerkeszd meg a hírt ízlés szerint</p>
 
 <div class="form-group row">
     <div class="col-sm-6 mb-3 mb-sm-0">

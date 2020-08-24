@@ -66,8 +66,10 @@ if ($method == 'OPTIONS')
 
 if ($method == "POST") {
     $route["content"] = "Content_controller/save";
+    $route["content_item"] = "ContentItems_controller/save";
     
     $route["news"] = "News_controller/save";
+    $route["news_item"] = "NewsItem_controller/save";
     
     $route["menu"] = "Menu_controller/save";
     $route["menu_item"] = "MenuItem_controller/save";

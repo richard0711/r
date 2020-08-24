@@ -7,6 +7,7 @@ class News_controller extends Private_controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('tables/News');
+        $this->load->model('tables/NewItem');
     }
 
     /**
@@ -27,9 +28,15 @@ class News_controller extends Private_controller {
                 if (!$News->get($post["idnew"], true)) {
                     throw new Exception("Tartalom nem található!", 500);
                 }
-                $post["content"] = base64_decode($post["content"]);
-                $post["published"] = str_replace(".", "-", $post["published"]);
-                $post["published_to"] = str_replace(".", "-", $post["published_to"]);
+                if (isset($post["content"])) {
+                    $post["content"] = base64_decode($post["content"]);
+                }
+                if (isset($post["published"])) {
+                    $post["published"] = str_replace(".", "-", $post["published"]);
+                }
+                if (isset($post["published_to"])) {
+                    $post["published_to"] = str_replace(".", "-", $post["published_to"]);
+                }
                 $News->update($post["idnew"], $post);
             } else {
                 $post["content"] = base64_decode($post["content"]);
@@ -50,12 +57,14 @@ class News_controller extends Private_controller {
     public function get($idnew = null) {
         try {
             $News = new News();
+            $NewItem = new NewItem();
             if (!($idnew > 1)) {
                 //list
                 $get_data = $this->input->get();
                 $news_res = $News->get_news_by_filters($get_data);
             } else {
                 $news_res = $News->get($idnew, true);
+                $news_res["news_items"] = $NewItem->get_new_items_by_filters(array("idnew" => $idnew));
             }
             echo json_encode($news_res);
         } catch (Exception $exc) {

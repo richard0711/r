@@ -44,6 +44,91 @@
     <div id="editor"><?php echo $content["content"] ?></div>
 </div>
 
+<div id="contentItemsHolderDiv">
+    <?php
+    if (isset($content) && isset($content["content_items"]) && $content["content_items"]["count"] > 0) {
+        foreach ($content["content_items"]["data"] as $key => $content_item) {
+            ?>
+            <div data-id="<?php echo $content_item["idcontent_item"]; ?>" data-status="1" class="card card-body contentItem">
+                <div class="text-center">
+                    <button onclick="delContentItem(this)" class="btn btn-secondary" id="delContentItem_<?php echo $content_item["idcontent_item"]; ?>">
+                        <i class="fas fa-trash fa-sm"></i>
+                    </button>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <div class="">
+                                <label for="contentItemTitle_<?php echo $content_item["idcontent_item"]; ?>">Kép szövege</label>
+                                <input data-id="<?php echo $content_item["idcontent_item"]; ?>" type="text" class="form-control contentItemTitle" value="<?php echo $content_item["title"]; ?>" id="contentItemTitle_<?php echo $content_item["idcontent_item"]; ?>" placeholder="Kép szövege">
+                            </div> 
+                        </div> 
+                        <?php if ($content_item["item_id"] > 1) { ?>
+                            <div class="form-group ">
+                                <div class="">
+                                    <span>Feltöltött kép: 
+                                        <a target="blank" href="<?php echo str_replace("admin.php/", "", ADMIN_API_URL) . $content_item["image_path"]; ?>">
+                                            <?php echo $content_item["image_name"]; ?>
+                                        </a>
+                                    </span>
+                                </div> 
+                            </div> 
+                        <?php } ?>
+                        <div class="form-group ">
+                            <div class="contentItemImageHolder">
+                                <input onchange="selectNewImage(this);" data-id="<?php echo $content_item["idcontent_item"]; ?>" type="file" class="contentItemImage" id="contentItemImage_<?php echo $content_item["idcontent_item"]; ?>" placeholder="Kép">
+                                <input data-id="<?php echo $content_item["idcontent_item"]; ?>" type="hidden" class="form-control contentItemIdImage" value="<?php echo $content_item["item_id"]; ?>" id="contentItemIdImage_<?php echo $content_item["idcontent_item"]; ?>" placeholder="Kép azon.">
+                                <button disabled="true" onclick="uploadImage(this);" class="btn btn-secondary disabled uploadImageBtn">
+                                    <i class="fas fa-file-upload"></i>
+                                    Feltöltés
+                                </button>
+                            </div> 
+                        </div> 
+                    </div> 
+                </div>
+            </div>
+            <br/>
+            <?php
+        }
+    }
+    ?>
+</div>
+<br/>
+
+ <div data-id="0" data-status="1" id="newContentItem" style="display: none;" class="card card-body">
+    <div class="text-center">
+        <button onclick="delContentItem(this)" class="btn btn-secondary" id="delContentItem_0">
+            <i class="fas fa-trash fa-sm"></i>
+        </button>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <div class="">
+                    <label for="contentItemTitle_0">Kép szövege</label>
+                    <input data-id="0" type="text" class="form-control contentItemTitle" value="" id="contentItemTitle_0" placeholder="Kép szövege">
+                </div> 
+            </div> 
+            <div class="form-group">
+                <div class="contentItemImageHolder">
+                    <input onchange="selectNewImage(this);" data-id="0" type="file" class="contentItemImage" value="" id="contentItemImage_0" placeholder="Kép">
+                    <input data-id="0" type="hidden" class="contentItemIdImage" value="" id="contentItemIdImage_0" placeholder="Kép azon.">
+                    <button disabled="true" onclick="uploadImage(this);" class="btn btn-secondary disabled uploadImageBtn">
+                        <i class="fas fa-file-upload"></i>
+                        Feltöltés
+                    </button>
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+</div>
+
+<div class="col-xs-12">
+    <button onclick="addNewContentItem()" class="btn btn-secondary" id="addNewContentItem">
+        Új kép hozzáadása
+    </button>
+</div> 
+
 <div class="form-group row">
     <div class="col-sm-12 text-right">
         <small id="errorMessage" class="form-text text-danger"></small>
@@ -73,6 +158,66 @@
         });
 
         var content_editor;
+        
+        var actContentItemImageHolder = null;
+
+        function selectNewImage(input) {
+            var uploadImageBtn = jQuery(input).closest(".contentItemImageHolder").find(".uploadImageBtn");
+            uploadImageBtn.removeClass("disabled");
+            uploadImageBtn.removeAttr("disabled");
+            uploadImageBtn.html("<i class=\"fas fa-file-upload\"></i> Feltöltés");
+        }
+
+        function uploadImage(uploadbtn) {
+            actContentItemImageHolder = jQuery(uploadbtn).closest('.contentItemImageHolder');
+            if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+                alert('The File APIs are not fully supported in this browser.');
+                return;
+            }
+            var file = actContentItemImageHolder.find('.contentItemImage').prop('files')[0];
+            var formdata = new FormData();
+            formdata.append("file1", file);
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = uploadImageCallback;
+            ajax.open("POST", '<?php echo ADMIN_API_URL; ?>image/upload');
+            ajax.send(formdata);
+        }
+
+        function uploadImageCallback() {
+            // In local files, status is 0 upon success in Mozilla Firefox
+            if (this.readyState === XMLHttpRequest.DONE) {
+                var status = this.status;
+                if (status === 0 || (status >= 200 && status < 400)) {
+                    // The request has been completed successfully
+                    console.log(this.responseText);
+                    var res = JSON.parse(this.responseText);
+                    actContentItemImageHolder.find(".contentItemIdImage").val(res.data.idimage);
+                    actContentItemImageHolder.find(".uploadImageBtn").attr("disabled", true);
+                    actContentItemImageHolder.find(".uploadImageBtn").addClass("disabled");
+                    actContentItemImageHolder.find(".uploadImageBtn").html("Feltöltés kész");
+                } else {
+                    alert("hiba a kép feltöltése közben");
+                }
+            }
+        }
+
+        function addNewContentItem() {
+            var newContentItem = jQuery("#newContentItem").clone();
+            newContentItem.addClass("contentItem");
+            newContentItem.css("display", "flex");
+            jQuery("#contentItemsHolderDiv").append(newContentItem);
+            jQuery("#contentItemsHolderDiv").append("<br/>");
+        }
+
+        function delContentItem(item) {
+            if (jQuery(item).closest(".contentItem").attr("data-status") == 1) {
+                jQuery(item).closest(".contentItem").attr("data-status", 0);
+                jQuery(item).addClass("text-danger");
+            } else {
+                jQuery(item).closest(".contentItem").attr("data-status", 1);
+                jQuery(item).removeClass("text-danger");
+            }
+        }
 
         function save() {
             var content = btoa(unescape(encodeURIComponent(content_editor.getData())));
@@ -96,7 +241,7 @@
             }).done(function (response) {
                 if (response.errorCode == 0) {
                     if (response.data && Number(response.data.idcontent) > 1) {
-                        window.location = '<?php echo FULL_BASE_URL . 'content/list/'; ?>';
+                        saveContentItems();
                     }
                 } else {
                     jQuery("#errorMessage").html(response.msg);
@@ -105,6 +250,48 @@
                 console.log('error log : ', response);
                 jQuery("#errorMessage").html('Hiba a mentés közben!');
             });
+        }
+        
+        function saveContentItems() {
+            var content_items = [];
+            //össze kell szedni a menü itemeket
+            jQuery(".contentItem").each(function (index, item) {
+                var new_item = {
+                    idcontent_item: (Number(jQuery(item).attr("data-id") > 1)) ? jQuery(item).attr("data-id") : null,
+                    title: jQuery(item).find(".contentItemTitle").val(),
+                    type: 'image',
+                    idcontent: <?php echo $content["idcontent"]; ?>,
+                    item_id: jQuery(item).find(".contentItemIdImage").val(),
+                    status: jQuery(item).attr("data-status")
+                };
+                if (Number(new_item.idnew_item) > 1 || (new_item.status == 1)) {
+                    content_items.push(new_item);
+                }
+            });
+            if (content_items.length > 0) {
+                jQuery.ajax({
+                    url: "<?php echo ADMIN_API_URL; ?>content_item",
+                    type: "POST",
+                    async: false,
+                    dataType: 'json',
+                    data: JSON.stringify(content_items),
+                    contentType: 'application/json'
+                            //headers: ko.toJS(headers)
+                }).done(function (response) {
+                    if (response.errorCode == 0) {
+                        if (response.data) {
+                            window.location = '<?php echo FULL_BASE_URL . 'content/list/'; ?>';
+                        }
+                    } else {
+                        jQuery("#errorMessage").html(response.msg);
+                    }
+                }).fail(function (response) {
+                    console.log('error log : ', response);
+                    jQuery("#errorMessage").html('Hiba a mentés közben!');
+                });
+            } else {
+                window.location = '<?php echo FULL_BASE_URL . 'content/list/'; ?>';
+            }
         }
 
         ClassicEditor.create(document.querySelector('#editor'), {

@@ -1,5 +1,5 @@
-<h1 class="h3 mb-2 text-gray-800">Menü törlése</h1>
-<p class="mb-4 text-warning">Biztos vagy benne, hogy törlöd a <?php echo $menu["title"]; ?> nevű menüt?</p>
+<h1 class="h3 mb-2 text-gray-800">Tartalom törlése</h1>
+<p class="mb-4 text-warning">Biztos vagy benne, hogy törlöd a <?php echo $content["title"]; ?> nevű tartalmat?</p>
 
 <div class="form-group row">
     <div class="col-sm-12">
@@ -12,7 +12,7 @@
         <i class="fas fa-save fa-sm"></i>
         Törlés
     </a> 
-    <a href="<?php echo FULL_BASE_URL . 'menu/list'; ?>" class="btn btn-secondary" role="button">
+    <a href="<?php echo FULL_BASE_URL . 'content/list'; ?>" class="btn btn-secondary" role="button">
         <i class="fas fa-cancel fa-sm"></i>
         Mégsem
     </a>
@@ -22,11 +22,11 @@
 
     function save() {
         var data = {
-            idmenu: <?php echo $menu["idmenu"]; ?>,
+            idcontent: <?php echo $content["idcontent"]; ?>,
             status: 0
         };
         jQuery.ajax({
-            url: "<?php echo ADMIN_API_URL; ?>menu",
+            url: "<?php echo ADMIN_API_URL; ?>content",
             type: "POST",
             async: false,
             dataType: 'json',
@@ -35,8 +35,8 @@
             //headers: ko.toJS(headers)
         }).done(function (response) {
             if (response.errorCode == 0) {
-                if (response.data && Number(response.data.idmenu) > 1) {
-                    window.location = '<?php echo FULL_BASE_URL.'menu/list'; ?>';
+                if (response.data && Number(response.data.idcontent) > 1) {
+                    window.location = '<?php echo FULL_BASE_URL.'content/list'; ?>';
                 }
             } else {
                 jQuery("#errorMessage").html(response.msg);

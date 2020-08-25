@@ -13,7 +13,7 @@
                     <img class="oroszlan_logo" src="<?php echo VIEWS_URL; ?>images/oroszlan_logo.jpg" />
                 </a>
                 <span class="logo_text">
-                Nagykőrösi Oroszlán Gyógyszertár
+                <span class="logo_text_line1">Nagykőrösi Oroszlán Gyógyszertár</span>
                 <br/>
                 <i style="color: #757575;">2750 Nagykőrös, Kecskeméti út 18.</i>
                 </span>

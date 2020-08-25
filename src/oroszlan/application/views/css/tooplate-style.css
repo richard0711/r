@@ -342,7 +342,7 @@ http://www.tooplate.com/view/2098-health
 
   .navbar-default .navbar-nav li a {
     color: #555555;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
     padding-right: 20px;
     padding-left: 20px;
@@ -351,7 +351,7 @@ http://www.tooplate.com/view/2098-health
   }
 
   .navbar-default .navbar-nav > li a:hover {
-    color: #393939 !important;
+    color: #82AE42 !important;
   }
 
   .navbar-default .navbar-nav > li > a:hover,
@@ -396,7 +396,7 @@ http://www.tooplate.com/view/2098-health
 
   #home h3 {
     color: #ffffff;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: normal;
     line-height: inherit;
     letter-spacing: 3px;
@@ -406,6 +406,16 @@ http://www.tooplate.com/view/2098-health
 
   .slider .container {
     width: 100%;
+  }
+  
+  .owl-item .caption h1 {
+      text-shadow: -1px 0 black, 0 1px silver, 1px 0 silver, 0 -1px silver;
+  }
+  .owl-item .caption h3 {
+      text-shadow: -1px 0 black, 0 1px silver, 1px 0 silver, 0 -1px silver;
+  }
+  .owl-item .caption h3 {
+      font-weight: bolder !important;
   }
 
   .slider .owl-dots {
@@ -437,7 +447,7 @@ http://www.tooplate.com/view/2098-health
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    background-color: rgba(20,20,20,0.2);
+    /*background-color: rgba(20,20,20,0.2);*/
     height: 100%;
     color: #fff;
     cursor: e-resize;
@@ -1049,7 +1059,7 @@ http://www.tooplate.com/view/2098-health
     }
 
     #home h3 {
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 1px;
     }
 

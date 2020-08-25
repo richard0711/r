@@ -13,8 +13,9 @@
                                     <?php } ?>    
                                     <div class="caption">
                                         <div class="col-md-offset-1 col-md-10">
-                                            <h3><?php echo $banner_item["name"] ?></h3>
-                                            <h1><?php echo $banner_item["text"] ?></h1>
+                                            <h1><?php echo $banner_item["name"] ?></h1>
+                                            <h3><?php echo $banner_item["text"] ?></h3>
+                                            <br/>
                                             <?php if ($banner_item["url"] != null && $banner_item["url"] != '') { ?>
                                                 <a href="<?php echo $banner_item["url"] ?>" class="section-btn btn btn-default smoothScroll">Megtekintés</a>
                                             <?php } ?>
@@ -38,15 +39,14 @@
 
             <div class="col-md-6 col-sm-6">
                 <div class="about-info">
-                    <h2 class="wow fadeInUp" data-wow-delay="0.6s">Oroszlán Gyógyszertár</h2>
                     <div class="wow fadeInUp" data-wow-delay="0.8s">
                         <?php echo $home_page_welcome["data"][0]["content"]; ?>
                     </div>
                     <figure class="profile wow fadeInUp" data-wow-delay="1s">
                         <img src="<?php echo VIEWS_URL; ?>images/author-image.jpg" class="img-responsive" alt="">
                         <figcaption>
-                            <h3>Dr. Neil Jackson</h3>
-                            <p>General Principal</p>
+                            <h3>Dr. XY Judit</h3>
+                            <p>Gyógyszerész</p>
                         </figcaption>
                     </figure>
                 </div>
@@ -59,162 +59,94 @@
 
 
 <!-- TEAM -->
+<?php if (isset($home_page_doctors) && $home_page_doctors["count"] > 0) { ?>
 <section id="team" data-stellar-background-ratio="1">
     <div class="container">
         <div class="row">
-
             <div class="col-md-6 col-sm-6">
                 <div class="about-info">
                     <h2 class="wow fadeInUp" data-wow-delay="0.1s">Doktoraink</h2>
                 </div>
             </div>
-
             <div class="clearfix"></div>
-
+            <?php foreach ($home_page_doctors["data"] as $doctor) { ?>
             <div class="col-md-4 col-sm-6">
                 <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                    <?php if (isset($doctor["content_items"]) && $doctor["content_items"]["count"] > 0) { ?>
+                    <img src="<?php echo str_replace("public.php/", "", RCMS_URL).$doctor["content_items"]["data"][0]["image_path"]; ?>" class="img-responsive" alt="">
+                    <?php } else { ?> 
                     <img src="<?php echo VIEWS_URL; ?>images/team-image1.jpg" class="img-responsive" alt="">
+                    <?php }  ?> 
 
                     <div class="team-info">
-                        <h3>Nate Baston</h3>
-                        <p>General Principal</p>
-                        <div class="team-contact-info">
+                        <h3><?php echo $doctor["title"]; ?></h3>
+                        <p>
+                            <?php echo $doctor["content"]; ?>
+                        </p>
+                        <!--<div class="team-contact-info">
                             <p><i class="fa fa-phone"></i> 010-020-0120</p>
                             <p><i class="fa fa-envelope-o"></i> <a href="#">general@company.com</a></p>
                         </div>
                         <ul class="social-icon">
                             <li><a href="#" class="fa fa-linkedin-square"></a></li>
                             <li><a href="#" class="fa fa-envelope-o"></a></li>
-                        </ul>
+                        </ul>-->
                     </div>
 
                 </div>
             </div>
-
-            <div class="col-md-4 col-sm-6">
-                <div class="team-thumb wow fadeInUp" data-wow-delay="0.4s">
-                    <img src="<?php echo VIEWS_URL; ?>images/team-image2.jpg" class="img-responsive" alt="">
-
-                    <div class="team-info">
-                        <h3>Jason Stewart</h3>
-                        <p>Pregnancy</p>
-                        <div class="team-contact-info">
-                            <p><i class="fa fa-phone"></i> 010-070-0170</p>
-                            <p><i class="fa fa-envelope-o"></i> <a href="#">pregnancy@company.com</a></p>
-                        </div>
-                        <ul class="social-icon">
-                            <li><a href="#" class="fa fa-facebook-square"></a></li>
-                            <li><a href="#" class="fa fa-envelope-o"></a></li>
-                            <li><a href="#" class="fa fa-flickr"></a></li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-6">
-                <div class="team-thumb wow fadeInUp" data-wow-delay="0.6s">
-                    <img src="<?php echo VIEWS_URL; ?>images/team-image3.jpg" class="img-responsive" alt="">
-
-                    <div class="team-info">
-                        <h3>Miasha Nakahara</h3>
-                        <p>Cardiology</p>
-                        <div class="team-contact-info">
-                            <p><i class="fa fa-phone"></i> 010-040-0140</p>
-                            <p><i class="fa fa-envelope-o"></i> <a href="#">cardio@company.com</a></p>
-                        </div>
-                        <ul class="social-icon">
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-envelope-o"></a></li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-
+            <?php } ?>
         </div>
     </div>
 </section>
+<?php } ?>
 
 
 <!-- NEWS -->
+<?php if (isset($news) && $news["count"] > 0) { ?>
 <section id="news" data-stellar-background-ratio="2.5">
     <div class="container">
         <div class="row">
-
             <div class="col-md-12 col-sm-12">
                 <!-- SECTION TITLE -->
                 <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
                     <h2>Aktualitások</h2>
                 </div>
             </div>
-
+            <?php $max_count = 3; $news_counter = 0; foreach ($news["data"] as $new) { if ($max_count == $news_counter) { break; } else { $news_counter++; } ?> 
             <div class="col-md-4 col-sm-6">
                 <!-- NEWS THUMB -->
                 <div class="news-thumb wow fadeInUp" data-wow-delay="0.4s">
-                    <a href="news-detail.html">
+                    <a href="<?php echo FULL_BASE_URL . 'news/'.$new["idnew"]; ?>">
+                        <?php if (isset($new["news_items"]) && $new["news_items"]["count"] > 0) { ?>
+                        <img src="<?php echo str_replace("public.php/", "", RCMS_URL).$new["news_items"]["data"][0]["image_path"]; ?>" class="img-responsive" alt="">
+                        <?php } else { ?>
+                        <!-- NEWS default image -->
                         <img src="<?php echo VIEWS_URL; ?>images/news-image1.jpg" class="img-responsive" alt="">
+                        <?php } ?>
+                        
                     </a>
                     <div class="news-info">
-                        <span>March 08, 2018</span>
-                        <h3><a href="<?php echo FULL_BASE_URL . 'news/1'; ?>">About Amazing Technology</a></h3>
-                        <p>Maecenas risus neque, placerat volutpat tempor ut, vehicula et felis.</p>
-                        <div class="author">
-                            <img src="<?php echo VIEWS_URL; ?>images/author-image.jpg" class="img-responsive" alt="">
+                        <span><?php echo str_replace("-", ".", $new["published"]); ?></span>
+                        <h3><a href="<?php echo FULL_BASE_URL . 'news/'.$new["idnew"]; ?>"><?php echo $new["title"]; ?></a></h3>
+                        <p>
+                            <?php echo $new["content"]; ?>
+                        </p>
+                        <!--<div class="author">
+                            <img src="<?php // echo VIEWS_URL; ?>images/author-image.jpg" class="img-responsive" alt="">
                             <div class="author-info">
                                 <h5>Jeremie Carlson</h5>
                                 <p>CEO / Founder</p>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-4 col-sm-6">
-                <!-- NEWS THUMB -->
-                <div class="news-thumb wow fadeInUp" data-wow-delay="0.6s">
-                    <a href="news-detail.html">
-                        <img src="<?php echo VIEWS_URL; ?>images/news-image2.jpg" class="img-responsive" alt="">
-                    </a>
-                    <div class="news-info">
-                        <span>February 20, 2018</span>
-                        <h3><a href="news-detail.html">Introducing a new healing process</a></h3>
-                        <p>Fusce vel sem finibus, rhoncus massa non, aliquam velit. Nam et est ligula.</p>
-                        <div class="author">
-                            <img src="<?php echo VIEWS_URL; ?>images/author-image.jpg" class="img-responsive" alt="">
-                            <div class="author-info">
-                                <h5>Jason Stewart</h5>
-                                <p>General Director</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-6">
-                <!-- NEWS THUMB -->
-                <div class="news-thumb wow fadeInUp" data-wow-delay="0.8s">
-                    <a href="news-detail.html">
-                        <img src="<?php echo VIEWS_URL; ?>images/news-image3.jpg" class="img-responsive" alt="">
-                    </a>
-                    <div class="news-info">
-                        <span>January 27, 2018</span>
-                        <h3><a href="news-detail.html">Review Annual Medical Research</a></h3>
-                        <p>Vivamus non nulla semper diam cursus maximus. Pellentesque dignissim.</p>
-                        <div class="author">
-                            <img src="<?php echo VIEWS_URL; ?>images/author-image.jpg" class="img-responsive" alt="">
-                            <div class="author-info">
-                                <h5>Andrio Abero</h5>
-                                <p>Online Advertising</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            <?php } ?> 
         </div>
     </div>
 </section>
+<?php } ?>
 
 
 <!-- MAKE AN APPOINTMENT -->

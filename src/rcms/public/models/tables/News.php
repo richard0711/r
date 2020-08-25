@@ -4,22 +4,6 @@ class News extends CI_Model {
     
     protected $table = "news";
     protected $primary_key = "idnew";
-    
-    public function get_field_name($field = '') {
-        if (isset($this->field_names[$field])) {
-            return $this->field_names[$field];
-        } else {
-            return $field;
-        }
-    }
-    
-    public function get_field_value($field = '', $value = null) {
-        if (isset($this->field_values[$field]) && isset($this->field_values[$field][$value])) {
-            return $this->field_values[$field][$value];
-        } else {
-            return $value;
-        }
-    }
 
     public function __construct() {
         parent::__construct();
@@ -37,39 +21,6 @@ class News extends CI_Model {
         $query = $this->db->get_where($this->table, array('status' => 1));
         return $query->result();
     }
-
-    public function insert($data = array()) {
-        if (array_key_exists('published', $data) && $data["published"] == '') {
-            $data["published"] = null;
-        }
-        if (array_key_exists('published_to', $data) && $data["published_to"] == '') {
-            $data["published_to"] = null;
-        }
-        $data["creator"] = 1;
-        $data["created"] = date("Y-m-d H:i:s");
-        if ($this->db->insert($this->table, $data))
-            return $this->db->insert_id();
-        else 
-            return 0;
-    }
-
-    public function update($id, $data) {
-        if (array_key_exists('published', $data) && $data["published"] == '') {
-            $data["published"] = null;
-        }
-        if (array_key_exists('published_to', $data) && $data["published_to"] == '') {
-            $data["published_to"] = null;
-        }
-        $data["editor"] = 1;
-        $data["edited"] = date("Y-m-d H:i:s");
-        $this->db->where($this->table.".".$this->primary_key, $id);
-        $res = $this->db->update($this->table, $data);
-        return $res;
-    }
-
-    public function delete($id){
-        return $this->db->delete($this->table, array($this->primary_key => $id)); 
-    }
     
     public function get_news_by_filters($filters = array()){
         $result = array('count' => 0, 'data' => array());
@@ -78,6 +29,12 @@ class News extends CI_Model {
         if (isset($filters["idnew"]) && $filters["idnew"] > 1) {
             $this->db->where($this->table.".idnew", $filters["idnew"]);
         }
+        if (isset($filters["position_code"]) && $filters["position_code"] != '') {
+            $this->db->join("positions", "positions.idposition=newss.idposition");
+            $this->db->where("positions.code", $filters["position_code"]);
+        }
+        $this->db->where("(".$this->table.".published is not null and ".$this->table.".published <= '".date("Y-m-d")."' and (".$this->table.".published_to >= '".date("Y-m-d")."' or ".$this->table.".published_to is null))");
+        $this->db->order_by($this->table.".published desc");
         $this->db->where($this->table.".status", 1);
         $result['count'] = $this->db->count_all_results('', false);
         set_query_limit_and_offset($filters, $this->db);

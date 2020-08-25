@@ -39,7 +39,12 @@ class Content extends CI_Model {
     }
 
     public function insert($data = array()) {
-        //todo: check fields!
+        if (array_key_exists('published', $data) && $data["published"] == '') {
+            $data["published"] = null;
+        }
+        if (array_key_exists('published_to', $data) && $data["published_to"] == '') {
+            $data["published_to"] = null;
+        }
         $data["creator"] = 1;
         $data["created"] = date("Y-m-d H:i:s");
         if ($this->db->insert($this->table, $data))
@@ -49,6 +54,12 @@ class Content extends CI_Model {
     }
 
     public function update($id, $data) {
+        if (array_key_exists('published', $data) && $data["published"] == '') {
+            $data["published"] = null;
+        }
+        if (array_key_exists('published_to', $data) && $data["published_to"] == '') {
+            $data["published_to"] = null;
+        }
         $data["editor"] = 1;
         $data["edited"] = date("Y-m-d H:i:s");
         $this->db->where($this->table.".".$this->primary_key, $id);

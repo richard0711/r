@@ -66,6 +66,7 @@ class Front_controller extends Public_controller {
         $common_params["home_page_banners"] = $PublicAPI->get("banner/list", array("position_code" => 'home_page_top'));
         $common_params["home_page_doctors"] = $PublicAPI->get("content/list", array("position_code" => 'home_page_doctors'));
         $common_params["home_page_welcome"] = $PublicAPI->get("content/list", array("position_code" => 'home_page_welcome'));
+        $common_params["news"] = $PublicAPI->get("news/list");
         if (ENVIRONMENT == 'development') { log_message("debug", "common_params :: ".print_r($common_params, true)); }
         return $common_params;
     }

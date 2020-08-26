@@ -43,9 +43,10 @@
                 <div class="about-info">
                     <h2 class="wow fadeInUp" data-wow-delay="0.6s">Oroszlán Gyógyszertár</h2>
                     <div class="wow fadeInUp" data-wow-delay="0.8s">
-                        <?php echo $home_page_welcome["data"][0]["content"]; ?>
+                        <?php echo $home_page_welcome["data"][0]["short_desc"]; ?>
                     </div>
                     <figure class="profile wow fadeInUp" data-wow-delay="1s">
+                         <br/>
                         <a href="<?php echo FULL_BASE_URL . 'p/content/'.$home_page_welcome["data"][0]["idcontent"]; ?>" class="section-btn btn btn-default smoothScroll">Tovább olvasom...</a>
                     </figure>
                 </div>

@@ -32,7 +32,7 @@
                             </a>
                         </div>
                         <div class="stories-info">
-                            <a href="<?php echo FULL_BASE_URL . 'news/'.$new["idnew"]; ?>"><h5><?php echo $new["title"]; ?></h5></a>
+                            <a href="<?php echo FULL_BASE_URL . 'p/news/'.$new["idnew"]; ?>"><h5><?php echo $new["title"]; ?></h5></a>
                             <span><?php echo formatted_date_time($new["published"], false, '', 'hun'); ?></span>
                             <!--2020. Augusztus 10.-->
                         </div>

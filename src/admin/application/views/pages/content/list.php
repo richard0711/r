@@ -33,8 +33,8 @@
                     <?php foreach ($list["data"] as $item) { ?>
                         <tr>
                             <td><?php echo $item["title"]; ?></td>
-                            <td><?php echo $item["published"]; ?></td>
-                            <td><?php echo $item["published_to"]; ?></td>
+                            <td><?php echo formatted_date_time($item["published"]); ?></td>
+                            <td><?php echo formatted_date_time($item["published_to"]); ?></td>
                             <td>
                                 <div class="btn-group">
                                     <a href="<?php echo FULL_BASE_URL . 'content/edit/' . $item["idcontent"]; ?>" class="btn-sm btn-secondary" role="button">

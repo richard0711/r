@@ -80,6 +80,29 @@
                                 <input data-id="<?php echo $banner_item["idbanner_item"]; ?>" type="text" class="form-control bannerItemUrl" value="<?php echo $banner_item["url"]; ?>" id="bannerItemUrl_<?php echo $banner_item["idbanner_item"]; ?>" placeholder="Hivatkozás">
                             </div> 
                         </div> 
+                        <div class="form-group ">
+                            <div class="">
+                                <label for="bannerItemContent_<?php echo $banner_item["idbanner_item"]; ?>">Tartalomra hivatkozás</label>
+                                <select data-id="<?php echo $banner_item["idbanner_item"]; ?>" 
+                                        type="text" 
+                                        class="form-control bannerItemContent" 
+                                        value="<?php echo $banner_item["idcontent"]; ?>" 
+                                        id="bannerItemContent_<?php echo $banner_item["idbanner_item"]; ?>" 
+                                        placeholder="Tartalomra hivatkozás">
+                                    <option value="1">--nincs kiválasztva--</option>>
+                                    <?php 
+                                        if (isset($contents) && isset($contents["data"])) {
+                                            foreach ($contents["data"] as $content) {
+                                                ?>
+                                    <option  <?php echo ($content["idcontent"] == $banner_item["idcontent"]) ? 'selected="selected"' : ''; ?>
+                                        value="<?php echo $content["idcontent"]; ?>"><?php echo $content["title"] ?></option>
+                                                <?php
+                                            }
+                                        } 
+                                    ?>
+                                </select>
+                            </div> 
+                        </div>  
                         <?php if ($banner_item["idimage"] > 1) { ?>
                         <div class="form-group ">
                             <div class="">
@@ -141,6 +164,28 @@
                 <div class="">
                     <label for="bannerItemUrl_0">Hivatkozás</label>
                     <input data-id="0" type="text" class="form-control bannerItemUrl" value="" id="bannerItemUrl_0" placeholder="Hivatkozás">
+                </div> 
+            </div> 
+            <div class="form-group ">
+                <div class="">
+                    <label for="bannerItemContent_0">Tartalomra hivatkozás</label>
+                    <select data-id="0" 
+                            type="text" 
+                            class="form-control bannerItemContent" 
+                            value="1" 
+                            id="bannerItemContent_0" 
+                            placeholder="Tartalomra hivatkozás">
+                        <option value="1">--nincs kiválasztva--</option>>
+                        <?php 
+                            if (isset($contents) && isset($contents["data"])) {
+                                foreach ($contents["data"] as $content) {
+                                    ?>
+                        <option value="<?php echo $content["idcontent"]; ?>"><?php echo $content["title"] ?></option>
+                                    <?php
+                                }
+                            } 
+                        ?>
+                    </select>
                 </div> 
             </div> 
             <div class="form-group">
@@ -281,6 +326,7 @@
                 text: jQuery(item).find(".bannerItemText").val(),
                 idbanner: <?php echo $banner["idbanner"]; ?>,
                 url: jQuery(item).find(".bannerItemUrl").val(),
+                idcontent: (jQuery(item).find(".bannerItemContent").val()>1)?jQuery(item).find(".bannerItemContent").val():1,
                 idimage: jQuery(item).find(".bannerItemIdImage").val(),
                 status: jQuery(item).attr("data-status")
             };

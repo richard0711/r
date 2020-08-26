@@ -23,6 +23,7 @@ class News_controller extends Public_controller {
                 }
             } else {
                 $news_list = $News->get($idnew, true);
+                $news_list["news_items"] = $NewItem->get_new_items_by_filters(array("idnew" => $idnew));
             }
             echo json_encode($news_list);
         } catch (Exception $exc) {

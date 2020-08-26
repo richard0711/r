@@ -14,6 +14,10 @@
         <label for="newsPublishedTo">Publikálás vége</label>
         <input type="text" class="form-control form-control-user" value="<?php echo str_replace(array(" 00:00:00", "-"), array("", "."), $news["published_to"]); ?>" id="newsPublishedTo" placeholder="Publikálás vége">
     </div> 
+    <div class="col-sm-12">
+        <label for="newsShortDesc">Rövid leírás</label>
+        <textarea type="text" class="form-control form-control-user" id="newsShortDesc" placeholder="Rövid leírás"><?php echo $news["short_desc"]; ?></textarea>
+    </div> 
 </div>
 
 <div class="form-group">
@@ -203,6 +207,7 @@
                 title: jQuery("#newsTitle").val(),
                 published: jQuery("#newsPublished").val(),
                 published_to: jQuery("#newsPublishedTo").val(),
+                short_desc: jQuery("#newsShortDesc").val(),
                 idposition: jQuery("#newsPosition").val(),
                 status: 1
             };
@@ -270,70 +275,71 @@
             }
         }
 
-        ClassicEditor.create(document.querySelector('#editor'), {
+        ClassicEditor.create( document.querySelector( '#editor' ), {
             toolbar: {
                 items: [
-                    'undo',
-                    'redo',
-                    'heading',
-                    '|',
-                    'removeFormat',
-                    'bold',
-                    'italic',
-                    'underline',
-                    'strikethrough',
-                    'fontFamily',
-                    'fontBackgroundColor',
-                    'fontColor',
-                    'fontSize',
-                    'highlight',
-                    'todoList',
-                    'bulletedList',
-                    'numberedList',
-                    'indent',
-                    'outdent',
-                    'alignment',
-                    '|',
-                    'insertTable',
-                    'horizontalLine',
-                    'blockQuote',
-                    'codeBlock',
-                    '|',
-                    'CKFinder',
-                    'imageUpload',
-                    'link',
-                    //'mediaEmbed',
-                    'code',
-                    'exportPdf',
-                    'specialCharacters'
+                        'undo',
+                        'redo',
+                        'heading',
+                        '|',
+                        'removeFormat',
+                        'bold',
+                        'italic',
+                        'underline',
+                        'strikethrough',
+                        'bulletedList',
+                        'numberedList',
+                        'todoList',
+                        'fontFamily',
+                        'fontSize',
+                        'fontColor',
+                        'highlight',
+                        'fontBackgroundColor',
+                        'alignment',
+                        'indent',
+                        'outdent',
+                        'subscript',
+                        'superscript',
+                        'specialCharacters',
+                        '|',
+                        'insertTable',
+                        'blockQuote',
+                        'horizontalLine',
+                        'code',
+                        '|',
+                        'link',
+                        'imageUpload',
+                        'CKFinder',
+                        'codeBlock',
+                        'exportPdf'
                 ]
-            },
-            ckfinder: {
-                uploadUrl: '<?php echo VIEWS_URL; ?>/vendor/ckfinder3511/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
-                // Open the file manager in the pop-up window.
-                openerMethod: 'popup'
             },
             language: 'hu',
             image: {
-                toolbar: [
-                    'imageTextAlternative',
-                    'imageStyle:full',
-                    'imageStyle:side'
-                ]
+                    toolbar: [
+                            'imageTextAlternative',
+                            'imageStyle:full',
+                            'imageStyle:side'
+                    ]
             },
             table: {
-                newsToolbar: [
-                    'tableColumn',
-                    'tableRow',
-                    'mergeTableCells',
-                    'tableCellProperties',
-                    'tableProperties'
-                ]
+                    contentToolbar: [
+                            'tableColumn',
+                            'tableRow',
+                            'mergeTableCells',
+                            'tableCellProperties',
+                            'tableProperties'
+                    ]
             },
             licenseKey: ''
-        }).then(editor => {
+        } )
+        .then( editor => {
             news_editor = editor;
-        }).catch(err => {
-            console.error(err.stack);
-        });
+        })
+        .catch( error => {
+            console.error( 'Oops, something went wrong!' );
+            console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+            console.warn( 'Build id: m1r7oj2ao0fm-avyfabil7oss' );
+            console.error( error );
+        } );
 </script>

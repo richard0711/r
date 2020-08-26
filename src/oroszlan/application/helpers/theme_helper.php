@@ -35,3 +35,34 @@ function getMenuItemURL($menu_item = array()) {
     return $url;
 }
 
+function formatted_date_time($date_time = '', $with_time = false, $format = '', $lang = '') {
+    if ($lang == 'hun') {
+        $date_time_slices = explode(" ", $date_time);
+        $timestamp = strtotime($date_time_slices[0]);
+        $honapok = Array( "", "január" , "február"  , "március"   ,
+	                      "április", "május"    , "június"    ,
+	                      "július" , "augusztus", "szeptember",
+	                      "október", "november" , "december"    );
+        //	$napok   = Array( "vasárnap" , "hétfő" , "kedd",  "szerda",
+        //	                  "csütörtök", "péntek", "szombat"          );
+	$ho   =  $honapok[date("n", $timestamp)];
+        //	$nap  =  $napok[date("w", $timestamp)];
+	return date("Y. ", $timestamp) . $ho . date(" d.", $timestamp);
+    }
+    
+    $formatteddatetime = $date_time;
+    if ($format != '' && $lang == '') {
+        $date_time = str_replace(".", "-", $date_time);
+        $date_time_in_sec = strtotime($date_time);
+        $formatteddatetime = date($format, $date_time_in_sec);
+    } else {
+        $date_time = str_replace("-", ".", $date_time);
+        if (!$with_time) {
+            $date_time_slices = explode(" ", $date_time);
+            if (is_array($date_time_slices) && count($date_time_slices) > 0) {
+                $formatteddatetime = $date_time_slices[0];
+            }
+        }
+    }
+    return $formatteddatetime;
+}

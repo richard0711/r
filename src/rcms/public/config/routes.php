@@ -19,12 +19,14 @@ if ($method == 'OPTIONS')
 if ($method == 'GET') {
     
     /** content routes: **/
+    $route['content/(:num)'] = 'Content_controller/get/$1';
     $route['content/list'] = 'Content_controller/get';
     
     /** menu routes: **/
     $route['menu/list'] = 'Menu_controller/get';
     
     /** news routes: **/
+    $route['news/(:num)'] = 'News_controller/get/$1';
     $route['news/list'] = 'News_controller/get';
     
     /** banner routes: **/

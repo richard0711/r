@@ -18,25 +18,27 @@
             <div class="col-md-4 col-sm-4"> 
                 <div class="footer-thumb"> 
                     <h4 class="wow fadeInUp" data-wow-delay="0.4s">Aktualitások</h4>
+                    <?php if (isset($home_page_news) && $home_page_news["count"] > 0) { ?>
+                    <?php $max_count = 2; $news_counter = 0; foreach ($home_page_news["data"] as $new) { if ($max_count == $news_counter) { break; } else { $news_counter++; } ?> 
                     <div class="latest-stories">
                         <div class="stories-image">
-                            <a href="#"><img src="<?php echo VIEWS_URL; ?>images/news-image.jpg" class="img-responsive" alt=""></a>
+                            <a href="<?php echo FULL_BASE_URL . 'news/'.$new["idnew"]; ?>">
+                                <?php if (isset($new["news_items"]) && $new["news_items"]["count"] > 0) { ?>
+                                <img src="<?php echo str_replace("public.php/", "", RCMS_URL).$new["news_items"]["data"][0]["image_path"]; ?>" class="img-responsive" alt="">
+                                <?php } else { ?>
+                                <!-- NEWS default image -->
+                                <img src="<?php echo VIEWS_URL; ?>images/news-image.jpg" class="img-responsive" alt="">
+                                <?php } ?>
+                            </a>
                         </div>
                         <div class="stories-info">
-                            <a href="#"><h5>Korszerűsítés</h5></a>
-                            <span>2020. Augusztus 10.</span>
+                            <a href="<?php echo FULL_BASE_URL . 'news/'.$new["idnew"]; ?>"><h5><?php echo $new["title"]; ?></h5></a>
+                            <span><?php echo formatted_date_time($new["published"], false, '', 'hun'); ?></span>
+                            <!--2020. Augusztus 10.-->
                         </div>
                     </div>
-
-                    <div class="latest-stories">
-                        <div class="stories-image">
-                            <a href="#"><img src="<?php echo VIEWS_URL; ?>images/news-image.jpg" class="img-responsive" alt=""></a>
-                        </div>
-                        <div class="stories-info">
-                            <a href="#"><h5>Robot</h5></a>
-                            <span>2020. Július 10.</span>
-                        </div>
-                    </div>
+                    <?php } ?>
+                    <?php } ?>
                 </div>
             </div>
 

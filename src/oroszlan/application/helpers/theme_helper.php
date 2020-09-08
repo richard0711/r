@@ -28,7 +28,7 @@ function getMenuItemURL($menu_item = array()) {
     //else link : javascript:void(0);
     $url = '#';
     if ($menu_item["idcontent"] > 1) {
-        $url = FULL_BASE_URL.'content/'.$menu_item["idcontent"];
+        $url = FULL_BASE_URL.'p/content/'.$menu_item["idcontent"];
     } else if ($menu_item["url"] != '') {
         $url = $menu_item["url"];
     }

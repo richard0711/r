@@ -20,6 +20,7 @@ if ($method == 'GET') {
     
     /** auth routes: **/
     $route['login'] = 'Login_controller/index';
+    $route['forgot-password'] = 'Login_controller/forgotPassword';
     
     /** content routes: **/
     $route['content/list'] = 'Content_controller/contentList';

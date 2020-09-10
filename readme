@@ -8,24 +8,21 @@
 + banner rögzítése
 
 admin:
-- hír rögzítés funkció 0,5 h
-- hírek lekérdezése funkció 0,5 h
-- hír visszanyitása funkció 0,5 h
-- tartalomhoz képfeltöltés funkció 0,5
-- login 1,5 h 
-szumma: 3,5h
++ hír rögzítés funkció 0,5 h
++ hírek lekérdezése funkció 0,5 h
++ hír visszanyitása funkció 0,5 h
++ tartalomhoz képfeltöltés funkció 0,5
 
-public:
+- login 1,5 h 
 - tartalom lekérése api használata, publikált nem publikált flag! 0,5 h
 - hírek lekérése api használata, publikélkt nem publikált flag! 0,5 h
-- a kapott anyagok beépítése (nem kaptam még meg) 1 h
+- a kapott anyagok beépítése 1 h
 - facebook linkek kezelése! 1 h
-szumma: 3h
-
-
-összesen 6,5 óra plusz tesztek és szépítések 4 óra -> 10 óra munka van még vele nagyjából hogy az első verzió kikerülhessen
-
-
-szerda:
-kell rövid leírás a tartalomhoz és a hírhez!
-valamint el kell tüntetni a ckeditorból a címsort!!!
+- a Doktoraink legyen külön menüpont alatt
+- a lépjen kapcsolatba résznél ki kell fejteni, hogy mivel kapcsolatban érdeklődhet
+- admin teljes befejezése
+- kereső a publikus felületen
+- galéria 
+- menüpontok átszabása, ha sok van akkor legyen lenyitható!
+- mobilra optimalizálás,
+- új logó!

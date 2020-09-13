@@ -1,18 +1,18 @@
-<h1 class="h3 mb-2 text-gray-800">Menü létrehozása</h1>
-<p class="mb-4">Hozd létre a kívánt menüt</p>
+<h1 class="h3 mb-2 text-gray-800">Galéria létrehozása</h1>
+<p class="mb-4">Hozd létre a kívánt galériát</p>
 
 <div class="form-group row">
     <div class="col-sm-12">
-        <label for="menuTitle">Megnevezés</label>
-        <input type="text" class="form-control" id="menuTitle" placeholder="Menü megnevezése">
-        <small id="menuTitleHelp" class="form-text text-danger"></small>
+        <label for="galleryName">Galéria neve</label>
+        <input type="text" class="form-control" id="galleryName" placeholder="Galéria neve">
+        <small id="galleryNameHelp" class="form-text text-danger"></small>
     </div> 
 </div> 
 <div class="form-group row">
     <div class="col-sm-12">
-        <label for="menuSubTitle">Alcím</label>
-        <input type="text" class="form-control" id="menuSubTitle" placeholder="Alcím">
-        <small id="menuSubTitleHelp" class="form-text text-danger"></small>
+        <label for="galleryText">Leírás</label>
+        <textarea class="form-control" id="galleryText"></textarea>
+        <small id="galleryTextHelp" class="form-text text-danger"></small>
     </div>
 </div>
 
@@ -27,7 +27,7 @@
         <i class="fas fa-save fa-sm"></i>
         Mentés
     </a>
-    <a href="<?php echo FULL_BASE_URL . 'menu/list'; ?>" class="btn btn-secondary" role="button">
+    <a href="<?php echo FULL_BASE_URL . 'gallery/list'; ?>" class="btn btn-secondary" role="button">
         <i class="fas fa-cancel fa-sm"></i>
         Mégsem
     </a>
@@ -40,30 +40,26 @@
 
     function save() {
         var data = {
-            title: jQuery("#menuTitle").val(),
-            sub_title: jQuery("#menuSubTitle").val(),
-            idimage: 1,
+            name: jQuery("#galleryName").val(),
+            text: jQuery("#galleryText").val(),
             status: 1
         };
-        
         //validation:
-        if (data.title == null | data.title == '') {
-            jQuery("#menuTitleHelp").html('A megnevezés kitöltése kötelező!');
+        if (data.name == null | data.name == '') {
+            jQuery("#galleryNameHelp").html('A megnevezés kitöltése kötelező!');
             return;
         }
-        
         jQuery.ajax({
-            url: "<?php echo ADMIN_API_URL; ?>menu",
+            url: "<?php echo ADMIN_API_URL; ?>gallery",
             type: "POST",
             async: false,
             dataType: 'json',
             data: JSON.stringify(data),
-            contentType: 'application/json',
-            //headers: ko.toJS(headers)
+            contentType: 'application/json'
         }).done(function (response) {
             if (response.errorCode == 0) {
-                if (response.data && Number(response.data.idmenu) > 1) {
-                    window.location = '<?php echo FULL_BASE_URL.'menu/edit/'; ?>' + response.data.idmenu;
+                if (response.data && Number(response.data.idgallery) > 1) {
+                    window.location = '<?php echo FULL_BASE_URL.'gallery/edit/'; ?>' + response.data.idgallery;
                 }
             } else {
                 jQuery("#errorMessage").html(response.msg);

@@ -78,6 +78,7 @@ if ($method == "POST") {
     $route["banner_item"] = "BannerItem_controller/save";
     
     $route["gallery"] = "Gallery_controller/save";
+    $route["gallery_item"] = "GalleryItem_controller/save";
     
     $route["image/upload"] = "Image_controller/upload";
     

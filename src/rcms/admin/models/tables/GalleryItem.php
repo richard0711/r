@@ -59,10 +59,11 @@ class GalleryItem extends CI_Model {
     public function get_gallery_items_by_filters($filters = array()){
         $result = array('count' => 0, 'data' => array());
         $this->db->from($this->table);
-        $this->db->select($this->table.'.*');
+        $this->db->select($this->table.'.*, images.title as image_name, images.path as image_path');
         if (isset($filters["idgallery"]) && $filters["idgallery"] > 1) {
             $this->db->where($this->table.".idgallery", $filters["idgallery"]);
         }
+        $this->db->join("images", "images.idimage=gallery_items.idimage");
         $this->db->where($this->table.".status", 1);
         $result['count'] = $this->db->count_all_results('', false);
         set_query_limit_and_offset($filters, $this->db);

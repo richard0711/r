@@ -47,14 +47,12 @@ class Gallery_controller extends Private_controller {
             //need to get gallery data with curl 
             $AdminAPI = new AdminAPI();
             $gallery = $AdminAPI->get('gallery/'.$idgallery);
-            $contents = $AdminAPI->get('contents');
             $positions = $AdminAPI->get('positions', array("type"=>'gallery'));
             $this->load->view("index", 
                 array(
                     "content" => $this->load->view('pages/gallery/edit', 
                         array(
                             "gallery" => $gallery,
-                            "contents" => $contents,
                             "positions" => $positions
                         ), 
                         true)

@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="<?php echo FULL_BASE_URL; ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Indítópult</span></a>
     </li>

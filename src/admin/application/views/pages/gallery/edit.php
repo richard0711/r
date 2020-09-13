@@ -1,167 +1,90 @@
-<h1 class="h3 mb-2 text-gray-800">Menü szerkesztése</h1>
-<p class="mb-4">Szerkeszd a menüt</p>
+<h1 class="h3 mb-2 text-gray-800">Galéria szerkesztése</h1>
+<p class="mb-4">Szerkeszd a galériát</p>
 
 <div class="form-group row">
     <div class="col-sm-12">
-        <label for="menuTitle">Megnevezés</label>
-        <input type="text" class="form-control" value="<?php echo $menu["title"]; ?>" id="menuTitle" placeholder="Menü megnevezése">
-        <small id="menuTitleHelp" class="form-text text-danger"></small>
+        <label for="galleryName">Megnevezés</label>
+        <input type="text" class="form-control" value="<?php echo $gallery["name"]; ?>" id="galleryName" placeholder="Galéria megnevezése">
+        <small id="galleryNameHelp" class="form-text text-danger"></small>
     </div> 
 </div> 
 <div class="form-group row">
     <div class="col-sm-12">
-        <label for="menuSubTitle">Alcím</label>
-        <input type="text" class="form-control" value="<?php echo $menu["sub_title"]; ?>" id="menuSubTitle" placeholder="Alcím">
-        <small id="menuSubTitleHelp" class="form-text text-danger"></small>
+        <label for="galleryText">Leírás</label>
+        <textarea class="form-control" id="galleryText"><?php echo $gallery["text"]; ?></textarea>
+        <small id="galleryTextHelp" class="form-text text-danger"></small>
     </div>
 </div> 
 <div class="form-group row">
     <div class="col-sm-12">
-        <label for="menuPosition">Pozíció</label>
+        <label for="galleryPosition">Pozíció</label>
         <select type="text" 
-                class="form-control menuPosition" 
+                class="form-control galleryPosition" 
                 value="1" 
-                id="menuPosition" 
+                id="galleryPosition" 
                 placeholder="Pozíció">
             <option value="1">--nincs kiválasztva--</option>
-            <?php 
-                if (isset($positions) && isset($positions["data"])) {
-                    foreach ($positions["data"] as $position) {
+            <?php
+            if (isset($positions) && isset($positions["data"])) {
+                foreach ($positions["data"] as $position) {
                     ?>
-            <option <?php echo ($menu["idposition"] == $position["idposition"]) ? 'selected="selected"' : ''; ?>
-                value="<?php echo $position["idposition"]; ?>">
-                    <?php echo $position["name"] ?></option>
+                    <option <?php echo ($gallery["idposition"] == $position["idposition"]) ? 'selected="selected"' : ''; ?>
+                        value="<?php echo $position["idposition"]; ?>">
+                        <?php echo $position["name"] ?></option>
                     <?php
-                    }
-                } 
+                }
+            }
             ?>
         </select>
     </div>
 </div>
 <hr/>
-<h1 class="h3 mb-2 text-gray-800">Menüpontok hozzáadása a menühöz</h1>
-<p class="mb-4">Add meg a menüben elérhető pontokat</p>
+<h1 class="h3 mb-2 text-gray-800">Képek hozzáadása a galériához</h1>
+<p class="mb-4">Töltsd fel a képeket</p>
 
-<div id="menuItemsHolderDiv">
+<div class="form-group row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <div class="galleryItemsUploadHolder">
+                <input onchange="selectNewItems(this);" type="file" multiple class="galleryItemImages" value="" id="galleryItemImageUpload" placeholder="Képek">
+                <button disabled="true" onclick="uploadImage(this);" class="btn btn-secondary disabled uploadImageBtn">
+                    <i class="fas fa-file-upload"></i>
+                    Feltöltés
+                </button>
+            </div> 
+        </div> 
+    </div> 
+</div> 
+
+<div id="galleryItemsHolderDiv">
     <?php
-    if (isset($menu) && isset($menu["menu_items"]) && $menu["menu_items"]["count"] > 0) {
-        foreach ($menu["menu_items"]["data"] as $key => $menu_item) {
+    if (isset($gallery) && isset($gallery["gallery_items"]) && $gallery["gallery_items"]["count"] > 0) {
+        foreach ($gallery["gallery_items"]["data"] as $key => $gallery_item) {
             ?>
-            <div data-id="<?php echo $menu_item["idmenu_item"]; ?>" data-status="1" class="card card-body menuItem">
-                <div class="text-center">
-                    <button onclick="delMenuItem(this)" class="btn btn-secondary" id="delMenuItem_<?php echo $menu_item["idmenu_item"]; ?>">
-                        <i class="fas fa-trash fa-sm"></i>
-                    </button>
+            <div style="display: inline-block;" class="card card-body">
+                <div class="row">
+                    <img class="galleryItemImg" src="<?php echo IMAGES_URL.$gallery_item["image_path"]; ?>">
                 </div>
-                <div class="form-group row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group ">
-                            <div class="">
-                                <label for="menuItemTitle_<?php echo $menu_item["idmenu_item"]; ?>">Menüpont neve</label>
-                                <input data-id="<?php echo $menu_item["idmenu_item"]; ?>" type="text" class="form-control menuItemTitle" value="<?php echo $menu_item["title"]; ?>" id="menuItemTitle_<?php echo $menu_item["idmenu_item"]; ?>" placeholder="Menüpont megnevezése">
-                            </div> 
-                        </div> 
-                        <div class="form-group ">
-                            <div class="">
-                                <label for="menuItemSubTitle_<?php echo $menu_item["idmenu_item"]; ?>">Menüpont alcíme</label>
-                                <input data-id="<?php echo $menu_item["idmenu_item"]; ?>" type="text" class="form-control menuItemSubTitle" value="<?php echo $menu_item["sub_title"]; ?>" id="menuItemSubTitle_<?php echo $menu_item["idmenu_item"]; ?>" placeholder="Menüpont alcíme">
-                            </div> 
-                        </div> 
-                        <div class="form-group ">
-                            <div class="">
-                                <label for="menuItemUrl_<?php echo $menu_item["idmenu_item"]; ?>">Hivatkozás</label>
-                                <input data-id="<?php echo $menu_item["idmenu_item"]; ?>" type="text" class="form-control menuItemUrl" value="<?php echo $menu_item["url"]; ?>" id="menuItemUrl_<?php echo $menu_item["idmenu_item"]; ?>" placeholder="Hivatkozás">
-                            </div> 
-                        </div> 
-                        <div class="form-group ">
-                            <div class="">
-                                <label for="menuItemContent_<?php echo $menu_item["idmenu_item"]; ?>">Tartalomra hivatkozás</label>
-                                <select data-id="<?php echo $menu_item["idmenu_item"]; ?>" 
-                                        type="text" 
-                                        class="form-control menuItemContent" 
-                                        value="<?php echo $menu_item["idcontent"]; ?>" 
-                                        id="menuItemContent_<?php echo $menu_item["idmenu_item"]; ?>" 
-                                        placeholder="Tartalomra hivatkozás">
-                                    <option value="1">--nincs kiválasztva--</option>>
-                                    <?php 
-                                        if (isset($contents) && isset($contents["data"])) {
-                                            foreach ($contents["data"] as $content) {
-                                                ?>
-                                    <option  <?php echo ($content["idcontent"] == $menu_item["idcontent"]) ? 'selected="selected"' : ''; ?>
-                                        value="<?php echo $content["idcontent"]; ?>"><?php echo $content["title"] ?></option>
-                                                <?php
-                                            }
-                                        } 
-                                    ?>
-                                </select>
-                            </div> 
-                        </div> 
-                    </div> 
-                </div> 
+                <div class="row galleryItem" data-id="<?php echo $gallery_item["idgallery_item"]; ?>" data-status="<?php echo $gallery_item["status"]; ?>">
+                    <input class="form-control galleryItemName" type="text" value="<?php echo $gallery_item["name"]; ?>" placeholder="Kép megnevezése">
+                    <input class="form-control galleryItemIdImage" type="hidden" value="<?php echo $gallery_item["idimage"]; ?>" placeholder="Kép azon">
+                    <input class="form-control galleryItemIdGalleryItem" type="hidden" value="<?php echo $gallery_item["idgallery_item"]; ?>" placeholder="azon">
+                </div>
             </div>
-            <br/>
             <?php
         }
     }
     ?>
 </div>
-<br/>
-<div class="col-xs-12">
-    <button onclick="addNewMenuItem()" class="btn btn-secondary" id="addNewMenuItem">
-        Új menüpont hozzáadása
-    </button>
-</div> 
 
-<div data-id="0" data-status="1" id="newMenuItem" style="display: none;" class="card card-body">
-    <div class="text-center">
-        <button onclick="delMenuItem(this)" class="btn btn-secondary" id="delMenuItem_0">
-            <i class="fas fa-trash fa-sm"></i>
-        </button>
+<div style="display:none;" class="itemTemplate card card-body">
+    <div class="row">
+        <img class="galleryItemImg" src="" />
     </div>
-    <div class="form-group row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group ">
-                <div class="">
-                    <label for="menuItemTitle_0">Menüpont neve</label>
-                    <input data-id="0" type="text" class="form-control menuItemTitle" value="" id="menuItemTitle_0" placeholder="Menüpont megnevezése">
-                </div> 
-            </div> 
-            <div class="form-group ">
-                <div class="">
-                    <label for="menuItemSubTitle_0">Menüpont alcíme</label>
-                    <input data-id="0" type="text" class="form-control menuItemSubTitle" value="" id="menuItemSubTitle_0" placeholder="Menüpont alcíme">
-                </div> 
-            </div> 
-            <div class="form-group ">
-                <div class="">
-                    <label for="menuItemUrl_0">Hivatkozás</label>
-                    <input data-id="0" type="text" class="form-control menuItemUrl" value="" id="menuItemUrl_0" placeholder="Hivatkozás">
-                </div> 
-            </div> 
-            <div class="form-group ">
-                <div class="">
-                    <label for="menuItemContent_0">Tartalomra hivatkozás</label>
-                    <select data-id="0" 
-                            type="text" 
-                            class="form-control menuItemContent" 
-                            value="1" 
-                            id="menuItemContent_0" 
-                            placeholder="Tartalomra hivatkozás">
-                        <option value="1">--nincs kiválasztva--</option>>
-                        <?php 
-                            if (isset($contents) && isset($contents["data"])) {
-                                foreach ($contents["data"] as $content) {
-                                    ?>
-                        <option value="<?php echo $content["idcontent"]; ?>"><?php echo $content["title"] ?></option>
-                                    <?php
-                                }
-                            } 
-                        ?>
-                    </select>
-                </div> 
-            </div> 
-        </div> 
-    </div> 
+    <div class="row galleryItem" data-id="0" data-status="0">
+        <input class="form-control galleryItemName" type="text" value="" placeholder="Kép megnevezése" />
+        <input class="form-control galleryItemIdImage" type="hidden" value="" placeholder="Kép azon" />
+    </div>
 </div>
 
 <div class="form-group row">
@@ -186,22 +109,56 @@
     jQuery(document).ready(function () {
 
     });
-
-    function addNewMenuItem() {
-        var newMenuItem = jQuery("#newMenuItem").clone();
-        newMenuItem.addClass("menuItem");
-        newMenuItem.css("display", "flex");
-        jQuery("#menuItemsHolderDiv").append(newMenuItem);
-        jQuery("#menuItemsHolderDiv").append("<br/>");
+    
+    var actGalleryItemsImageHolder = null;
+    
+    function selectNewItems(input) {
+        var uploadImageBtn = jQuery(input).closest(".galleryItemsUploadHolder").find(".uploadImageBtn");
+        uploadImageBtn.removeClass("disabled");
+        uploadImageBtn.removeAttr("disabled");
+        uploadImageBtn.html("<i class=\"fas fa-file-upload\"></i> Feltöltés");
+    }
+    
+    function uploadImage(uploadbtn) {
+        actGalleryItemsImageHolder = jQuery(uploadbtn).closest('.galleryItemsUploadHolder');
+        if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+            alert('The File APIs are not fully supported in this browser.');
+            return;
+        }
+        var files = actGalleryItemsImageHolder.find('.galleryItemImages').prop('files');
+        for (var i = 0; i < files.length; i++) {
+            var formdata = new FormData();
+            formdata.append("file1", files[i]);
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = uploadImageCallback;
+            ajax.open("POST", '<?php echo ADMIN_API_URL; ?>image/upload');
+            ajax.send(formdata);
+        }
     }
 
-    function delMenuItem(item) {
-        if (jQuery(item).closest(".menuItem").attr("data-status") == 1) {
-            jQuery(item).closest(".menuItem").attr("data-status", 0);
-            jQuery(item).addClass("text-danger");
-        } else {
-            jQuery(item).closest(".menuItem").attr("data-status", 1);
-            jQuery(item).removeClass("text-danger");
+    function uploadImageCallback() {
+        // In local files, status is 0 upon success in Mozilla Firefox
+        if (this.readyState === XMLHttpRequest.DONE) {
+            var status = this.status;
+            if (status === 0 || (status >= 200 && status < 400)) {
+                var uploadImageBtn = jQuery(".galleryItemsUploadHolder").find(".uploadImageBtn");
+                uploadImageBtn.addClass("disabled");
+                uploadImageBtn.attr("disabled", "disabled");
+                uploadImageBtn.html("<i class=\"fas fa-file-upload\"></i> Feltöltés");
+                // The request has been completed successfully
+                console.log(this.responseText);
+                var res = JSON.parse(this.responseText);
+                var newitem = jQuery(".itemTemplate").clone();
+                newitem.removeClass('itemTemplate');
+                newitem.css('display',"inline-block");
+                newitem.find(".galleryItem").attr("data-status", 1);
+                newitem.find(".galleryItemIdImage").val(res.data.idimage);
+                newitem.find(".galleryItemName").val(res.data.title);
+                newitem.find(".galleryItemImg").attr("src", '<?php echo IMAGES_URL; ?>'+res.data.path);
+                jQuery("#galleryItemsHolderDiv").append(newitem);
+            } else {
+                alert("hiba a kép feltöltése közben");
+            }
         }
     }
 
@@ -209,13 +166,13 @@
         jQuery("#errorMessage").html('');
         jQuery("#successMessage").html('');
         var data = {
-            idmenu: <?php echo $menu["idmenu"]; ?>,
-            title: jQuery("#menuTitle").val(),
-            sub_title: jQuery("#menuSubTitle").val(),
-            idposition: jQuery("#menuPosition").val()
+            idgallery: <?php echo $gallery["idgallery"]; ?>,
+            name: jQuery("#galleryName").val(),
+            text: jQuery("#galleryText").val(),
+            idposition: jQuery("#galleryPosition").val()
         };
         jQuery.ajax({
-            url: "<?php echo ADMIN_API_URL; ?>menu",
+            url: "<?php echo ADMIN_API_URL; ?>gallery",
             type: "POST",
             async: false,
             dataType: 'json',
@@ -224,8 +181,8 @@
             //headers: ko.toJS(headers)
         }).done(function (response) {
             if (response.errorCode == 0) {
-                if (response.data && Number(response.data.idmenu) > 1) {
-                    saveMenuItems();
+                if (response.data && Number(response.data.idgallery) > 1) {
+                    saveGalleryItems();
                 }
             } else {
                 jQuery("#errorMessage").html(response.msg);
@@ -236,36 +193,35 @@
         });
     }
 
-    function saveMenuItems() {
-        var menu_items = [];
+    function saveGalleryItems() {
+        var gallery_items = [];
         //össze kell szedni a menü itemeket
-        jQuery(".menuItem").each(function (index, item) {
+        jQuery(".galleryItem").each(function (index, item) {
             var new_item = {
-                idmenu_item: (Number(jQuery(item).attr("data-id") > 1)) ? jQuery(item).attr("data-id") : null,
-                title: jQuery(item).find(".menuItemTitle").val(),
-                sub_title: jQuery(item).find(".menuItemSubTitle").val(),
-                idcontent: (jQuery(item).find(".menuItemContent").val()>1)?jQuery(item).find(".menuItemContent").val():1,
-                idmenu: <?php echo $menu["idmenu"]; ?>,
-                url: jQuery(item).find(".menuItemUrl").val(),
+                idgallery_item: (Number(jQuery(item).attr("data-id") > 1)) ? jQuery(item).attr("data-id") : null,
+                name: jQuery(item).find(".galleryItemName").val(),
+                text: '',
+                idgallery: <?php echo $gallery["idgallery"];  ?>,
+                idimage: jQuery(item).find(".galleryItemIdImage").val(),
                 status: jQuery(item).attr("data-status")
             };
-            if (Number(new_item.idmenu_item) > 1 || (new_item.status == 1)) {
-                menu_items.push(new_item);
+            if (Number(new_item.idgallery_item) > 1 || (new_item.status == 1)) {
+                gallery_items.push(new_item);
             }
         });
-        if (menu_items.length > 0) {
+        debugger;
+        if (gallery_items.length > 0) {
             jQuery.ajax({
-                url: "<?php echo ADMIN_API_URL; ?>menu_item",
+                url: "<?php echo ADMIN_API_URL;  ?>gallery_item",
                 type: "POST",
                 async: false,
                 dataType: 'json',
-                data: JSON.stringify(menu_items),
-                contentType: 'application/json',
-                //headers: ko.toJS(headers)
+                data: JSON.stringify(gallery_items),
+                contentType: 'application/json'
             }).done(function (response) {
                 if (response.errorCode == 0) {
                     if (response.data) {
-                        window.location = '<?php echo FULL_BASE_URL . 'menu/list/'; ?>';
+                        window.location = '<?php echo FULL_BASE_URL . 'gallery/list/';  ?>';
                     }
                 } else {
                     jQuery("#errorMessage").html(response.msg);
@@ -275,7 +231,7 @@
                 jQuery("#errorMessage").html('Hiba a mentés közben!');
             });
         } else {
-            window.location = '<?php echo FULL_BASE_URL . 'menu/list/'; ?>';
+            window.location = '<?php echo FULL_BASE_URL . 'gallery/list/';  ?>';
         }
     }
 </script>

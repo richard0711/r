@@ -5,7 +5,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a href="<?php echo FULL_BASE_URL . 'menu/new'; ?>" class="btn btn-primary" role="button">
+        <a href="<?php echo FULL_BASE_URL . 'gallery/new'; ?>" class="btn btn-primary" role="button">
             <i class="fas fa-file fa-sm"></i>
             Új galéria
         </a>
@@ -15,34 +15,34 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Megnevezés</th>
-                        <th>Alcím</th>
-                        <th>Almenüpontok</th>
+                        <th>Galéria neve</th>
+                        <th>Utoljára szerkesztve</th>
+                        <th>Képek száma</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Megnevezés</th>
-                        <th>Alcím</th>
-                        <th>Almenüpontok</th>
+                        <th>Galéria neve</th>
+                        <th>Utoljára szerkesztve</th>
+                        <th>Képek száma</th>
                         <th></th>
                     </tr>
                 </tfoot>
                 <tbody>
                     <?php foreach ($list["data"] as $item) { ?>
                         <tr>
-                            <td><?php echo $item["title"]; ?></td>
-                            <td><?php echo $item["sub_title"]; ?></td>
+                            <td><?php echo $item["name"]; ?></td>
+                            <td></td>
                             <td></td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="<?php echo FULL_BASE_URL . 'menu/edit/' . $item["idmenu"]; ?>" class="btn-sm btn-secondary" role="button">
+                                    <a href="<?php echo FULL_BASE_URL . 'gallery/edit/' . $item["idgallery"]; ?>" class="btn-sm btn-secondary" role="button">
                                         <i class="fas fa-pen fa-sm"></i>
                                     </a> 
                                 </div>
                                 <div class="btn-group">
-                                    <a href="<?php echo FULL_BASE_URL . 'menu/del/' . $item["idmenu"]; ?>" class="btn-sm btn-secondary" role="button">
+                                    <a href="<?php echo FULL_BASE_URL . 'gallery/del/' . $item["idgallery"]; ?>" class="btn-sm btn-secondary" role="button">
                                         <i class="fas fa-trash fa-sm"></i>
                                     </a> 
                                 </div>

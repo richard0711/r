@@ -17,3 +17,9 @@ fieldset {
     margin: 5px;
     border: solid gray 1px;
 }
+
+.galleryItemImg {
+    max-width: 200px;
+    max-height: 120px;
+    margin: 0 auto;
+}

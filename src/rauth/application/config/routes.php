@@ -65,9 +65,9 @@ if ($method == 'OPTIONS')
 }
 
 if ($method == "POST") {
-  
-    
+    $route['login'] = 'Login_controller/login';
+    $route['logout'] = 'Logout_controller/logout';
 }
 if ($method == "GET") {
-  
+    $route['tokeninfo'] = 'Token_controller/tokeninfo';
 }

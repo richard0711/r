@@ -29,6 +29,7 @@
         <script src="<?php echo VIEWS_URL; ?>js/smoothscroll.js"></script>
         <script src="<?php echo VIEWS_URL; ?>js/owl.carousel.min.js"></script>
         <script src="<?php echo VIEWS_URL; ?>js/custom.js"></script>
+        <script src="<?php echo VIEWS_URL; ?>js/common.js"></script>
 
     </body>
 </html>

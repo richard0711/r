@@ -25,3 +25,41 @@
 .logo_text_line1 {
     font-weight: bold;
 }
+
+.search-btn {
+    cursor: pointer;
+    color: #82AE42 !important
+}
+
+.search-input {
+    width: 65px;
+    margin-left: 10px;
+    height: 25px;
+    font-size: 10px;
+}
+
+.header-top-left {
+    padding-right: 0px;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    height: 45px;
+}
+
+.header-top-right {
+    
+}
+
+.full-size-search {
+    width: 67%;
+    height: 35px;
+    font-size: 12px;
+}
+
+.search-submit {
+    background-color: #a5c422;
+    color: #fff;
+    border: none;
+    height: 33px;
+    margin-left: 5px;
+}

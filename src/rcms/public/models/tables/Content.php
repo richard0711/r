@@ -33,6 +33,11 @@ class Content extends CI_Model {
             $this->db->join("positions", "positions.idposition=contents.idposition");
             $this->db->where("positions.code", $filters["position_code"]);
         }
+        if (isset($filters["string"]) && $filters["string"] != '') {
+            $this->db->where("(contents.title like '%".$filters["string"]."%' OR "
+                    . "contents.short_desc like '%".$filters["string"]."%' OR "
+                    . "contents.content like '%".$filters["string"]."%')");
+        }
         $this->db->where("(".$this->table.".published is not null and ".$this->table.".published <= '".date("Y-m-d")."' and (".$this->table.".published_to >= '".date("Y-m-d")."' or ".$this->table.".published_to is null))");
         $this->db->where($this->table.".status", 1);
         $result['count'] = $this->db->count_all_results('', false);

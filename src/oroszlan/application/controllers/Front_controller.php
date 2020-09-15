@@ -45,12 +45,11 @@ class Front_controller extends Public_controller {
             echo $exc->getTraceAsString();
         }
     }
-
+    
     private function _getContent($pparams = array()) {
         $page = (isset($pparams["page"])) ? $pparams["page"] : '';
         $id = (isset($pparams["id"])) ? $pparams["id"] : '';
         $params = (isset($pparams["params"])) ? $pparams["params"] : '';
-        $page_view = 'pages/home';
         $page_params = $this->_getCommonParams();
         switch ($page) {
             case 'news':
@@ -68,8 +67,13 @@ class Front_controller extends Public_controller {
             case 'content_list':
                 $page_params["content_list"] = $this->_getParamsByPage($page, $id, $params);
                 $page_view = 'pages/content_list';
+            case 'search':
+                $page_params["search_list"] = $this->_getSearchResult($params);
+                $page_params["search_string"] = $params["s"];
+                $page_view = 'pages/search_list';
                 break;
             default:
+                $page_view = 'pages/home';
                 break;
         }
         return $this->load->view($page_view, $page_params, true);
@@ -99,6 +103,12 @@ class Front_controller extends Public_controller {
         return $page_params;
     }
     
-    
+    private function _getSearchResult($params) {
+        $PublicAPI = new PublicAPI();
+        $search_result["contents"] = $PublicAPI->get("content/list", array("string" => $params['s']));
+        $search_result["news"] = $PublicAPI->get("news/list", array("string" => $params['s']));
+        //var_dump($search_result);
+        return $search_result;
+    }
 
 }

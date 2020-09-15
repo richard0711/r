@@ -63,3 +63,41 @@
     height: 33px;
     margin-left: 5px;
 }
+
+.card-thumb {
+    min-height: 430px !important;
+    max-height: 430px !important;
+}
+
+.card-thumb h3 {
+    margin-top: 0px;
+}
+
+.card-thumb img {
+    max-height: 250px !important;
+    margin: 0 auto !important;
+}
+
+.card-thumb {
+    background-color: #f9f9f9;
+    border-radius: 0 0 10px 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.search-list-short-desc {
+    max-height: 75px;
+    min-height: 75px;
+    overflow: hidden;
+    cursor: default;
+}
+
+.search-list-item-calendar {
+    padding: 0px 0px 0px 30px;
+}
+
+.search-list-item-imglink {
+    height: 250px;
+    display: inherit;
+}

@@ -5,6 +5,10 @@
 
     <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
+        <script>
+            var FULL_BASE_URL = '<?php echo FULL_BASE_URL; ?>';
+        </script>
+        
         <!-- PRE LOADER -->
         <section class="preloader">
             <div class="spinner">

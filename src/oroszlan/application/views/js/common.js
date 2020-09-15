@@ -21,8 +21,18 @@ function searchClick(elem, elem_type) {
         jQuery(".search-input").focus();
     }
 }
-function search(elem, elem_type) {
-    console.log(jQuery(".search-input").val());
+function search() {
+    var search_string = '';
+    jQuery(".search-input").each(function (item, val) {
+        if (jQuery(val).val() != '') {
+            search_string = jQuery(val).val();
+        }
+    });
+    if (search_string == '') {
+        return;
+    } else {
+        window.location = FULL_BASE_URL+'p/search/1?s='+search_string;
+    }
 }
 
 jQuery(document).ready(function() {

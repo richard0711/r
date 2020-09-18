@@ -33,6 +33,7 @@ if ($method == 'GET') {
     $route['banner/list'] = 'Banner_controller/get';
     
     /** gallery routes: **/
+    $route['gallery/(:num)'] = 'Gallery_controller/get/$1';
     $route['gallery/list'] = 'Gallery_controller/get';
     
 }

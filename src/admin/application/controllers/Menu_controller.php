@@ -49,13 +49,15 @@ class Menu_controller extends Private_controller {
             $menu = $AdminAPI->get('menu/'.$idmenu);
             $contents = $AdminAPI->get('contents');
             $positions = $AdminAPI->get('positions', array("type"=>'menu'));
+            $gallery = $AdminAPI->get('gallery');
             $this->load->view("index", 
                 array(
                     "content" => $this->load->view('pages/menu/edit', 
                         array(
                             "menu" => $menu,
                             "contents" => $contents,
-                            "positions" => $positions
+                            "positions" => $positions,
+                            "gallery" => $gallery
                         ), 
                         true)
                 )

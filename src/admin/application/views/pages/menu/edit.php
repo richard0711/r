@@ -24,16 +24,16 @@
                 id="menuPosition" 
                 placeholder="Pozíció">
             <option value="1">--nincs kiválasztva--</option>
-            <?php 
-                if (isset($positions) && isset($positions["data"])) {
-                    foreach ($positions["data"] as $position) {
+            <?php
+            if (isset($positions) && isset($positions["data"])) {
+                foreach ($positions["data"] as $position) {
                     ?>
-            <option <?php echo ($menu["idposition"] == $position["idposition"]) ? 'selected="selected"' : ''; ?>
-                value="<?php echo $position["idposition"]; ?>">
-                    <?php echo $position["name"] ?></option>
+                    <option <?php echo ($menu["idposition"] == $position["idposition"]) ? 'selected="selected"' : ''; ?>
+                        value="<?php echo $position["idposition"]; ?>">
+                        <?php echo $position["name"] ?></option>
                     <?php
-                    }
-                } 
+                }
+            }
             ?>
         </select>
     </div>
@@ -42,64 +42,88 @@
 <h1 class="h3 mb-2 text-gray-800">Menüpontok hozzáadása a menühöz</h1>
 <p class="mb-4">Add meg a menüben elérhető pontokat</p>
 
-<div id="menuItemsHolderDiv">
+<div class="row" id="menuItemsHolderDiv">
     <?php
     if (isset($menu) && isset($menu["menu_items"]) && $menu["menu_items"]["count"] > 0) {
         foreach ($menu["menu_items"]["data"] as $key => $menu_item) {
             ?>
-            <div data-id="<?php echo $menu_item["idmenu_item"]; ?>" data-status="1" class="card card-body menuItem">
-                <div class="text-center">
-                    <button onclick="delMenuItem(this)" class="btn btn-secondary" id="delMenuItem_<?php echo $menu_item["idmenu_item"]; ?>">
-                        <i class="fas fa-trash fa-sm"></i>
-                    </button>
-                </div>
-                <div class="form-group row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group ">
-                            <div class="">
-                                <label for="menuItemTitle_<?php echo $menu_item["idmenu_item"]; ?>">Menüpont neve</label>
-                                <input data-id="<?php echo $menu_item["idmenu_item"]; ?>" type="text" class="form-control menuItemTitle" value="<?php echo $menu_item["title"]; ?>" id="menuItemTitle_<?php echo $menu_item["idmenu_item"]; ?>" placeholder="Menüpont megnevezése">
+            <div class="col-lg-4 menuItemCardHolder">
+                <div data-id="<?php echo $menu_item["idmenu_item"]; ?>" data-status="1" class="card card-body menuItem">
+                    <div class="text-center">
+                        <button onclick="delMenuItem(this)" class="btn btn-secondary" id="delMenuItem_<?php echo $menu_item["idmenu_item"]; ?>">
+                            <i class="fas fa-trash fa-sm"></i>
+                        </button>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group ">
+                                <div class="">
+                                    <label for="menuItemTitle_<?php echo $menu_item["idmenu_item"]; ?>">Menüpont neve</label>
+                                    <input data-id="<?php echo $menu_item["idmenu_item"]; ?>" type="text" class="form-control menuItemTitle" value="<?php echo $menu_item["title"]; ?>" id="menuItemTitle_<?php echo $menu_item["idmenu_item"]; ?>" placeholder="Menüpont megnevezése">
+                                </div> 
                             </div> 
-                        </div> 
-                        <div class="form-group ">
-                            <div class="">
-                                <label for="menuItemSubTitle_<?php echo $menu_item["idmenu_item"]; ?>">Menüpont alcíme</label>
-                                <input data-id="<?php echo $menu_item["idmenu_item"]; ?>" type="text" class="form-control menuItemSubTitle" value="<?php echo $menu_item["sub_title"]; ?>" id="menuItemSubTitle_<?php echo $menu_item["idmenu_item"]; ?>" placeholder="Menüpont alcíme">
+                            <div class="form-group ">
+                                <div class="">
+                                    <label for="menuItemSubTitle_<?php echo $menu_item["idmenu_item"]; ?>">Menüpont alcíme</label>
+                                    <input data-id="<?php echo $menu_item["idmenu_item"]; ?>" type="text" class="form-control menuItemSubTitle" value="<?php echo $menu_item["sub_title"]; ?>" id="menuItemSubTitle_<?php echo $menu_item["idmenu_item"]; ?>" placeholder="Menüpont alcíme">
+                                </div> 
                             </div> 
-                        </div> 
-                        <div class="form-group ">
-                            <div class="">
-                                <label for="menuItemUrl_<?php echo $menu_item["idmenu_item"]; ?>">Hivatkozás</label>
-                                <input data-id="<?php echo $menu_item["idmenu_item"]; ?>" type="text" class="form-control menuItemUrl" value="<?php echo $menu_item["url"]; ?>" id="menuItemUrl_<?php echo $menu_item["idmenu_item"]; ?>" placeholder="Hivatkozás">
+                            <div class="form-group ">
+                                <div class="">
+                                    <label for="menuItemUrl_<?php echo $menu_item["idmenu_item"]; ?>">Hivatkozás</label>
+                                    <input data-id="<?php echo $menu_item["idmenu_item"]; ?>" type="text" class="form-control menuItemUrl" value="<?php echo $menu_item["url"]; ?>" id="menuItemUrl_<?php echo $menu_item["idmenu_item"]; ?>" placeholder="Hivatkozás">
+                                </div> 
                             </div> 
-                        </div> 
-                        <div class="form-group ">
-                            <div class="">
-                                <label for="menuItemContent_<?php echo $menu_item["idmenu_item"]; ?>">Tartalomra hivatkozás</label>
-                                <select data-id="<?php echo $menu_item["idmenu_item"]; ?>" 
-                                        type="text" 
-                                        class="form-control menuItemContent" 
-                                        value="<?php echo $menu_item["idcontent"]; ?>" 
-                                        id="menuItemContent_<?php echo $menu_item["idmenu_item"]; ?>" 
-                                        placeholder="Tartalomra hivatkozás">
-                                    <option value="1">--nincs kiválasztva--</option>>
-                                    <?php 
+                            <div class="form-group ">
+                                <div class="">
+                                    <label for="menuItemContent_<?php echo $menu_item["idmenu_item"]; ?>">Tartalomra hivatkozás</label>
+                                    <select data-id="<?php echo $menu_item["idmenu_item"]; ?>" 
+                                            type="text" 
+                                            class="form-control menuItemContent" 
+                                            value="<?php echo $menu_item["idcontent"]; ?>" 
+                                            id="menuItemContent_<?php echo $menu_item["idmenu_item"]; ?>" 
+                                            placeholder="Tartalomra hivatkozás">
+                                        <option value="1">--nincs kiválasztva--</option>>
+                                        <?php
                                         if (isset($contents) && isset($contents["data"])) {
                                             foreach ($contents["data"] as $content) {
                                                 ?>
-                                    <option  <?php echo ($content["idcontent"] == $menu_item["idcontent"]) ? 'selected="selected"' : ''; ?>
-                                        value="<?php echo $content["idcontent"]; ?>"><?php echo $content["title"] ?></option>
-                                                <?php
+                                                <option  <?php echo ($content["idcontent"] == $menu_item["idcontent"]) ? 'selected="selected"' : ''; ?>
+                                                    value="<?php echo $content["idcontent"]; ?>"><?php echo $content["title"] ?></option>
+                                                    <?php
+                                                }
                                             }
-                                        } 
-                                    ?>
-                                </select>
+                                            ?>
+                                    </select>
+                                </div> 
+                            </div> 
+                            <div class="form-group ">
+                                <div class="">
+                                    <label for="menuItemGallery_<?php echo $menu_item["idmenu_item"]; ?>">Galériára hivatkozás</label>
+                                    <select data-id="<?php echo $menu_item["idgallery"]; ?>" 
+                                            type="text" 
+                                            class="form-control menuItemGallery" 
+                                            value="<?php echo $menu_item["idgallery"]; ?>" 
+                                            id="menuItemGallery_<?php echo $menu_item["idmenu_item"]; ?>" 
+                                            placeholder="Galériára hivatkozás">
+                                        <option value="1">--nincs kiválasztva--</option>>
+                                        <?php
+                                        if (isset($gallery) && isset($gallery["data"])) {
+                                            foreach ($gallery["data"] as $galleryi) {
+                                                ?>
+                                                <option  <?php echo ($galleryi["idgallery"] == $menu_item["idgallery"]) ? 'selected="selected"' : ''; ?>
+                                                    value="<?php echo $galleryi["idgallery"]; ?>"><?php echo $galleryi["name"] ?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                    </select>
+                                </div> 
                             </div> 
                         </div> 
                     </div> 
-                </div> 
+                </div>
             </div>
-            <br/>
             <?php
         }
     }
@@ -111,57 +135,80 @@
         Új menüpont hozzáadása
     </button>
 </div> 
-
-<div data-id="0" data-status="1" id="newMenuItem" style="display: none;" class="card card-body">
-    <div class="text-center">
-        <button onclick="delMenuItem(this)" class="btn btn-secondary" id="delMenuItem_0">
-            <i class="fas fa-trash fa-sm"></i>
-        </button>
-    </div>
-    <div class="form-group row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group ">
-                <div class="">
-                    <label for="menuItemTitle_0">Menüpont neve</label>
-                    <input data-id="0" type="text" class="form-control menuItemTitle" value="" id="menuItemTitle_0" placeholder="Menüpont megnevezése">
+<div class="col-lg-4 menuItemCardHolder" id="newMenuItem">
+    <div data-id="0" data-status="1" style="display: none;" class="card card-body">
+        <div class="text-center">
+            <button onclick="delMenuItem(this)" class="btn btn-secondary" id="delMenuItem_0">
+                <i class="fas fa-trash fa-sm"></i>
+            </button>
+        </div>
+        <div class="form-group row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group ">
+                    <div class="">
+                        <label for="menuItemTitle_0">Menüpont neve</label>
+                        <input data-id="0" type="text" class="form-control menuItemTitle" value="" id="menuItemTitle_0" placeholder="Menüpont megnevezése">
+                    </div> 
                 </div> 
-            </div> 
-            <div class="form-group ">
-                <div class="">
-                    <label for="menuItemSubTitle_0">Menüpont alcíme</label>
-                    <input data-id="0" type="text" class="form-control menuItemSubTitle" value="" id="menuItemSubTitle_0" placeholder="Menüpont alcíme">
+                <div class="form-group ">
+                    <div class="">
+                        <label for="menuItemSubTitle_0">Menüpont alcíme</label>
+                        <input data-id="0" type="text" class="form-control menuItemSubTitle" value="" id="menuItemSubTitle_0" placeholder="Menüpont alcíme">
+                    </div> 
                 </div> 
-            </div> 
-            <div class="form-group ">
-                <div class="">
-                    <label for="menuItemUrl_0">Hivatkozás</label>
-                    <input data-id="0" type="text" class="form-control menuItemUrl" value="" id="menuItemUrl_0" placeholder="Hivatkozás">
+                <div class="form-group ">
+                    <div class="">
+                        <label for="menuItemUrl_0">Hivatkozás</label>
+                        <input data-id="0" type="text" class="form-control menuItemUrl" value="" id="menuItemUrl_0" placeholder="Hivatkozás">
+                    </div> 
                 </div> 
-            </div> 
-            <div class="form-group ">
-                <div class="">
-                    <label for="menuItemContent_0">Tartalomra hivatkozás</label>
-                    <select data-id="0" 
-                            type="text" 
-                            class="form-control menuItemContent" 
-                            value="1" 
-                            id="menuItemContent_0" 
-                            placeholder="Tartalomra hivatkozás">
-                        <option value="1">--nincs kiválasztva--</option>>
-                        <?php 
+                <div class="form-group ">
+                    <div class="">
+                        <label for="menuItemContent_0">Tartalomra hivatkozás</label>
+                        <select data-id="0" 
+                                type="text" 
+                                class="form-control menuItemContent" 
+                                value="1" 
+                                id="menuItemContent_0" 
+                                placeholder="Tartalomra hivatkozás">
+                            <option value="1">--nincs kiválasztva--</option>>
+                            <?php
                             if (isset($contents) && isset($contents["data"])) {
                                 foreach ($contents["data"] as $content) {
                                     ?>
-                        <option value="<?php echo $content["idcontent"]; ?>"><?php echo $content["title"] ?></option>
+                                    <option value="<?php echo $content["idcontent"]; ?>"><?php echo $content["title"] ?></option>
                                     <?php
                                 }
-                            } 
-                        ?>
-                    </select>
+                            }
+                            ?>
+                        </select>
+                    </div> 
+                </div> 
+                <div class="form-group ">
+                    <div class="">
+                        <label for="menuItemGallery_0">Galériára hivatkozás</label>
+                        <select data-id="0" 
+                                type="text" 
+                                class="form-control menuItemGallery" 
+                                value="1" 
+                                id="menuItemGallery_0" 
+                                placeholder="Galériára hivatkozás">
+                            <option value="1">--nincs kiválasztva--</option>>
+                            <?php
+                            if (isset($gallery) && isset($gallery["data"])) {
+                                foreach ($gallery["data"] as $galleryi) {
+                                    ?>
+                                    <option value="<?php echo $galleryi["idgallery"]; ?>"><?php echo $galleryi["name"] ?></option>
+                                    <?php
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div> 
                 </div> 
             </div> 
         </div> 
-    </div> 
+    </div>
 </div>
 
 <div class="form-group row">
@@ -189,10 +236,9 @@
 
     function addNewMenuItem() {
         var newMenuItem = jQuery("#newMenuItem").clone();
-        newMenuItem.addClass("menuItem");
-        newMenuItem.css("display", "flex");
+        newMenuItem.find(".card-body").addClass("menuItem");
+        newMenuItem.find(".card-body").css("display", "flex");
         jQuery("#menuItemsHolderDiv").append(newMenuItem);
-        jQuery("#menuItemsHolderDiv").append("<br/>");
     }
 
     function delMenuItem(item) {
@@ -244,7 +290,8 @@
                 idmenu_item: (Number(jQuery(item).attr("data-id") > 1)) ? jQuery(item).attr("data-id") : null,
                 title: jQuery(item).find(".menuItemTitle").val(),
                 sub_title: jQuery(item).find(".menuItemSubTitle").val(),
-                idcontent: (jQuery(item).find(".menuItemContent").val()>1)?jQuery(item).find(".menuItemContent").val():1,
+                idcontent: (jQuery(item).find(".menuItemContent").val() > 1) ? jQuery(item).find(".menuItemContent").val() : 1,
+                idgallery: (jQuery(item).find(".menuItemGallery").val() > 1) ? jQuery(item).find(".menuItemGallery").val() : 1,
                 idmenu: <?php echo $menu["idmenu"]; ?>,
                 url: jQuery(item).find(".menuItemUrl").val(),
                 status: jQuery(item).attr("data-status")

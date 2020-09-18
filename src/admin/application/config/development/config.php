@@ -526,5 +526,5 @@ $config['proxy_ips'] = '';
 /**
  * other configs
  */
-$config['login_url'] = 'http://localhost/admin/index.php/login';
-$config['auth_api'] = 'http://localhost/rauth/index.php/';
+$config['login_url'] = 'http://localhost/rcms/admin/index.php/login';
+$config['auth_api'] = 'http://localhost/rcms/rauth/index.php/';

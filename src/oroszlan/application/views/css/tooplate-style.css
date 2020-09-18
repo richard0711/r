@@ -95,7 +95,7 @@ http://www.tooplate.com/view/2098-health
 
   ::-webkit-scrollbar-thumb {
     cursor: pointer;
-    background: #000000;
+    background: silver;
   }
 
   .section-title {
@@ -189,7 +189,7 @@ http://www.tooplate.com/view/2098-health
   #about, #team, #news,
   #news-detail {
     position: relative;
-    padding-top: 100px;
+    padding-top: 60px;
     padding-bottom: 100px;
   }
 
@@ -613,7 +613,7 @@ http://www.tooplate.com/view/2098-health
   -----------------------------------------*/
 
   #news, #news-detail {
-    background: #f9f9f9;
+    /*background: #f9f9f9;*/
   }
 
   #news-detail blockquote {

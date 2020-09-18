@@ -23,3 +23,7 @@ fieldset {
     max-height: 120px;
     margin: 0 auto;
 }
+
+.menuItemCardHolder {
+    margin-bottom: 10px;
+}

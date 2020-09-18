@@ -35,10 +35,15 @@ function search() {
     }
 }
 
+function setUpLightGallery() {
+    jQuery("#lightGallery").lightGallery();
+}
+
 jQuery(document).ready(function() {
-    $(".search-input").on('keyup', function (e) {
+    jQuery(".search-input").on('keyup', function (e) {
         if (e.key === 'Enter' || e.keyCode === 13) {
             search();
         }
     });
+    setUpLightGallery();
 });

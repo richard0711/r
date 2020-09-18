@@ -13,5 +13,6 @@
     <link rel="stylesheet" href="<?php echo VIEWS_URL; ?>css/owl.theme.default.min.css">
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="<?php echo VIEWS_URL; ?>css/tooplate-style.css">
+    <link rel="stylesheet" href="<?php echo VIEWS_URL; ?>lightgallery/css/lightgallery.css" >
     <link rel="stylesheet" href="<?php echo VIEWS_URL; ?>css/style.css">
 </head>

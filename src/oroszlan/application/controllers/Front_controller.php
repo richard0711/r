@@ -64,6 +64,10 @@ class Front_controller extends Public_controller {
                 $page_params["content"] = $this->_getParamsByPage($page, $id, $params);
                 $page_view = 'pages/content';
                 break;
+            case 'gallery':
+                $page_params["gallery"] = $this->_getParamsByPage($page, $id, $params);
+                $page_view = 'pages/gallery';
+                break;
             case 'content_list':
                 $page_params["content_list"] = $this->_getParamsByPage($page, $id, $params);
                 $page_view = 'pages/content_list';

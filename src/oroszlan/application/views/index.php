@@ -33,6 +33,7 @@
         <script src="<?php echo VIEWS_URL; ?>js/smoothscroll.js"></script>
         <script src="<?php echo VIEWS_URL; ?>js/owl.carousel.min.js"></script>
         <script src="<?php echo VIEWS_URL; ?>js/custom.js"></script>
+        <script src="<?php echo VIEWS_URL; ?>lightgallery/js/lightgallery.js"></script>
         <script src="<?php echo VIEWS_URL; ?>js/common.js"></script>
 
     </body>

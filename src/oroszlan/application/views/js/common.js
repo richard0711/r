@@ -39,6 +39,10 @@ function setUpLightGallery() {
     jQuery("#lightGallery").lightGallery();
 }
 
+function showMoreMenuItem() {
+    jQuery("#more-menu-items").removeClass("hidden");
+}
+
 jQuery(document).ready(function() {
     jQuery(".search-input").on('keyup', function (e) {
         if (e.key === 'Enter' || e.keyCode === 13) {
@@ -47,3 +51,4 @@ jQuery(document).ready(function() {
     });
     setUpLightGallery();
 });
+

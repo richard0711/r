@@ -19,7 +19,7 @@
                                             <?php if ($banner_item["url"] != null && $banner_item["url"] != '') { ?>
                                                 <a href="<?php echo $banner_item["url"] ?>" class="section-btn btn btn-default smoothScroll">Megtekintés</a>
                                             <?php } else if ($banner_item["idcontent"] > 1) { ?>
-                                                <a href="<?php echo FULL_BASE_URL . 'p/content/'.$banner_item["idcontent"]; ?>" class="section-btn btn btn-default smoothScroll">Megtekintés</a>
+                                                <a href="<?php echo FULL_BASE_URL . 'p/content/'.$banner_item["idcontent"]; ?>" class="section-btn btn btn-default smoothScroll hidden-xs hidden-sm">Megtekintés</a>
                                             <?php } ?>
                                         </div>
                                     </div>
@@ -58,14 +58,14 @@
 <?php } ?>
 
 
-<!-- TEAM -->
+<!-- SERVICES -->
 <?php if (isset($home_page_doctors) && $home_page_doctors["count"] > 0) { ?>
 <section id="team" data-stellar-background-ratio="1">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-6">
                 <div class="about-info">
-                    <h2 class="wow fadeInUp" data-wow-delay="0.1s">Doktoraink</h2>
+                    <h2 class="wow fadeInUp" data-wow-delay="0.1s">Szolgáltatásaink</h2>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -84,15 +84,6 @@
                         <p>
                             <?php echo $doctor["short_desc"]; ?>
                         </p>
-                        
-                        <!--<div class="team-contact-info">
-                            <p><i class="fa fa-phone"></i> 010-020-0120</p>
-                            <p><i class="fa fa-envelope-o"></i> <a href="#">general@company.com</a></p>
-                        </div>
-                        <ul class="social-icon">
-                            <li><a href="#" class="fa fa-linkedin-square"></a></li>
-                            <li><a href="#" class="fa fa-envelope-o"></a></li>
-                        </ul>-->
                     </div>
 
                 </div>

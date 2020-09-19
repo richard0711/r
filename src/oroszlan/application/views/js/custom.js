@@ -19,7 +19,7 @@
       animateOut: 'fadeOut',
       items:1,
       loop:true,
-      autoplay:true,
+      autoplay:true
     })
 
 
@@ -29,8 +29,15 @@
 
     // SMOOTHSCROLL
     $(function() {
-      $('.navbar-default a, #home a, footer a').on('click', function(event) {
+      $('.navbar-default a, footer a').on('click', function(event) {
         var $anchor = $(this);
+        if ($anchor.attr('href').indexOf("#") == -1) {
+            return;
+        }
+        if ($($anchor.attr('href')).offset() == undefined) {
+            window.location = FULL_BASE_URL + $anchor.attr('href');
+            return;
+        }
           $('html, body').stop().animate({
             scrollTop: $($anchor.attr('href')).offset().top - 49
           }, 1000);

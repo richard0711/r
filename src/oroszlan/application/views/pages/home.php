@@ -125,13 +125,6 @@
                         <p>
                             <?php echo $new["short_desc"]; ?>
                         </p>
-                        <!--<div class="author">
-                            <img src="<?php // echo VIEWS_URL; ?>images/author-image.jpg" class="img-responsive" alt="">
-                            <div class="author-info">
-                                <h5>Jeremie Carlson</h5>
-                                <p>CEO / Founder</p>
-                            </div>
-                        </div>-->
                     </div>
                 </div>
             </div>
@@ -153,7 +146,7 @@
 
             <div class="col-md-6 col-sm-6">
                 <!-- CONTACT FORM HERE -->
-                <form id="appointment-form" role="form" method="post" action="#">
+                <form id="appointment-form" role="form" method="post">
 
                     <!-- SECTION TITLE -->
                     <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
@@ -163,20 +156,20 @@
                     <div class="wow fadeInUp" data-wow-delay="0.8s">
                         <div class="col-md-6 col-sm-6">
                             <label for="name">Név</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Teljes név">
+                            <input type="text" class="form-control" id="e_name" name="name" placeholder="Teljes név">
                         </div>
 
                         <div class="col-md-6 col-sm-6">
                             <label for="email">E-mail cím</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="email@cim.hu">
+                            <input type="email" class="form-control" id="e_email" name="email" placeholder="email@cim.hu">
                         </div>
 
                         <div class="col-md-12 col-sm-12">
                             <label for="telephone">Telefonszám</label>
-                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Telefonszám">
+                            <input type="tel" class="form-control" id="e_phone" name="phone" placeholder="Telefonszám">
                             <label for="Message">Üzenet</label>
-                            <textarea class="form-control" rows="5" id="message" name="message" placeholder="Üzenet"></textarea>
-                            <button type="submit" class="form-control" id="cf-submit" name="submit">Üzenet elküldése</button>
+                            <textarea class="form-control" rows="5" id="e_message" name="message" placeholder="Üzenet"></textarea>
+                            <button onclick="sendMail();" type="button" class="form-control" id="cf-submit" name="submit">Üzenet elküldése</button>
                         </div>
                     </div>
                 </form>

@@ -35,9 +35,10 @@ admin:
 
 -------------
 hétvége:
-- menüpontok közül csak az első 4-et mutassuk utána ha több van akkor ... továbbiak aminek hatására mutatjuk csak meg a többit!
-- doktoraink a fő oldalon ne látszódjon az külön továbbiak menüpont alá kerülnek
-- kell egy galériák lista és egy hírek lista
-- a keresési eredmény listába bele kell tenni a galéria találatokat is
-- ezután feltérképezem mely részeket nem lehet még megszerkeszteni rendesen
++ menüpontok közül csak az első 4-et mutassuk utána ha több van akkor ... továbbiak aminek hatására mutatjuk csak meg a többit!
++ doktoraink a fő oldalon ne látszódjon az külön továbbiak menüpont alá kerülnek
+- hírek lista
 - email küldés
+- adminban a banner itemek card átszabása, tartalom itemek card átszabása
+- tartalmak létrehozása a mac-en
+- facebook megosztás

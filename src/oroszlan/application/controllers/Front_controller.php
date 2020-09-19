@@ -111,6 +111,7 @@ class Front_controller extends Public_controller {
         $PublicAPI = new PublicAPI();
         $search_result["contents"] = $PublicAPI->get("content/list", array("string" => $params['s']));
         $search_result["news"] = $PublicAPI->get("news/list", array("string" => $params['s']));
+        $search_result["gallery"] = $PublicAPI->get("gallery/list", array("string" => $params['s']));
         //var_dump($search_result);
         return $search_result;
     }

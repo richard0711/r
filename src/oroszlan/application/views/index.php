@@ -5,6 +5,15 @@
 
     <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
+        <div id="fb-root"></div>
+<!--        <script async defer crossorigin="anonymous" 
+              src="https://connect.facebook.net/en_US/sdk.js#xfbml=1
+                   &version={graph-api-version}
+                   &appId={your-facebook-app-id}
+                   &autoLogAppEvents=1" 
+              nonce="FOKrbAYI">
+        </script>-->
+        
         <script>
             var FULL_BASE_URL = '<?php echo FULL_BASE_URL; ?>';
         </script>

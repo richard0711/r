@@ -145,8 +145,11 @@ a:hover, a:active, a:focus {
 }
 
 .news-thumb {
-    background: #ffffff;
-    border-radius: 10px;
+    background-color: #f9f9f9;
+    border-radius: 0 0 10px 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
 }
 .news-thumb img {
     border-radius: 10px 10px 0 0;
@@ -1064,7 +1067,7 @@ footer a:hover {
     }
     
     .slider .item {
-        height: 350px;
+        height: 125px;
     }
 
 }

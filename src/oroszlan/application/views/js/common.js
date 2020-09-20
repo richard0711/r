@@ -51,7 +51,7 @@ function sendMail() {
         e_message : jQuery("#e_message").val()
     };
     jQuery.ajax({
-        url: FULL_BASE_URL + 'sendmail.php',
+        url: FULL_BASE_URL.replace("index.php/","sendmail.php"),
         type: "POST",
         async: false,
         dataType: 'json',
@@ -59,9 +59,14 @@ function sendMail() {
         contentType: 'application/json'
         //headers: ko.toJS(headers)
     }).done(function (response) {
-        if (response.errorCode == 0) {
-           
+        if (response.success) {
+            jQuery("#emailError").addClass("hidden");
+            jQuery("#emailSuccess").removeClass("hidden");
+            jQuery("#emailSuccess").html(response.success);
         } else {
+            jQuery("#emailSuccess").addClass("hidden");
+            jQuery("#emailError").removeClass("hidden");
+            jQuery("#emailError").html(response.error);
             
         }
     }).fail(function (response) {

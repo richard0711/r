@@ -37,8 +37,7 @@ admin:
 hétvége:
 + menüpontok közül csak az első 4-et mutassuk utána ha több van akkor ... továbbiak aminek hatására mutatjuk csak meg a többit!
 + doktoraink a fő oldalon ne látszódjon az külön továbbiak menüpont alá kerülnek
-- hírek lista
-- email küldés
++ email küldés
+- facebook megosztás majd élesítéskor
 - adminban a banner itemek card átszabása, tartalom itemek card átszabása
 - tartalmak létrehozása a mac-en
-- facebook megosztás

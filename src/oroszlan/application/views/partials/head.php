@@ -6,6 +6,11 @@
     <meta name="keywords" content="">
     <meta name="author" content="Tooplate">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="og:url"           content="http://oroszlangyogyszertar.com" />
+    <meta property="og:type"          content="pharmacy" />
+    <meta property="og:title"         content="Nagykőrösi Oroszlán Gyógyszertár" />
+    <meta property="og:description"   content="Nagykőrösi Oroszlán Gyógyszertár" />
+    <meta property="og:image"         content="<?php echo VIEWS_URL; ?>images/oroszlan_logo.jpg" />
     <link rel="stylesheet" href="<?php echo VIEWS_URL; ?>css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo VIEWS_URL; ?>css/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo VIEWS_URL; ?>css/animate.css">

@@ -12,7 +12,7 @@
                                     <div class="item" style="background-image: url('<?php echo VIEWS_URL; ?>images/slider2.jpg');">    
                                     <?php } ?>    
                                     <div class="caption">
-                                        <?php if ($banner_item["text"] != '') { ?>
+                                        <?php if ($banner_item["text"] != '') { ?> 
                                         <div style="background-color: rgba(95, 93, 94, 0.39); padding: 5px; border-radius: 10px;" class="col-md-offset-1 col-md-10">
                                             <h1><?php echo $banner_item["name"] ?></h1>
                                             <h3><?php echo $banner_item["text"] ?></h3>

@@ -109,4 +109,4 @@ define('FULL_BASE_URL', $base_url.'index.php/');
 define('VIEWS_URL', $base_url."application/views/");
 define('ADMIN_API_URL', "http://localhost/rcms/rcms_api/admin.php/");
 define('IMAGES_URL', "http://localhost/rcms/rcms_api/");
-define('AUTH_API_URL', "http://localhost/rcms/rauth/index.php/");
+define('AUTH_API_URL', "http://localhost/rauth/index.php/");

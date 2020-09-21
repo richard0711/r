@@ -13,26 +13,33 @@
                     <img class="oroszlan_logo" src="<?php echo VIEWS_URL; ?>images/oroszlan_logo.jpg" />
                 </a>
                 <span class="logo_text">
-                <span class="logo_text_line1">Nagykőrösi Oroszlán Gyógyszertár</span>
-                <br/>
-                <i style="color: #757575;">2750 Nagykőrös, Kecskeméti út 18.</i>
+                    <span class="logo_text_line1">Nagykőrösi Oroszlán Gyógyszertár</span>
+                    <br/>
+                    <i style="color: #757575;">2750 Nagykőrös, Kecskeméti út 18.</i>
                 </span>
             </div>
         </div>
         <!-- MENU LINKS --> 
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <?php if(isset($top_menu)) { ?>
-                    <?php 
-                        foreach ($top_menu["data"] as $menu) { 
-                            foreach ($menu["menu_items"]["data"] as $menu_item) { 
-                    ?>
-                        <li><a href="<?php echo getMenuItemURL($menu_item); ?>" class="smoothScroll"><?php echo $menu_item["title"]; ?></a></li>
-                    <?php 
+                <?php $mainitems = 5;
+                $mi = 0;
+                if (isset($top_menu)) { ?>
+                    <?php
+                    foreach ($top_menu["data"] as $menu) {
+                        foreach ($menu["menu_items"]["data"] as $menu_item) {
+                            if ($mi < $mainitems) {
+                                ?>
+                                <li><a href="<?php echo getMenuItemURL($menu_item); ?>" class="smoothScroll"><?php echo $menu_item["title"]; ?></a></li>
+                                <?php } else { ?>        
+                                <li><a href="<?php echo getMenuItemURL($menu_item); ?>" class="smoothScroll"><?php echo $menu_item["title"]; ?></a></li>
+                                <?php } ?>
+                                <?php
+                                $mi++;
                             }
-                       } 
-                    ?>
-                <?php } ?>
+                        }
+                        ?>
+<?php } ?>
                 <!--                
                 <li><a href="#top" class="smoothScroll">Főoldal</a></li>
                 <li><a href="#about" class="smoothScroll">Rólunk</a></li>

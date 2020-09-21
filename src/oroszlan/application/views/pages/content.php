@@ -15,8 +15,14 @@
             <div class="news-social-share">
                 <h4>Ossza meg a cikket</h4>
                 <a href="#" class="btn btn-primary"><i class="fa fa-facebook"></i>Facebook</a>
-                <a href="#" class="btn btn-success"><i class="fa fa-twitter"></i>Twitter</a>
-                <a href="#" class="btn btn-danger"><i class="fa fa-google-plus"></i>Google+</a>
+<!--                <div class="fb-like" 
+                    data-href="https://www.your-domain.com/your-page.html" 
+                    data-width=""
+                    data-layout="standard" 
+                    data-action="like" 
+                    data-size="small"  
+                    data-share="true">
+               </div>-->
             </div>
         </div>
     </div>

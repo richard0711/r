@@ -15,29 +15,6 @@
         <small id="galleryTextHelp" class="form-text text-danger"></small>
     </div>
 </div> 
-<div class="form-group row">
-    <div class="col-sm-12">
-        <label for="galleryPosition">Pozíció</label>
-        <select type="text" 
-                class="form-control galleryPosition" 
-                value="1" 
-                id="galleryPosition" 
-                placeholder="Pozíció">
-            <option value="1">--nincs kiválasztva--</option>
-            <?php
-            if (isset($positions) && isset($positions["data"])) {
-                foreach ($positions["data"] as $position) {
-                    ?>
-                    <option <?php echo ($gallery["idposition"] == $position["idposition"]) ? 'selected="selected"' : ''; ?>
-                        value="<?php echo $position["idposition"]; ?>">
-                        <?php echo $position["name"] ?></option>
-                    <?php
-                }
-            }
-            ?>
-        </select>
-    </div>
-</div>
 <hr/>
 <h1 class="h3 mb-2 text-gray-800">Képek hozzáadása a galériához</h1>
 <p class="mb-4">Töltsd fel a képeket</p>
@@ -67,6 +44,7 @@
                 </div>
                 <div class="row galleryItem" data-id="<?php echo $gallery_item["idgallery_item"]; ?>" data-status="<?php echo $gallery_item["status"]; ?>">
                     <input class="form-control galleryItemName" type="text" value="<?php echo $gallery_item["name"]; ?>" placeholder="Kép megnevezése">
+                    <textarea class="form-control galleryItemText"><?php echo $gallery_item["text"]; ?></textarea>
                     <input class="form-control galleryItemIdImage" type="hidden" value="<?php echo $gallery_item["idimage"]; ?>" placeholder="Kép azon">
                     <input class="form-control galleryItemIdGalleryItem" type="hidden" value="<?php echo $gallery_item["idgallery_item"]; ?>" placeholder="azon">
                 </div>
@@ -83,6 +61,7 @@
     </div>
     <div class="row galleryItem" data-id="0" data-status="0">
         <input class="form-control galleryItemName" type="text" value="" placeholder="Kép megnevezése" />
+        <textarea class="form-control galleryItemText"></textarea>
         <input class="form-control galleryItemIdImage" type="hidden" value="" placeholder="Kép azon" />
     </div>
 </div>
@@ -200,7 +179,7 @@
             var new_item = {
                 idgallery_item: (Number(jQuery(item).attr("data-id") > 1)) ? jQuery(item).attr("data-id") : null,
                 name: jQuery(item).find(".galleryItemName").val(),
-                text: '',
+                text: jQuery(item).find(".galleryItemText").val(),
                 idgallery: <?php echo $gallery["idgallery"];  ?>,
                 idimage: jQuery(item).find(".galleryItemIdImage").val(),
                 status: jQuery(item).attr("data-status")

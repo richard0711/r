@@ -12,16 +12,18 @@
                                     <div class="item" style="background-image: url('<?php echo VIEWS_URL; ?>images/slider2.jpg');">    
                                     <?php } ?>    
                                     <div class="caption">
-                                        <div class="col-md-offset-1 col-md-10">
+                                        <?php if ($banner_item["text"] != '') { ?>
+                                        <div style="background-color: rgba(95, 93, 94, 0.39); padding: 5px; border-radius: 10px;" class="col-md-offset-1 col-md-10">
                                             <h1><?php echo $banner_item["name"] ?></h1>
                                             <h3><?php echo $banner_item["text"] ?></h3>
                                             <br/>
                                             <?php if ($banner_item["url"] != null && $banner_item["url"] != '') { ?>
                                                 <a href="<?php echo $banner_item["url"] ?>" class="section-btn btn btn-default smoothScroll">Megtekintés</a>
                                             <?php } else if ($banner_item["idcontent"] > 1) { ?>
-                                                <a href="<?php echo FULL_BASE_URL . 'p/content/'.$banner_item["idcontent"]; ?>" class="section-btn btn btn-default smoothScroll">Megtekintés</a>
+                                                <a href="<?php echo FULL_BASE_URL . 'p/content/'.$banner_item["idcontent"]; ?>" class="section-btn btn btn-default smoothScroll hidden-xs hidden-sm">Megtekintés</a>
                                             <?php } ?>
                                         </div>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             <?php } ?>
@@ -58,14 +60,14 @@
 <?php } ?>
 
 
-<!-- TEAM -->
+<!-- SERVICES -->
 <?php if (isset($home_page_doctors) && $home_page_doctors["count"] > 0) { ?>
 <section id="team" data-stellar-background-ratio="1">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-6">
                 <div class="about-info">
-                    <h2 class="wow fadeInUp" data-wow-delay="0.1s">Doktoraink</h2>
+                    <h2 class="wow fadeInUp" data-wow-delay="0.1s">Szolgáltatásaink</h2>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -84,15 +86,6 @@
                         <p>
                             <?php echo $doctor["short_desc"]; ?>
                         </p>
-                        
-                        <!--<div class="team-contact-info">
-                            <p><i class="fa fa-phone"></i> 010-020-0120</p>
-                            <p><i class="fa fa-envelope-o"></i> <a href="#">general@company.com</a></p>
-                        </div>
-                        <ul class="social-icon">
-                            <li><a href="#" class="fa fa-linkedin-square"></a></li>
-                            <li><a href="#" class="fa fa-envelope-o"></a></li>
-                        </ul>-->
                     </div>
 
                 </div>
@@ -134,13 +127,6 @@
                         <p>
                             <?php echo $new["short_desc"]; ?>
                         </p>
-                        <!--<div class="author">
-                            <img src="<?php // echo VIEWS_URL; ?>images/author-image.jpg" class="img-responsive" alt="">
-                            <div class="author-info">
-                                <h5>Jeremie Carlson</h5>
-                                <p>CEO / Founder</p>
-                            </div>
-                        </div>-->
                     </div>
                 </div>
             </div>
@@ -162,7 +148,7 @@
 
             <div class="col-md-6 col-sm-6">
                 <!-- CONTACT FORM HERE -->
-                <form id="appointment-form" role="form" method="post" action="#">
+                <form id="appointment-form" role="form" method="post">
 
                     <!-- SECTION TITLE -->
                     <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
@@ -172,20 +158,24 @@
                     <div class="wow fadeInUp" data-wow-delay="0.8s">
                         <div class="col-md-6 col-sm-6">
                             <label for="name">Név</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Teljes név">
+                            <input type="text" class="form-control" id="e_name" name="name" placeholder="Teljes név">
                         </div>
 
                         <div class="col-md-6 col-sm-6">
                             <label for="email">E-mail cím</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="email@cim.hu">
+                            <input type="email" class="form-control" id="e_email" name="email" placeholder="email@cim.hu">
                         </div>
 
                         <div class="col-md-12 col-sm-12">
                             <label for="telephone">Telefonszám</label>
-                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Telefonszám">
+                            <input type="tel" class="form-control" id="e_phone" name="phone" placeholder="Telefonszám">
                             <label for="Message">Üzenet</label>
-                            <textarea class="form-control" rows="5" id="message" name="message" placeholder="Üzenet"></textarea>
-                            <button type="submit" class="form-control" id="cf-submit" name="submit">Üzenet elküldése</button>
+                            <textarea class="form-control" rows="5" id="e_message" name="message" placeholder="Üzenet"></textarea>
+                            <button onclick="sendMail();" type="button" class="form-control" id="cf-submit" name="submit">Üzenet elküldése</button>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <span id="emailSuccess" class="text-info hidden"></span>
+                            <span id="emailError" class="text-danger hidden"></span>
                         </div>
                     </div>
                 </form>

@@ -39,6 +39,41 @@ function setUpLightGallery() {
     jQuery("#lightGallery").lightGallery();
 }
 
+function showMoreMenuItem() {
+    jQuery("#more-menu-items").removeClass("hidden");
+}
+
+function sendMail() {
+    var data = {
+        e_email : jQuery("#e_email").val(),
+        e_name : jQuery("#e_name").val(),
+        e_phone : jQuery("#e_phone").val(),
+        e_message : jQuery("#e_message").val()
+    };
+    jQuery.ajax({
+        url: FULL_BASE_URL.replace("index.php/","sendmail.php"),
+        type: "POST",
+        async: false,
+        dataType: 'json',
+        data: JSON.stringify(data),
+        contentType: 'application/json'
+        //headers: ko.toJS(headers)
+    }).done(function (response) {
+        if (response.success) {
+            jQuery("#emailError").addClass("hidden");
+            jQuery("#emailSuccess").removeClass("hidden");
+            jQuery("#emailSuccess").html(response.success);
+        } else {
+            jQuery("#emailSuccess").addClass("hidden");
+            jQuery("#emailError").removeClass("hidden");
+            jQuery("#emailError").html(response.error);
+            
+        }
+    }).fail(function (response) {
+        console.log('error log : ', response);
+    });
+}
+
 jQuery(document).ready(function() {
     jQuery(".search-input").on('keyup', function (e) {
         if (e.key === 'Enter' || e.keyCode === 13) {
@@ -47,3 +82,4 @@ jQuery(document).ready(function() {
     });
     setUpLightGallery();
 });
+

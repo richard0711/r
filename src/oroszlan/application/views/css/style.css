@@ -32,10 +32,10 @@
 }
 
 .search-input {
-    width: 65px;
+    width: 74px;
     margin-left: 10px;
-    height: 25px;
-    font-size: 10px;
+    height: 30px;
+    font-size: 12px;
 }
 
 .header-top-left {
@@ -124,4 +124,47 @@
 .gallery-item-text {
     padding: 10px;
     overflow: hidden;
+}
+
+.more-menu-item-btn {
+    border: 1px solid #f2f2f2;
+    cursor:pointer;
+    float: right;
+    margin-top: 8px;
+}
+
+.more-menu-item-btn button {
+    border: none;
+}
+.more-menu-item-btn button:hover,
+.more-menu-item-btn button:active,
+.more-menu-item-btn button:focus {
+    background: #fff;
+}
+
+.more-menu-item-btn i {
+    border: 1px solid #f2f2f2;
+    color: #555555;
+    font-size: 13px;
+    font-weight: 500;
+    padding-right: 20px;
+    padding-left: 20px;
+    -webkit-transition: all ease-in-out 0.4s;
+    transition: all ease-in-out 0.4s;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.btn-default.active.focus, 
+.btn-default.active:focus, 
+.btn-default.active:hover, 
+.btn-default:active.focus, 
+.btn-default:active:focus, 
+.btn-default:active:hover, 
+.open>.dropdown-toggle.btn-default.focus, 
+.open>.dropdown-toggle.btn-default:focus, 
+.open>.dropdown-toggle.btn-default:hover {
+    color: #a5c422;
+    background-color: white;
+    border-color: #f2f2f2;
 }

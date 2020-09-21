@@ -232,6 +232,8 @@ th {
 label {
   display: inline-block;
   margin-bottom: 0.5rem;
+  color: #000;
+  font-weight: 600;
 }
 
 button {
@@ -2051,22 +2053,22 @@ pre code {
 
 .form-control::-webkit-input-placeholder {
   color: #858796;
-  opacity: 1;
+  opacity: 0.5;
 }
 
 .form-control:-ms-input-placeholder {
   color: #858796;
-  opacity: 1;
+  opacity: 0.5;
 }
 
 .form-control::-ms-input-placeholder {
   color: #858796;
-  opacity: 1;
+  opacity: 0.5;
 }
 
 .form-control::placeholder {
   color: #858796;
-  opacity: 1;
+  opacity: 0.5;
 }
 
 .form-control:disabled, .form-control[readonly] {

@@ -1,8 +1,9 @@
 ADMIN:
-- listák lapozhatósága kereső funkció
+- listák rendberakása, lapozhatósága kereső funkció
 - menüpontok sorrendezése
 - light gallery!
-
+- univerzális kereső!
+- seo
 
 FELÜLET:
 - tartalmak létrehozása
@@ -11,7 +12,6 @@ FELÜLET:
 - lépjen kapcsolatba velünk felirat helyett konkrétum (adminban legyen állítható)
 - facebook megosztás
 - barátságos url-ek
-
 
 TELEPÍTÉS:
 - 

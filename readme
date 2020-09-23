@@ -1,41 +1,17 @@
-+ menüpont rögzítő funkció 1 h
-+ menüponthoz  tartalom kötése funkció 0,5 h
-+ menü helyének megadása (positions type = menu, ezekből lehet választani, jelenleg oroszlánnál egy ilyen lesz: top_menu
-+ tartalom rögzítés funkció 1 h
-+ tartalom helyének megadása 0,5 h
-+ tartalmak lekérdezése funkció 0,5 h
-+ tartalom visszanyitás funkció 0,5 h
-+ banner rögzítése
-
-admin:
-+ hír rögzítés funkció 0,5 h
-+ hírek lekérdezése funkció 0,5 h
-+ hír visszanyitása funkció 0,5 h
-+ tartalomhoz képfeltöltés funkció 0,5
-
-- login 1,5 h 
-- tartalom lekérése api használata, publikált nem publikált flag! 0,5 h
-- hírek lekérése api használata, publikélkt nem publikált flag! 0,5 h
-- a kapott anyagok beépítése 1 h
-- facebook linkek kezelése! 1 h
-- a Doktoraink legyen külön menüpont alatt
-- a lépjen kapcsolatba résznél ki kell fejteni, hogy mivel kapcsolatban érdeklődhet
-- admin teljes befejezése
-- kereső a publikus felületen
-- galéria 
-- menüpontok átszabása, ha sok van akkor legyen lenyitható!
-- mobilra optimalizálás,
-- új logó!
+ADMIN:
+- listák lapozhatósága kereső funkció
+- menüpontok sorrendezése
+- light gallery!
 
 
+FELÜLET:
+- tartalmak létrehozása
+- bannerek létrehozása
+- mobilon a slider legyen kattintható
+- lépjen kapcsolatba velünk felirat helyett konkrétum (adminban legyen állítható)
+- facebook megosztás
+- barátságos url-ek
 
 
-
-
-
--------------
-+ galériák lista
-+ hírek lista
-+ galériából kép törlése funkció hiányzik
-+ szolgáltatások a főoldalon ha több van mint 3 akkor egymásra csúszik. 
-+ Ide nézni kell egy általános képet googleről végül a logot tettem be
+TELEPÍTÉS:
+- 

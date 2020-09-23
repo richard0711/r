@@ -49,7 +49,7 @@
                     </div>
                     <figure class="profile wow fadeInUp" data-wow-delay="1s">
                          <br/>
-                        <a href="<?php echo FULL_BASE_URL . 'p/content/'.$home_page_welcome["data"][0]["idcontent"]; ?>" class="section-btn btn btn-default smoothScroll">Tovább olvasom...</a>
+                        <a href="<?php echo FULL_BASE_URL . 'p/content/'.$home_page_welcome["data"][0]["idcontent"]; ?>" class="section-btn btn btn-default smoothScroll">Megtekintés</a>
                     </figure>
                 </div>
             </div>

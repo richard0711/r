@@ -57,7 +57,7 @@ class Front_controller extends Public_controller {
                 $page_view = 'pages/news';
                 break;
             case 'news_list':
-                $page_params["news_list"] = $this->_getParamsByPage($page, $id, $params);
+                $page_params["news_list"] = $this->_getParamsByPage('news/list', '', $params);
                 $page_view = 'pages/news_list';
                 break;
             case 'content':
@@ -67,6 +67,10 @@ class Front_controller extends Public_controller {
             case 'gallery':
                 $page_params["gallery"] = $this->_getParamsByPage($page, $id, $params);
                 $page_view = 'pages/gallery';
+                break;
+            case 'gallery_list':
+                $page_params["gallery_list"] = $this->_getParamsByPage('gallery/list', '', $params);
+                $page_view = 'pages/gallery_list';
                 break;
             case 'content_list':
                 $page_params["content_list"] = $this->_getParamsByPage($page, $id, $params);

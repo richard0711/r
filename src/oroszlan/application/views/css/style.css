@@ -67,6 +67,7 @@
 .card-thumb {
     min-height: 430px !important;
     max-height: 430px !important;
+    text-align: left;
 }
 
 .card-thumb h3 {
@@ -84,6 +85,7 @@
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .search-list-short-desc {
@@ -167,4 +169,17 @@
     color: #a5c422;
     background-color: white;
     border-color: #f2f2f2;
+}
+
+.service-item-image {
+    min-height: 400px;
+    margin: 0 auto;
+    background-size: cover;
+    background-position: center;
+}
+.news-item-image {
+    min-height: 400px;
+    margin: 0 auto;
+    background-size: cover;
+    background-position: center;
 }

@@ -38,11 +38,16 @@
     if (isset($gallery) && isset($gallery["gallery_items"]) && $gallery["gallery_items"]["count"] > 0) {
         foreach ($gallery["gallery_items"]["data"] as $key => $gallery_item) {
             ?>
-            <div style="display: inline-block;" class="card card-body">
-                <div class="row">
+            <div style="display: inline-block;" class="card card-body galleryItem-card">
+                <div class="form-group text-center">
+                    <button onclick="delGalleryItem(this)" class="btn btn-secondary">
+                        <i class="fas fa-trash fa-sm"></i>
+                    </button>
+                </div>
+                <div class="form-group row">
                     <img class="galleryItemImg" src="<?php echo IMAGES_URL.$gallery_item["image_path"]; ?>">
                 </div>
-                <div class="row galleryItem" data-id="<?php echo $gallery_item["idgallery_item"]; ?>" data-status="<?php echo $gallery_item["status"]; ?>">
+                <div class="form-group row galleryItem" data-id="<?php echo $gallery_item["idgallery_item"]; ?>" data-status="<?php echo $gallery_item["status"]; ?>">
                     <input class="form-control galleryItemName" type="text" value="<?php echo $gallery_item["name"]; ?>" placeholder="Kép megnevezése">
                     <textarea class="form-control galleryItemText"><?php echo $gallery_item["text"]; ?></textarea>
                     <input class="form-control galleryItemIdImage" type="hidden" value="<?php echo $gallery_item["idimage"]; ?>" placeholder="Kép azon">
@@ -55,11 +60,16 @@
     ?>
 </div>
 
-<div style="display:none;" class="itemTemplate card card-body">
-    <div class="row">
+<div style="display:none;" class="itemTemplate card card-body galleryItem-card">
+    <div class="form-group text-center">
+        <button onclick="delGalleryItem(this)" class="btn btn-secondary" data-status="1">
+            <i class="fas fa-trash fa-sm"></i>
+        </button>
+    </div>
+    <div class="form-group row">
         <img class="galleryItemImg" src="" />
     </div>
-    <div class="row galleryItem" data-id="0" data-status="0">
+    <div class="form-group row galleryItem" data-id="0" data-status="0">
         <input class="form-control galleryItemName" type="text" value="" placeholder="Kép megnevezése" />
         <textarea class="form-control galleryItemText"></textarea>
         <input class="form-control galleryItemIdImage" type="hidden" value="" placeholder="Kép azon" />
@@ -78,7 +88,7 @@
         <i class="fas fa-save fa-sm"></i>
         Mentés
     </a>
-    <a href="<?php echo FULL_BASE_URL . 'menu/list'; ?>" class="btn btn-secondary" role="button">
+    <a href="<?php echo FULL_BASE_URL . 'gallery/list'; ?>" class="btn btn-secondary" role="button">
         <i class="fas fa-cancel fa-sm"></i>
         Mégsem
     </a>
@@ -112,6 +122,16 @@
             ajax.onreadystatechange = uploadImageCallback;
             ajax.open("POST", '<?php echo ADMIN_API_URL; ?>image/upload');
             ajax.send(formdata);
+        }
+    }
+    
+    function delGalleryItem(item) {
+        if (jQuery(item).closest('.card').find(".galleryItem").attr("data-status") == 1) {
+            jQuery(item).closest('.card').find(".galleryItem").attr("data-status", 0);
+            jQuery(item).addClass("text-danger");
+        } else {
+            jQuery(item).closest('.card').find(".galleryItem").attr("data-status", 1);
+            jQuery(item).removeClass("text-danger");
         }
     }
 

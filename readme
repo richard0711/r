@@ -34,7 +34,8 @@ admin:
 
 
 -------------
-- galériák lista
-- hírek lista
-- galériából kép törlése funkció hiányzik
-- szolgáltatások a főoldalon ha több van mint 3 akkor egymásra csúszik. Ide nézni kell egy általános képet googleről
++ galériák lista
++ hírek lista
++ galériából kép törlése funkció hiányzik
++ szolgáltatások a főoldalon ha több van mint 3 akkor egymásra csúszik. 
++ Ide nézni kell egy általános képet googleről végül a logot tettem be

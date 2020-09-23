@@ -9,18 +9,18 @@
                 </div>
                 <div class="clearfix"></div>
                 <?php foreach ($search_list["news"]["data"] as $new) { ?>
-                <div style="margin-top: 20px;" class="col-md-4 col-sm-6">
+                    <div style="margin-top: 20px;" class="col-md-4 col-sm-6">
                         <div class="card-thumb wow fadeInUp" data-wow-delay="0.2s">
                             <?php if (isset($new["news_items"]) && $new["news_items"]["count"] > 0) { ?>
-                                    <?php $img = str_replace("public.php/", "", RCMS_URL) . $new["news_items"]["data"][0]["image_path"]; ?>
-                                <?php } else { ?> 
-                                    <?php $img = VIEWS_URL."images/ujlogo.jpg"; ?>
-                                <?php } ?> 
+                                <?php $img = str_replace("public.php/", "", RCMS_URL) . $new["news_items"]["data"][0]["image_path"]; ?>
+                            <?php } else { ?> 
+                                <?php $img = VIEWS_URL . "images/ujlogo.jpg"; ?>
+                            <?php } ?> 
                             <a 
                                 style="background-image: url('<?php echo $img; ?>'); background-size: cover; background-repeat: no-repeat; background-position: center;"
                                 class="search-list-item-imglink" href="<?php echo FULL_BASE_URL . 'p/news/' . $new["idnew"]; ?>">
                             </a>
-                            <div class="team-info">
+                            <div class="services-info">
                                 <h3><a href="<?php echo FULL_BASE_URL . 'p/news/' . $new["idnew"]; ?>"><?php echo $new["title"]; ?></a></h3>
                                 <p class="search-list-short-desc">
                                     <?php echo $new["short_desc"]; ?>
@@ -35,7 +35,7 @@
     <?php } ?>
 <?php } ?>
 <?php if (isset($search_list) && $search_list["contents"]["count"] > 0) { ?>
-    
+
     <section data-stellar-background-ratio="1">
         <div class="container">
             <div class="row">
@@ -49,15 +49,15 @@
                     <div style="margin-top: 20px;" class="col-md-4 col-sm-6">
                         <div class="card-thumb wow fadeInUp" data-wow-delay="0.2s">
                             <?php if (isset($content["content_items"]) && $content["content_items"]["count"] > 0) { ?>
-                                    <?php $img = str_replace("public.php/", "", RCMS_URL) . $content["content_items"]["data"][0]["image_path"]; ?>
-                                <?php } else { ?> 
-                                    <?php $img = VIEWS_URL."images/ujlogo.jpg"; ?>
-                                <?php } ?> 
+                                <?php $img = str_replace("public.php/", "", RCMS_URL) . $content["content_items"]["data"][0]["image_path"]; ?>
+                            <?php } else { ?> 
+                                <?php $img = VIEWS_URL . "images/ujlogo.jpg"; ?>
+                            <?php } ?> 
                             <a 
                                 style="background-image: url('<?php echo $img; ?>'); background-size: cover; background-repeat: no-repeat; background-position: center;"
                                 class="search-list-item-imglink" href="<?php echo FULL_BASE_URL . 'p/content/' . $content["idcontent"]; ?>">
                             </a>
-                            <div class="team-info">
+                            <div class="services-info">
                                 <h3><a href="<?php echo FULL_BASE_URL . 'p/content/' . $content["idcontent"]; ?>"><?php echo $content["title"]; ?></a></h3>
                                 <p class="search-list-short-desc">
                                     <?php echo $content["short_desc"]; ?>
@@ -73,7 +73,7 @@
 <?php } ?>
 
 <?php if (isset($search_list) && $search_list["gallery"]["count"] > 0) { ?>
-    
+
     <section data-stellar-background-ratio="1">
         <div class="container">
             <div class="row">
@@ -87,15 +87,15 @@
                     <div style="margin-top: 20px;" class="col-md-4 col-sm-6">
                         <div class="card-thumb wow fadeInUp" data-wow-delay="0.2s">
                             <?php if (isset($gallery["gallery_items"]) && $gallery["gallery_items"]["count"] > 0) { ?>
-                                    <?php $img = str_replace("public.php/", "", RCMS_URL) . $gallery["gallery_items"]["data"][0]["image_path"]; ?>
-                                <?php } else { ?> 
-                                    <?php $img = VIEWS_URL."images/ujlogo.jpg"; ?>
-                                <?php } ?> 
+                                <?php $img = str_replace("public.php/", "", RCMS_URL) . $gallery["gallery_items"]["data"][0]["image_path"]; ?>
+                            <?php } else { ?> 
+                                <?php $img = VIEWS_URL . "images/ujlogo.jpg"; ?>
+                            <?php } ?> 
                             <a 
                                 style="background-image: url('<?php echo $img; ?>'); background-size: cover; background-repeat: no-repeat; background-position: center;"
                                 class="search-list-item-imglink" href="<?php echo FULL_BASE_URL . 'p/gallery/' . $gallery["idgallery"]; ?>">
                             </a>
-                            <div class="team-info">
+                            <div class="services-info">
                                 <h3><a href="<?php echo FULL_BASE_URL . 'p/gallery/' . $gallery["idgallery"]; ?>"><?php echo $gallery["name"]; ?></a></h3>
                                 <p class="search-list-short-desc">
                                     <?php echo $gallery["text"]; ?>
@@ -110,7 +110,7 @@
 <?php } ?>
 
 <?php if (isset($search_list) && $search_list["contents"]["count"] == 0 && $search_list["news"]["count"] == 0 && $search_list["gallery"]["count"] == 0) { ?>
-    <section id="team" data-stellar-background-ratio="1">
+    <section id="services" data-stellar-background-ratio="1">
         <div class="container">
             <div class="row">
                 <div class="text-center">

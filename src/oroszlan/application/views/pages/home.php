@@ -62,32 +62,35 @@
 
 <!-- SERVICES -->
 <?php if (isset($home_page_doctors) && $home_page_doctors["count"] > 0) { ?>
-<section id="team" data-stellar-background-ratio="1">
+<section id="services" data-stellar-background-ratio="1">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-sm-6">
-                <div class="about-info">
-                    <h2 class="wow fadeInUp" data-wow-delay="0.1s">Szolgáltatásaink</h2>
+            <div class="col-md-12 col-sm-12">
+                <!-- SECTION TITLE -->
+                <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                    <h2>Szolgáltatások</h2>
                 </div>
             </div>
             <div class="clearfix"></div>
-            <?php foreach ($home_page_doctors["data"] as $doctor) { ?>
+            <?php foreach ($home_page_doctors["data"] as $content) { ?>
             <div class="col-md-4 col-sm-6">
-                <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
-                    <a href="<?php echo FULL_BASE_URL . 'p/content/'.$doctor["idcontent"]; ?>">
-                    <?php if (isset($doctor["content_items"]) && $doctor["content_items"]["count"] > 0) { ?>
-                    <img src="<?php echo str_replace("public.php/", "", RCMS_URL).$doctor["content_items"]["data"][0]["image_path"]; ?>" class="img-responsive" alt="">
+                <div class="card-thumb wow fadeInUp" data-wow-delay="0.2s">
+                    <?php if (isset($content["content_items"]) && $content["content_items"]["count"] > 0) { ?>
+                        <?php $img = str_replace("public.php/", "", RCMS_URL) . $content["content_items"]["data"][0]["image_path"]; ?>
                     <?php } else { ?> 
-                    <img src="<?php echo VIEWS_URL; ?>images/team-image1.jpg" class="img-responsive" alt="">
-                    <?php }  ?> 
+                        <?php $img = VIEWS_URL . "images/ujlogo.jpg"; ?>
+                    <?php } ?> 
+                    <a 
+                        style="background-image: url('<?php echo $img; ?>'); background-size: cover; background-repeat: no-repeat; background-position: center;"
+                        class="search-list-item-imglink" href="<?php echo FULL_BASE_URL . 'p/content/' . $content["idcontent"]; ?>">
                     </a>
-                    <div class="team-info">
-                        <h3><a href="<?php echo FULL_BASE_URL . 'p/content/'.$doctor["idcontent"]; ?>"><?php echo $doctor["title"]; ?></a></h3>
-                        <p>
-                            <?php echo $doctor["short_desc"]; ?>
+                    <div class="services-info">
+                        <h3><a href="<?php echo FULL_BASE_URL . 'p/content/' . $content["idcontent"]; ?>"><?php echo $content["title"]; ?></a></h3>
+                        <p class="search-list-short-desc">
+                            <?php echo $content["short_desc"]; ?>
                         </p>
                     </div>
-
+                    <p class="search-list-item-calendar"><i class="fa fa-calendar"></i> <span><?php echo formatted_date_time($content["published"]); ?></span></p>
                 </div>
             </div>
             <?php } ?>
@@ -110,24 +113,23 @@
             </div>
             <?php $max_count = 3; $news_counter = 0; foreach ($home_page_news["data"] as $new) { if ($max_count == $news_counter) { break; } else { $news_counter++; } ?> 
             <div class="col-md-4 col-sm-6">
-                <!-- NEWS THUMB -->
-                <div class="news-thumb wow fadeInUp" data-wow-delay="0.4s">
-                    <a href="<?php echo FULL_BASE_URL . 'p/news/'.$new["idnew"]; ?>">
-                        <?php if (isset($new["news_items"]) && $new["news_items"]["count"] > 0) { ?>
-                        <img src="<?php echo str_replace("public.php/", "", RCMS_URL).$new["news_items"]["data"][0]["image_path"]; ?>" class="img-responsive" alt="">
-                        <?php } else { ?>
-                        <!-- NEWS default image -->
-                        <img src="<?php echo VIEWS_URL; ?>images/news-image1.jpg" class="img-responsive" alt="">
-                        <?php } ?>
-                        
+                <div class="card-thumb wow fadeInUp" data-wow-delay="0.2s">
+                    <?php if (isset($new["news_items"]) && $new["news_items"]["count"] > 0) { ?>
+                        <?php $img = str_replace("public.php/", "", RCMS_URL) . $new["news_items"]["data"][0]["image_path"]; ?>
+                    <?php } else { ?> 
+                        <?php $img = VIEWS_URL . "images/ujlogo.jpg"; ?>
+                    <?php } ?> 
+                    <a 
+                        style="background-image: url('<?php echo $img; ?>'); background-size: cover; background-repeat: no-repeat; background-position: center;"
+                        class="search-list-item-imglink" href="<?php echo FULL_BASE_URL . 'p/news/' . $new["idnew"]; ?>">
                     </a>
-                    <div class="news-info">
-                        <span><?php echo formatted_date_time($new["published"]); ?></span>
-                        <h3><a href="<?php echo FULL_BASE_URL . 'p/news/'.$new["idnew"]; ?>"><?php echo $new["title"]; ?></a></h3>
-                        <p>
+                    <div class="services-info">
+                        <h3><a href="<?php echo FULL_BASE_URL . 'p/news/' . $new["idnew"]; ?>"><?php echo $new["title"]; ?></a></h3>
+                        <p class="search-list-short-desc">
                             <?php echo $new["short_desc"]; ?>
                         </p>
                     </div>
+                    <p class="search-list-item-calendar"><i class="fa fa-calendar"></i> <span><?php echo formatted_date_time($new["published"]); ?></span></p>
                 </div>
             </div>
             <?php } ?> 

@@ -51,6 +51,8 @@ if ($method == 'GET') {
     $route['gallery/new'] = 'Gallery_controller/newGallery';
     $route['gallery/edit/(:num)'] = 'Gallery_controller/editGallery/$1';
     $route['gallery/del/(:num)'] = 'Gallery_controller/delGallery/$1';
+    
+    $route['lister'] = 'Lister_controller/lister';
 }
 
 if ($method == 'POST') {

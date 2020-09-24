@@ -63,6 +63,9 @@ class Gallery extends CI_Model {
         if (isset($filters["idgallery"]) && $filters["idgallery"] > 1) {
             $this->db->where($this->table.".idgallery", $filters["idgallery"]);
         }
+        if (isset($filters["string"]) && $filters["string"] != '') {
+            $this->db->where($this->table.".name like '%".$filters["string"]."%'");
+        }
         $this->db->where($this->table.".status", 1);
         $result['count'] = $this->db->count_all_results('', false);
         set_query_limit_and_offset($filters, $this->db);

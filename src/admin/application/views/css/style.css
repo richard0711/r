@@ -38,5 +38,6 @@ fieldset {
 }
 
 .list-pager-active {
-    background-color: #0a90eb;
+    background-color: #4e73df;
+    color: #fff;
 }

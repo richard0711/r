@@ -70,6 +70,9 @@ class Banner extends CI_Model {
         if (isset($filters["idbanner"]) && $filters["idbanner"] > 1) {
             $this->db->where($this->table.".idbanner", $filters["idbanner"]);
         }
+        if (isset($filters["string"]) && $filters["string"] != '') {
+            $this->db->where($this->table.".name like '%".$filters["string"]."%'");
+        }
         $this->db->where($this->table.".status", 1);
         $result['count'] = $this->db->count_all_results('', false);
         set_query_limit_and_offset($filters, $this->db);

@@ -78,6 +78,9 @@ class News extends CI_Model {
         if (isset($filters["idnew"]) && $filters["idnew"] > 1) {
             $this->db->where($this->table.".idnew", $filters["idnew"]);
         }
+        if (isset($filters["string"]) && $filters["string"] != '') {
+            $this->db->where("(".$this->table.".title like '%".$filters["string"]."%')");
+        }
         $this->db->where($this->table.".status", 1);
         $result['count'] = $this->db->count_all_results('', false);
         set_query_limit_and_offset($filters, $this->db);

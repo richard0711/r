@@ -13,15 +13,15 @@
     <div class="card-body">
         <div class="form-group row list-nav-bar">
             <div class="col-xs-12 col-lg-6 col-md-6 list-pager-info text-right">
-                <span class="list-pager-info-fromto"> 1 - 10 </span>
+                <span class="list-pager-info-fromto"> 1 - 2 </span>
                 / 
                 <span class="list-pager-info-sum"><?php echo $list["count"]; ?></span>
             </div>
             <div class="col-xs-12 col-lg-6 col-md-6">
                 <div class="input-group">
-                    <input onchange="search(this);" type="text" class="form-control search-string" placeholder="Keresés">
+                    <input onchange="search();" type="text" class="form-control search-string" placeholder="Keresés">
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-outline-secondary">
+                        <button type="button" class="btn btn-outline-secondary" onclick="search();">
                             <i class="fas fa-sync fa-sm"></i>
                         </button>
                     </div>
@@ -29,48 +29,14 @@
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-xs-12 col-lg-12 col-md-12">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>Cím</th>
-                                <th>Publikálva</th>
-                                <th>Publikálás vége</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tfoot class="thead-light">
-                            <tr>
-                                <th>Cím</th>
-                                <th>Publikálva</th>
-                                <th>Publikálás vége</th>
-                                <th></th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <?php foreach ($list["data"] as $item) { ?>
-                                <tr>
-                                    <td><?php echo $item["title"]; ?></td>
-                                    <td><?php echo formatted_date_time($item["published"]); ?></td>
-                                    <td><?php echo formatted_date_time($item["published_to"]); ?></td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a href="<?php echo FULL_BASE_URL . 'content/edit/' . $item["idcontent"]; ?>" class="btn-sm btn-secondary" role="button">
-                                                <i class="fas fa-pen fa-sm"></i>
-                                            </a> 
-                                        </div>
-                                        <div class="btn-group">
-                                            <a href="<?php echo FULL_BASE_URL . 'content/del/' . $item["idcontent"]; ?>" class="btn-sm btn-secondary" role="button">
-                                                <i class="fas fa-trash fa-sm"></i>
-                                            </a> 
-                                        </div>
-                                    </td>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
+            <div id="list" class="col-xs-12 col-lg-12 col-md-12">
+                <?php
+                    $this->load->view('pages/content/list_content', 
+                        array(
+                            'list' => $list
+                        )
+                    );
+                ?>
             </div>
         </div>
         <div class="form-group row list-pager">
@@ -84,13 +50,16 @@
                 $max_btn_count = 6;
                 for ($i = 0; $i < (ceil($list["count"]/$limit)); $i++) {
                     if ($i == 0) {
-                        echo '<input class="list-pager-active list-pager-btn" onclick="selectPage(this);" type="button" value="'.($i+1).'">';
+                        echo '<input class="list-pager-active list-pager-btn btn btn-outline-secondary" onclick="selectPage(this);" type="button" value="'.($i+1).'">';
                     } else if ($max_btn_count > $i) {
-                        echo '<input class="list-pager-btn" onclick="selectPage(this);" type="button" value="'.($i+1).'">';
+                        echo '<input class="list-pager-btn btn btn-outline-secondary" onclick="selectPage(this);" type="button" value="'.($i+1).'">';
                     } else if ($max_btn_count == $i) {
                         echo '...';
-                    } else if ($i == ($list["count"]-1)) {
-                        echo '<input class="list-pager-btn" onclick="selectPage(this);" type="button" value="'.($i+1).'">';
+                        if ($i == (ceil($list["count"]/$limit)-1)) {
+                            echo '<input class="list-pager-btn btn btn-outline-secondary" onclick="selectPage(this);" type="button" value="'.($i+1).'">';
+                        }
+                    } else if ($i == (ceil($list["count"]/$limit)-1)) {
+                        echo '<input class="list-pager-btn btn btn-outline-secondary" onclick="selectPage(this);" type="button" value="'.($i+1).'">';
                     }
                 }
                ?>
@@ -108,30 +77,33 @@
         getList();
     }
     
-    function search(input) {
+    function search() {
         getList();
     }
     
     function getList() {
         var data = {
-            "string": jQuery(".search-string").val(),
-            "limit": jQuery(".list-pager-limit").val(),
-            "offset": jQuery(".list-pager-offset").val()
+            "api":"contents",
+            "module":"content",
+            "view":"list_content",
+            "get_data":{
+                "string": jQuery(".search-string").val(),
+                "limit": jQuery(".list-pager-limit").val(),
+                "offset": jQuery(".list-pager-offset").val()
+            }
         };
         jQuery.ajax({
-            url: "<?php echo ADMIN_API_URL; ?>contents",
+            url: "<?php echo FULL_BASE_URL; ?>lister",
             type: "GET",
             async: false,
             dataType: 'json',
             data: data,
             contentType: 'application/json'
         }).done(function (response) {
-            debugger;
-            if (response.errorCode == 0) {
-               
-            } else {
-                
-            }
+            jQuery("#list").html(response.list);
+            jQuery(".list-pager-info-sum").html(response.count);
+            jQuery(".list-pager-info-fromto").html(' ' + (Number(jQuery(".list-pager-offset").val()) + 1) + ' - ' + 
+                    (Number(jQuery(".list-pager-offset").val()) + Number(jQuery(".list-pager-limit").val())) + ' ');
         }).fail(function (response) {
             console.log('error log : ', response);
             jQuery("#errorMessage").html('Hiba a mentés közben!');

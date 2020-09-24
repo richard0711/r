@@ -78,9 +78,13 @@ class Content extends CI_Model {
         if (isset($filters["idcontent"]) && $filters["idcontent"] > 1) {
             $this->db->where($this->table.".idcontent", $filters["idcontent"]);
         }
+        if (isset($filters["string"]) && $filters["string"] != '') {
+            $this->db->where($this->table.".title like '%".$filters["string"]."%'");
+        }
         $this->db->where($this->table.".status", 1);
         $result['count'] = $this->db->count_all_results('', false);
         set_query_limit_and_offset($filters, $this->db);
+        $this->db->order_by($this->table.".created desc");
         $res = $this->db->get();
         log_message('debug', 'get_contents_by_filters $this->db->last_query()'.print_r($this->db->last_query(), true));
         $result['data'] = $this->get_result_array($res);

@@ -14,7 +14,7 @@ class Content_controller extends Private_controller {
     public function contentList() {
         try {
             $AdminAPI = new AdminAPI();
-            $list = $AdminAPI->get('contents');
+            $list = $AdminAPI->get('contents', array("limit"=>10,"offset"=>0));
             $this->load->view("index", 
                 array(
                     "content" => $this->load->view('pages/content/list', 

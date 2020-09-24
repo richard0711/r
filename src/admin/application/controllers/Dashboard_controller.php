@@ -14,9 +14,9 @@ class Dashboard_controller extends Private_controller {
     public function index() {
         try {
             $AdminAPI = new AdminAPI();
-            $last_contents = $AdminAPI->get('contents', array("limit"=>5));
-            $last_news = $AdminAPI->get('news', array("limit"=>5));
-            $last_gallery = $AdminAPI->get('gallery', array("limit"=>5));
+            $last_contents = $AdminAPI->get('contents', array("limit"=>5, "offset"=>0));
+            $last_news = $AdminAPI->get('news', array("limit"=>5, "offset"=>0));
+            $last_gallery = $AdminAPI->get('gallery', array("limit"=>5, "offset"=>0));
             $this->load->view("index", 
                 array(
                     "content" => $this->load->view('pages/dashboard/dashboard', 

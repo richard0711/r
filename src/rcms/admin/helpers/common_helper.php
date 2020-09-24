@@ -4,6 +4,7 @@ if (!function_exists('set_query_limit_and_offset'))
 {
     function set_query_limit_and_offset($filter = array(), $db = NULL)
     {
+        log_message('debug', 'set_query_limit_and_offset'.print_r($filter, true));
         $offset = NULL;
         $limit = NULL;
         if ($db != NULL) {

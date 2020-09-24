@@ -32,3 +32,11 @@ fieldset {
     margin-bottom: 5px;
 }
 
+.list-pager-info {
+    padding-top: 10px;
+    padding-left: 20px;
+}
+
+.list-pager-active {
+    background-color: #0a90eb;
+}

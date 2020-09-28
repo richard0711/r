@@ -75,6 +75,9 @@
     }
     
     function search() {
+        jQuery(".list-pager-btn").removeClass('list-pager-active');
+        jQuery('.list-pager-btn[value="1"]').addClass('list-pager-active');
+        jQuery(".list-pager-offset").val(0);
         getList();
     }
     

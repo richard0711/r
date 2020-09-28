@@ -13,7 +13,7 @@
     <div class="card-body">
         <div class="form-group row list-nav-bar">
             <div class="col-xs-12 col-lg-6 col-md-6 list-pager-info text-right">
-                <span class="list-pager-info-fromto"> 1 - 2 </span>
+                <span class="list-pager-info-fromto"> 1 - 10 </span>
                 / 
                 <span class="list-pager-info-sum"><?php echo $list["count"]; ?></span>
             </div>
@@ -78,6 +78,9 @@
     }
     
     function search() {
+        jQuery(".list-pager-btn").removeClass('list-pager-active');
+        jQuery('.list-pager-btn[value="1"]').addClass('list-pager-active');
+        jQuery(".list-pager-offset").val(0);
         getList();
     }
     

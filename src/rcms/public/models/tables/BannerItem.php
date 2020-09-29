@@ -47,6 +47,7 @@ class BannerItem extends CI_Model {
         }
         $this->db->join("images", "images.idimage=banner_items.idimage");
         $this->db->where($this->table.".status", 1);
+        $this->db->order_by($this->table.".idbanner_item desc");
         $result['count'] = $this->db->count_all_results('', false);
         set_query_limit_and_offset($filters, $this->db);
         $res = $this->db->get();

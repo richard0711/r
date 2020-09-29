@@ -1,0 +1,623 @@
+-- MySQL Administrator dump 1.4
+--
+-- ------------------------------------------------------
+-- Server version	5.5.5-10.4.13-MariaDB
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+--
+-- Create schema rcms
+--
+
+CREATE DATABASE IF NOT EXISTS rcms;
+USE rcms;
+
+--
+-- Definition of table `banner_items`
+--
+
+DROP TABLE IF EXISTS `banner_items`;
+CREATE TABLE `banner_items` (
+  `idbanner_item` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idbanner` int(10) unsigned NOT NULL DEFAULT 1,
+  `idcontent` int(10) unsigned NOT NULL DEFAULT 1,
+  `idimage` int(10) unsigned NOT NULL DEFAULT 1,
+  `name` varchar(255) DEFAULT NULL,
+  `url` varchar(500) DEFAULT NULL,
+  `text` text DEFAULT NULL,
+  `status` tinyint(3) unsigned NOT NULL DEFAULT 1,
+  PRIMARY KEY (`idbanner_item`),
+  KEY `fk_banner_item_image_idx` (`idimage`),
+  KEY `fk_banner_item_banner_idx` (`idbanner`),
+  KEY `fk_banner_item_content_idx` (`idcontent`),
+  CONSTRAINT `fk_banner_item_banner` FOREIGN KEY (`idbanner`) REFERENCES `banners` (`idbanner`),
+  CONSTRAINT `fk_banner_item_content` FOREIGN KEY (`idcontent`) REFERENCES `contents` (`idcontent`),
+  CONSTRAINT `fk_banner_item_image` FOREIGN KEY (`idimage`) REFERENCES `images` (`idimage`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `banner_items`
+--
+
+/*!40000 ALTER TABLE `banner_items` DISABLE KEYS */;
+INSERT INTO `banner_items` (`idbanner_item`,`idbanner`,`idcontent`,`idimage`,`name`,`url`,`text`,`status`) VALUES 
+ (1,1,1,1,'-','-','-',0),
+ (2,2,1,6,'','','',0),
+ (3,2,1,18,'','','',0),
+ (4,2,7,35,'Vichy','','',1),
+ (6,2,15,34,'25 évesek lettünk!','','25 évesek lettünk!',1);
+/*!40000 ALTER TABLE `banner_items` ENABLE KEYS */;
+
+
+--
+-- Definition of table `banners`
+--
+
+DROP TABLE IF EXISTS `banners`;
+CREATE TABLE `banners` (
+  `idbanner` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idposition` int(10) unsigned NOT NULL DEFAULT 1,
+  `type` varchar(45) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `code` varchar(45) DEFAULT NULL,
+  `status` tinyint(3) unsigned NOT NULL DEFAULT 1,
+  PRIMARY KEY (`idbanner`),
+  KEY `fk_banner_position_idx` (`idposition`),
+  CONSTRAINT `fk_banner_position` FOREIGN KEY (`idposition`) REFERENCES `positions` (`idposition`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `banners`
+--
+
+/*!40000 ALTER TABLE `banners` DISABLE KEYS */;
+INSERT INTO `banners` (`idbanner`,`idposition`,`type`,`name`,`code`,`status`) VALUES 
+ (1,1,'slideshow','Főoldali slideshow',NULL,0),
+ (2,5,'slideshow','Főoldali slideshow',NULL,1);
+/*!40000 ALTER TABLE `banners` ENABLE KEYS */;
+
+
+--
+-- Definition of table `content_items`
+--
+
+DROP TABLE IF EXISTS `content_items`;
+CREATE TABLE `content_items` (
+  `idcontent_item` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idcontent` int(10) unsigned NOT NULL DEFAULT 1,
+  `title` varchar(255) DEFAULT NULL,
+  `type` set('image') DEFAULT NULL,
+  `item_id` int(11) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL,
+  `creator` int(10) unsigned NOT NULL,
+  `created` datetime NOT NULL,
+  `editor` int(10) unsigned NOT NULL DEFAULT 1,
+  `edited` datetime DEFAULT NULL,
+  PRIMARY KEY (`idcontent_item`),
+  KEY `fk_content_item_content_idx` (`idcontent`),
+  KEY `fk_content_item_creator_idx` (`creator`),
+  KEY `fk_content_item_editor_idx` (`editor`),
+  CONSTRAINT `fk_content_item_content` FOREIGN KEY (`idcontent`) REFERENCES `contents` (`idcontent`),
+  CONSTRAINT `fk_content_item_creator` FOREIGN KEY (`creator`) REFERENCES `users` (`iduser`),
+  CONSTRAINT `fk_content_item_editor` FOREIGN KEY (`editor`) REFERENCES `users` (`iduser`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='items of content, eg.: image';
+
+--
+-- Dumping data for table `content_items`
+--
+
+/*!40000 ALTER TABLE `content_items` DISABLE KEYS */;
+INSERT INTO `content_items` (`idcontent_item`,`idcontent`,`title`,`type`,`item_id`,`status`,`creator`,`created`,`editor`,`edited`) VALUES 
+ (1,1,'-','image',1,0,1,'2020-01-01 00:00:00',1,NULL),
+ (2,2,'kk','image',5,1,1,'2020-08-25 07:44:48',1,'2020-09-21 20:16:27'),
+ (3,3,'','image',19,1,1,'2020-08-26 19:32:08',1,'2020-09-13 16:49:17'),
+ (4,4,'','image',20,1,1,'2020-08-26 19:34:51',1,'2020-08-26 19:35:11'),
+ (5,5,'','image',21,1,1,'2020-08-26 19:37:21',1,NULL),
+ (6,8,'','image',0,1,1,'2020-09-28 19:06:24',1,NULL),
+ (7,8,'','image',23,1,1,'2020-09-28 19:09:19',1,NULL),
+ (8,14,'Szent György Gyógyszertár','image',24,1,1,'2020-09-29 18:49:43',1,NULL),
+ (9,15,'','image',36,1,1,'2020-09-29 19:49:23',1,NULL);
+/*!40000 ALTER TABLE `content_items` ENABLE KEYS */;
+
+
+--
+-- Definition of table `content_params`
+--
+
+DROP TABLE IF EXISTS `content_params`;
+CREATE TABLE `content_params` (
+  `idcontent_param` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idcontent` int(10) unsigned NOT NULL DEFAULT 1,
+  `type` varchar(45) DEFAULT NULL,
+  `value` text DEFAULT NULL,
+  `creator` int(10) unsigned NOT NULL DEFAULT 1,
+  `created` datetime NOT NULL,
+  `editor` int(10) unsigned NOT NULL,
+  `edited` datetime DEFAULT NULL,
+  PRIMARY KEY (`idcontent_param`),
+  KEY `fk_content_param_creator_idx` (`creator`),
+  KEY `fk_content_param_editor_idx` (`editor`),
+  KEY `fk_content_param_content_idx` (`idcontent`),
+  CONSTRAINT `fk_content_param_content` FOREIGN KEY (`idcontent`) REFERENCES `contents` (`idcontent`),
+  CONSTRAINT `fk_content_param_creator` FOREIGN KEY (`creator`) REFERENCES `users` (`iduser`),
+  CONSTRAINT `fk_content_param_editor` FOREIGN KEY (`editor`) REFERENCES `users` (`iduser`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='parameters of content. defined developer paramteres';
+
+--
+-- Dumping data for table `content_params`
+--
+
+/*!40000 ALTER TABLE `content_params` DISABLE KEYS */;
+INSERT INTO `content_params` (`idcontent_param`,`idcontent`,`type`,`value`,`creator`,`created`,`editor`,`edited`) VALUES 
+ (1,1,'-','-',1,'2020-01-01 00:00:00',1,NULL);
+/*!40000 ALTER TABLE `content_params` ENABLE KEYS */;
+
+
+--
+-- Definition of table `contents`
+--
+
+DROP TABLE IF EXISTS `contents`;
+CREATE TABLE `contents` (
+  `idcontent` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idposition` int(10) unsigned NOT NULL DEFAULT 1,
+  `title` varchar(500) DEFAULT NULL COMMENT 'title of content',
+  `short_desc` varchar(500) DEFAULT NULL,
+  `content` text DEFAULT NULL,
+  `published` datetime DEFAULT NULL,
+  `published_to` datetime DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL,
+  `creator` int(10) unsigned NOT NULL,
+  `created` datetime NOT NULL,
+  `editor` int(10) unsigned NOT NULL DEFAULT 1,
+  `edited` datetime DEFAULT NULL,
+  PRIMARY KEY (`idcontent`),
+  KEY `fk_content_creator_idx` (`creator`),
+  KEY `fk_content_editor_idx` (`editor`),
+  KEY `fk_content_position_idx` (`idposition`),
+  CONSTRAINT `fk_content_creator` FOREIGN KEY (`creator`) REFERENCES `users` (`iduser`),
+  CONSTRAINT `fk_content_editor` FOREIGN KEY (`editor`) REFERENCES `users` (`iduser`),
+  CONSTRAINT `fk_content_position` FOREIGN KEY (`idposition`) REFERENCES `positions` (`idposition`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='page contents';
+
+--
+-- Dumping data for table `contents`
+--
+
+/*!40000 ALTER TABLE `contents` DISABLE KEYS */;
+INSERT INTO `contents` (`idcontent`,`idposition`,`title`,`short_desc`,`content`,`published`,`published_to`,`status`,`creator`,`created`,`editor`,`edited`) VALUES 
+ (1,1,'-',NULL,'-','2020-01-01 00:00:00','2020-01-01 00:00:00',0,1,'2020-01-01 00:00:00',1,NULL),
+ (2,4,'Üdvözöljük','Üdvözöljük a Nagykőrösi Oroszlán Gyógyszertár weboldalán!','<h3>Ide kerülhet egy hosszabb leírás a patikáról</h3>','2020-08-24 00:00:00',NULL,1,1,'2020-08-24 21:22:40',1,'2020-09-21 20:16:26'),
+ (3,3,'Dr. Oroszi Magdolna','Gyermekorvosi rendelő','<figure class=\"image\"><img src=\"/ckfinder/userfiles/files/oroszlan_logo.jpg\"></figure><p>&nbsp;</p><p>&nbsp;</p><p>GYERMEKORVOSI RENDELŐ:&nbsp;</p><p>Dr. Oroszi Magdolna (csecsemő- és gyermekgyógyász címzetes főorvos)&nbsp;</p><p>Hétfő: 8:00-10:30, 14:30 - 16:00&nbsp;</p><p>Kedd: 8:00- 10:30</p><p>Szerda: 8:00-10:30&nbsp;</p><p>Csütörtök: 8:00 - 10:30, 14:30-16:00&nbsp;</p><p>Péntek: 8:00- 10:30</p>','2020-08-25 00:00:00',NULL,0,1,'2020-08-26 19:31:19',1,'2020-09-21 19:52:46'),
+ (4,3,'Dr. Kovács Zsolt','csecsemő- és gyermekgyógyász','<p>Dr. Kovács Zsolt (csecsemő- és gyermekgyógyász, gyermek tüdőgyógyász, allergológus)&nbsp;</p><p>Hétfő: 8:00 - 10:30&nbsp;</p><p>Kedd: 13:00-16:00&nbsp;</p><p>Szerda: 8:00-10:30&nbsp;</p><p>Csütörtök:8:00-10:30&nbsp;</p><p>Péntek: 13:00 -16:00</p>','2020-08-25 00:00:00',NULL,0,1,'2020-08-26 19:34:24',1,'2020-09-21 19:52:50'),
+ (5,3,'Dr. Oroszi Sándor főorvos','belgyógyászat,kardiológia','<p>Dr. Oroszi Sándor főorvos (belgyógyászat,kardiológia)&nbsp;</p><p>Hétfő: 17:00-20:00&nbsp;</p><p>Csütörtök: 17:00-19:00&nbsp;</p><p>Előjegyzés: 06-20-388-9814</p>','2020-08-25 00:00:00',NULL,0,1,'2020-08-26 19:37:10',1,'2020-09-21 19:52:54'),
+ (6,1,'Doktoraink','','<p><strong>GYERMEKORVOSI RENDELŐ</strong></p><p>Dr. Oroszi Magdolna (csecsemő- és gyermekgyógyász címzetes főorvos)&nbsp;</p><p>Hétfő: 8:00-10:30 14:30 - 16:00&nbsp;</p><p>Kedd: 8:00- 10:30 Szerda: 8:00-10:30&nbsp;</p><p>Csütörtök: 8:00 - 10:30 14:30-16:00&nbsp;</p><p>Péntek: 8:00- 10:30&nbsp;</p><p>&nbsp;</p><p>Dr. Kovács Zsolt (csecsemő- és gyermekgyógyász, gyermek tüdőgyógyász, allergológus)&nbsp;</p><p>Hétfő: 8:00 - 10:30&nbsp;</p><p>Kedd: 13:00-16:00&nbsp;</p><p>Szerda: 8:00-10:30&nbsp;</p><p>Csütörtök:8:00-10:30&nbsp;</p><p>Péntek: 13:00 -16:00&nbsp;</p><p>&nbsp;</p><p>Dr. Fekete-Herman Emese betegeit&nbsp;</p><p>Dr .Oroszi Magdolna látja el a saját rendelési idejében.&nbsp;</p><p>&nbsp;</p><p><strong>MAGÁNRENDELÉSEK:&nbsp;</strong></p><p>Dr. Oroszi Sándor főorvos (belgyógyászat,kardiológia)&nbsp;</p><p>Hétfő: 17:00-20:00&nbsp;</p><p>Csütörtök: 17:00-19:00&nbsp;</p><p>Előjegyzés: 06-20-388-9814&nbsp;</p><p>&nbsp;</p><p>Dr. Valco Emese (rheumatológus szakorvos)&nbsp;</p><p>Csütörök: 13:00 - 15:00&nbsp;</p><p>Bejelentkezés este 18 és 19 óra között a 06-70-219-3706 - os telefonszámon.&nbsp;</p><p>&nbsp;</p><p>Dr. Vincze Rita (neurológus szakorvos)&nbsp;</p><p>Csütörtök: 16:00-19:00&nbsp;</p><p>Bejelentkezés hétfő, kedd, szerdai munkanapokon 15:30 - 17:00 között.&nbsp;</p><p>06-70-36-55-777&nbsp;</p><p>&nbsp;</p><p>Dr. Tóth-Baranyi Zsuzsanna (belgyógyász, gasztroenterológus szakorvos)&nbsp;</p><p>Szerda: 15:00-17:00&nbsp;</p><p>Péntek: 15:00-17:00&nbsp;</p><p>Bejelentkezés: 06 70 328 3669&nbsp;</p><p>&nbsp;</p><p>Dr. Paluska Márta (bőr- és nemigyógyász, kozmetológus szakorvos)&nbsp;</p><p>Kedd: 14:00 - 16:00&nbsp;</p><p>&nbsp;</p><p>Baky Ildikó (pszichológus)&nbsp;</p><p>Bejelentkezés 06-30-287-4843&nbsp;</p><p>&nbsp;</p><p>Térítésmentes ortopéd szakrendelés, egyeztetett időpontban, beutaló nélkül: Dr. Bartis Tamás (ortopéd szakorvos)&nbsp;</p><p>Bejelentkezés: Balogh Veronika: 06-20-922-0989</p>','2020-08-26 00:00:00',NULL,1,1,'2020-08-26 20:45:34',1,'2020-09-22 19:16:57'),
+ (7,1,'APOSTORE','','','2020-09-21 00:00:00',NULL,1,1,'2020-09-21 20:06:04',1,'2020-09-21 20:06:17'),
+ (8,3,'Házhozszállítás','30 perc ingyenes','<p>30 perc ingyenes</p>','2020-09-21 00:00:00',NULL,1,1,'2020-09-21 20:08:22',1,'2020-09-28 19:09:19'),
+ (9,1,'Vércukorszint mérés','Változó időtartam · 150 Ft','<p style=\"margin-left:0px;\">Törzsvásárlói és gondozási programunkban részt vevők számára ingyenes!</p>','2020-09-21 00:00:00',NULL,1,1,'2020-09-21 20:09:22',1,'2020-09-21 20:09:29'),
+ (10,3,'Koleszterinszint mérés','Változó időtartam · 450 Ft','<p>Törzsvásárlói és gondozási programunkban részt vevők számára ingyenes!</p>','2020-09-21 00:00:00',NULL,1,1,'2020-09-21 20:10:34',1,'2020-09-21 20:10:48'),
+ (11,3,'Babamérleg kölcsönzés','Változó időtartam · 3810 Ft/ hó','<p>A tapasztalat azt mutatja, hogy csecsemőmérlegre csak a gyermek születését követő 3-4 hónapban van szükség. Ebben szeretnénk Önnek segítséget nyújtani!</p>','2020-09-21 00:00:00',NULL,1,1,'2020-09-21 20:11:25',1,'2020-09-21 20:11:30'),
+ (12,3,'Légzésfigyelő kölcsönzés','Változó időtartam · 7620 Ft','<p>A légzésfigyelő készülék segítséget nyújt abban, hogy minden percben figyelemmel kísérhessük kisbabánk megfelelő légzését az éjszaka folyamán is.</p>','2020-09-21 00:00:00',NULL,1,1,'2020-09-21 20:12:07',1,'2020-09-21 20:12:14'),
+ (13,3,'Gyógyszerészi gondozás','Változó időtartam · ingyenes','<p>Egyénre szabottan, előre megbeszélt időpontban tanácsadó helyiségünkben segítünk választ adni kérdéseire (gyógyszeres terápia, emésztő-, légzőszervi-, bőrproblémák, várandósság, gyermekápolás stb.)</p>','2020-09-21 00:00:00',NULL,1,1,'2020-09-21 20:13:03',1,'2020-09-21 20:13:19'),
+ (14,1,'Partner patika','Partner patika','<p>Partner patika</p>','2020-09-28 00:00:00',NULL,1,1,'2020-09-28 19:01:58',1,'2020-09-29 18:49:42'),
+ (15,1,'25 évesek lettünk','25 évesek lettünk','','2020-09-29 00:00:00',NULL,1,1,'2020-09-29 18:52:35',1,'2020-09-29 19:49:23');
+/*!40000 ALTER TABLE `contents` ENABLE KEYS */;
+
+
+--
+-- Definition of table `gallery`
+--
+
+DROP TABLE IF EXISTS `gallery`;
+CREATE TABLE `gallery` (
+  `idgallery` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idposition` int(10) unsigned NOT NULL DEFAULT 1,
+  `name` varchar(500) DEFAULT NULL,
+  `code` varchar(45) DEFAULT NULL,
+  `text` text DEFAULT NULL,
+  `status` tinyint(3) unsigned NOT NULL DEFAULT 1,
+  PRIMARY KEY (`idgallery`),
+  KEY `fk_gallery_position_idx` (`idposition`),
+  CONSTRAINT `fk_gallery_position` FOREIGN KEY (`idposition`) REFERENCES `positions` (`idposition`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `gallery`
+--
+
+/*!40000 ALTER TABLE `gallery` DISABLE KEYS */;
+INSERT INTO `gallery` (`idgallery`,`idposition`,`name`,`code`,`text`,`status`) VALUES 
+ (1,1,'-','-','-',0),
+ (2,1,'Születésnap',NULL,'',1);
+/*!40000 ALTER TABLE `gallery` ENABLE KEYS */;
+
+
+--
+-- Definition of table `gallery_items`
+--
+
+DROP TABLE IF EXISTS `gallery_items`;
+CREATE TABLE `gallery_items` (
+  `idgallery_item` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idgallery` int(10) unsigned NOT NULL DEFAULT 1,
+  `idimage` int(10) unsigned NOT NULL DEFAULT 1,
+  `name` varchar(500) DEFAULT NULL,
+  `text` text DEFAULT NULL,
+  `status` tinyint(3) unsigned NOT NULL DEFAULT 1,
+  PRIMARY KEY (`idgallery_item`),
+  KEY `fk_gallery_item_image_idx` (`idimage`),
+  KEY `fk_gallery_item_gallery_idx` (`idgallery`),
+  CONSTRAINT `fk_gallery_item_gallery` FOREIGN KEY (`idgallery`) REFERENCES `gallery` (`idgallery`),
+  CONSTRAINT `fk_gallery_item_image` FOREIGN KEY (`idimage`) REFERENCES `images` (`idimage`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `gallery_items`
+--
+
+/*!40000 ALTER TABLE `gallery_items` DISABLE KEYS */;
+INSERT INTO `gallery_items` (`idgallery_item`,`idgallery`,`idimage`,`name`,`text`,`status`) VALUES 
+ (1,1,1,'-','-',0),
+ (2,2,22,'slider1','',1);
+/*!40000 ALTER TABLE `gallery_items` ENABLE KEYS */;
+
+
+--
+-- Definition of table `images`
+--
+
+DROP TABLE IF EXISTS `images`;
+CREATE TABLE `images` (
+  `idimage` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `path` varchar(1000) DEFAULT NULL,
+  `extension` varchar(45) DEFAULT NULL,
+  `size` decimal(14,4) DEFAULT NULL COMMENT 'BYTE',
+  `title` varchar(255) DEFAULT NULL,
+  `x` decimal(14,4) DEFAULT NULL,
+  `y` decimal(14,4) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `creator` int(10) unsigned NOT NULL,
+  `created` datetime NOT NULL,
+  `editor` int(10) unsigned NOT NULL DEFAULT 1,
+  `edited` datetime DEFAULT NULL,
+  PRIMARY KEY (`idimage`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `images`
+--
+
+/*!40000 ALTER TABLE `images` DISABLE KEYS */;
+INSERT INTO `images` (`idimage`,`path`,`extension`,`size`,`title`,`x`,`y`,`status`,`creator`,`created`,`editor`,`edited`) VALUES 
+ (1,'-','-','0.0000','-','0.0000','0.0000',0,1,'2020-01-01 00:00:00',1,NULL),
+ (2,'uploaded_files/photoderm.jpg','jpg','192146.0000','photoderm','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (3,'uploaded_files/glamur.jpg','jpg','266981.0000','glamur','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (4,'uploaded_files/aqua.png','png','246176.0000','aqua','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (5,'uploaded_files/116370127_3132631923525093_5448893611153776918_n.jpg','jpg','151473.0000','116370127_3132631923525093_5448893611153776918_n','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (6,'uploaded_files/22eve.jpg','jpg','366644.0000','22eve','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (7,'uploaded_files/999.jpg','jpg','254186.0000','999','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (8,'uploaded_files/apos.jpg','jpg','66704.0000','apos','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (9,'uploaded_files/apos.jpg','jpg','66704.0000','apos','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (10,'uploaded_files/oroszlan_logo.jpg','jpg','7983.0000','oroszlan_logo','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (11,'uploaded_files/patikaelol.jpg','jpg','341824.0000','patikaelol','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (12,'uploaded_files/apo.jpg','jpg','97806.0000','apo','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (13,'uploaded_files/photoderm.jpg','jpg','192146.0000','photoderm','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (14,'uploaded_files/photoderm másolat.jpg','jpg','90410.0000','photoderm másolat','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (15,'uploaded_files/apostore_cube-1024x682.jpg','jpg','132456.0000','apostore_cube-1024x682','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (16,'uploaded_files/robot-farmacia-Apostore-Cube.jpg','jpg','388912.0000','robot-farmacia-Apostore-Cube','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (17,'uploaded_files/patikaelol.jpg','jpg','341824.0000','patikaelol','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (18,'uploaded_files/szgy.jpg','jpg','152581.0000','szgy','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (19,'uploaded_files/team-image3.jpg','jpg','39419.0000','team-image3','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (20,'uploaded_files/team-image2.jpg','jpg','39904.0000','team-image2','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (21,'uploaded_files/team-image1.jpg','jpg','44974.0000','team-image1','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (22,'uploaded_files/slider1.jpg','jpg','83969.0000','slider1','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (23,'uploaded_files/hazhozszallitas.jpg','jpg','189538.0000','hazhozszallitas','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (24,'uploaded_files/szgy.jpg','jpg','152581.0000','szgy','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (25,'uploaded_files/25eves_banner.png','png','2252640.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (26,'uploaded_files/25eves_banner.png','png','1142375.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (27,'uploaded_files/25eves_banner.png','png','439873.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (28,'uploaded_files/25eves_banner.png','png','720528.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (29,'uploaded_files/25eves_banner.png','png','2047055.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (30,'uploaded_files/25eves_banner.png','png','964741.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (31,'uploaded_files/25eves_banner.png','png','4101182.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (32,'uploaded_files/25eves_banner.png','png','4104902.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (33,'uploaded_files/25eves_banner.png','png','2152647.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (34,'uploaded_files/25eves_banner.png','png','1704952.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (35,'uploaded_files/118764969_2072873839552012_8780349540534345356_o.jpg','jpg','421840.0000','118764969_2072873839552012_8780349540534345356_o','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
+ (36,'uploaded_files/25eves.jpg','jpg','560518.0000','25eves','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL);
+/*!40000 ALTER TABLE `images` ENABLE KEYS */;
+
+
+--
+-- Definition of table `menu`
+--
+
+DROP TABLE IF EXISTS `menu`;
+CREATE TABLE `menu` (
+  `idmenu` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idposition` int(10) unsigned NOT NULL DEFAULT 1,
+  `idimage` int(10) unsigned NOT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `sub_title` varchar(255) DEFAULT NULL,
+  `code` varchar(45) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`idmenu`),
+  KEY `fk_menu_image_idx` (`idimage`),
+  CONSTRAINT `fk_menu_image` FOREIGN KEY (`idimage`) REFERENCES `images` (`idimage`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `menu`
+--
+
+/*!40000 ALTER TABLE `menu` DISABLE KEYS */;
+INSERT INTO `menu` (`idmenu`,`idposition`,`idimage`,`title`,`sub_title`,`code`,`status`) VALUES 
+ (1,1,1,'-','-','-',0),
+ (2,2,1,'Felső menüsor','Elérhető menüpontok',NULL,1);
+/*!40000 ALTER TABLE `menu` ENABLE KEYS */;
+
+
+--
+-- Definition of table `menu_items`
+--
+
+DROP TABLE IF EXISTS `menu_items`;
+CREATE TABLE `menu_items` (
+  `idmenu_item` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idmenu` int(10) unsigned NOT NULL,
+  `idimage` int(10) unsigned NOT NULL DEFAULT 1,
+  `idcontent` int(10) unsigned NOT NULL DEFAULT 1,
+  `idgallery` int(10) unsigned NOT NULL DEFAULT 1,
+  `title` varchar(150) NOT NULL,
+  `sub_title` varchar(255) DEFAULT NULL,
+  `url` varchar(500) DEFAULT NULL,
+  `code` varchar(45) DEFAULT NULL,
+  `active` tinyint(4) NOT NULL DEFAULT 1,
+  `published` datetime DEFAULT NULL,
+  `published_to` datetime DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `creator` int(10) unsigned NOT NULL,
+  `created` datetime NOT NULL,
+  `editor` int(10) unsigned NOT NULL DEFAULT 1,
+  `edited` datetime DEFAULT NULL,
+  PRIMARY KEY (`idmenu_item`),
+  KEY `fk_menu_item_menu_idx` (`idmenu`),
+  KEY `fk_menu_item_image_idx` (`idimage`),
+  KEY `fk_menu_item_creator_idx` (`creator`),
+  KEY `fk_menu_item_editor_idx` (`editor`),
+  KEY `fk_menu_item_content_idx` (`idcontent`),
+  KEY `fk_menu_item_gallery_idx` (`idgallery`),
+  CONSTRAINT `fk_menu_item_content` FOREIGN KEY (`idcontent`) REFERENCES `contents` (`idcontent`),
+  CONSTRAINT `fk_menu_item_creator` FOREIGN KEY (`creator`) REFERENCES `users` (`iduser`),
+  CONSTRAINT `fk_menu_item_editor` FOREIGN KEY (`editor`) REFERENCES `users` (`iduser`),
+  CONSTRAINT `fk_menu_item_gallery` FOREIGN KEY (`idgallery`) REFERENCES `gallery` (`idgallery`),
+  CONSTRAINT `fk_menu_item_image` FOREIGN KEY (`idimage`) REFERENCES `images` (`idimage`),
+  CONSTRAINT `fk_menu_item_menu` FOREIGN KEY (`idmenu`) REFERENCES `menu` (`idmenu`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `menu_items`
+--
+
+/*!40000 ALTER TABLE `menu_items` DISABLE KEYS */;
+INSERT INTO `menu_items` (`idmenu_item`,`idmenu`,`idimage`,`idcontent`,`idgallery`,`title`,`sub_title`,`url`,`code`,`active`,`published`,`published_to`,`status`,`creator`,`created`,`editor`,`edited`) VALUES 
+ (1,1,1,1,1,'-','-',NULL,'-',0,'2020-01-01 00:00:00','2020-01-01 00:00:00',0,1,'2020-01-01 00:00:00',1,NULL),
+ (2,2,1,1,1,'Főoldal','Főoldal','http://localhost/oroszlan_rcms/index.php','home',1,NULL,NULL,1,1,'2020-08-20 19:09:58',1,'2020-09-28 19:03:05'),
+ (3,2,1,1,1,'Rólunk','Rólunk','#about','',1,NULL,NULL,1,1,'2020-08-20 19:09:58',1,'2020-09-28 19:03:05'),
+ (4,2,1,1,1,'Szolgáltatásaink','','#services','',1,NULL,NULL,1,1,'2020-08-20 19:09:58',1,'2020-09-28 19:03:05'),
+ (5,2,1,1,1,'Aktualitások','','#news','',1,NULL,NULL,1,1,'2020-08-20 19:09:58',1,'2020-09-28 19:03:05'),
+ (6,2,1,6,1,'Doktoraink','','','',1,NULL,NULL,1,1,'2020-08-20 19:09:58',1,'2020-09-28 19:03:05'),
+ (7,2,1,6,1,'Szolgáltatásaink','','',NULL,1,NULL,NULL,0,1,'2020-08-26 20:44:56',1,'2020-08-27 17:18:22'),
+ (8,2,1,1,2,'Galéria','','',NULL,1,NULL,NULL,1,1,'2020-09-21 20:04:00',1,'2020-09-28 19:03:05'),
+ (9,2,1,14,1,'Partner patika','','',NULL,1,NULL,NULL,1,1,'2020-09-28 19:02:28',1,'2020-09-28 19:03:05');
+/*!40000 ALTER TABLE `menu_items` ENABLE KEYS */;
+
+
+--
+-- Definition of table `modules`
+--
+
+DROP TABLE IF EXISTS `modules`;
+CREATE TABLE `modules` (
+  `idmodule` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL COMMENT 'modul neve',
+  `code` varchar(45) NOT NULL COMMENT 'modul egyedi kódja',
+  `status` tinyint(3) unsigned NOT NULL DEFAULT 1 COMMENT 'modul státusza 1 élő 0 nem élő',
+  `active` tinyint(3) unsigned NOT NULL DEFAULT 0 COMMENT '1 bekapcsolt  0 kikapcsolt',
+  PRIMARY KEY (`idmodule`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='available cms modules';
+
+--
+-- Dumping data for table `modules`
+--
+
+/*!40000 ALTER TABLE `modules` DISABLE KEYS */;
+INSERT INTO `modules` (`idmodule`,`name`,`code`,`status`,`active`) VALUES 
+ (1,'-','-',0,0);
+/*!40000 ALTER TABLE `modules` ENABLE KEYS */;
+
+
+--
+-- Definition of table `new_items`
+--
+
+DROP TABLE IF EXISTS `new_items`;
+CREATE TABLE `new_items` (
+  `idnew_item` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idnew` int(10) unsigned NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL,
+  `item_id` int(11) NOT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  `creator` int(10) unsigned NOT NULL,
+  `created` datetime NOT NULL,
+  `editor` int(10) unsigned NOT NULL DEFAULT 1,
+  `edited` datetime DEFAULT NULL,
+  PRIMARY KEY (`idnew_item`),
+  KEY `fk_new_item_new_idx` (`idnew`),
+  KEY `fk_new_item_creator_idx` (`creator`),
+  KEY `fk_new_item_editor_idx` (`editor`),
+  CONSTRAINT `fk_new_item_creator` FOREIGN KEY (`creator`) REFERENCES `users` (`iduser`),
+  CONSTRAINT `fk_new_item_editor` FOREIGN KEY (`editor`) REFERENCES `users` (`iduser`),
+  CONSTRAINT `fk_new_item_new` FOREIGN KEY (`idnew`) REFERENCES `news` (`idnew`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `new_items`
+--
+
+/*!40000 ALTER TABLE `new_items` DISABLE KEYS */;
+INSERT INTO `new_items` (`idnew_item`,`idnew`,`title`,`type`,`item_id`,`status`,`creator`,`created`,`editor`,`edited`) VALUES 
+ (1,1,'-','-',1,'0',1,'2020-01-01 00:00:00',1,NULL),
+ (2,2,'','image',17,'1',1,'2020-08-26 19:07:27',1,'2020-08-26 19:23:24'),
+ (3,3,'','image',11,'1',1,'2020-08-26 19:10:03',1,'2020-08-26 19:10:41'),
+ (4,4,'','image',14,'1',1,'2020-08-26 19:14:26',1,'2020-08-26 19:24:14');
+/*!40000 ALTER TABLE `new_items` ENABLE KEYS */;
+
+
+--
+-- Definition of table `news`
+--
+
+DROP TABLE IF EXISTS `news`;
+CREATE TABLE `news` (
+  `idnew` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(500) DEFAULT NULL,
+  `short_desc` varchar(500) DEFAULT NULL,
+  `content` text DEFAULT NULL,
+  `published` datetime DEFAULT NULL,
+  `published_to` datetime DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `creator` int(10) unsigned NOT NULL,
+  `created` datetime NOT NULL,
+  `editor` int(10) unsigned NOT NULL DEFAULT 1,
+  `edited` datetime DEFAULT NULL,
+  PRIMARY KEY (`idnew`),
+  KEY `fk_new_creator_idx` (`creator`),
+  KEY `fk_new_editor_idx` (`editor`),
+  CONSTRAINT `fk_new_creator` FOREIGN KEY (`creator`) REFERENCES `users` (`iduser`),
+  CONSTRAINT `fk_new_editor` FOREIGN KEY (`editor`) REFERENCES `users` (`iduser`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `news`
+--
+
+/*!40000 ALTER TABLE `news` DISABLE KEYS */;
+INSERT INTO `news` (`idnew`,`title`,`short_desc`,`content`,`published`,`published_to`,`status`,`creator`,`created`,`editor`,`edited`) VALUES 
+ (1,'-',NULL,'-','2020-01-01 00:00:00','2020-01-01 00:00:00',0,1,'2020-01-01 00:00:00',1,NULL),
+ (2,'Korszerűsítés','Apostore, az új munkatárs\n','<h2>Korszerűsítés</h2><p>Új munkatársunk egy robot</p>','2020-08-24 00:00:00','2020-08-31 00:00:00',0,1,'2020-08-24 21:25:00',1,'2020-09-29 19:50:31'),
+ (3,'Új weboldal','Hamarosan elkészül új weboldalunk','<p>Hamarosan elkészül új weboldalunk&nbsp;</p>','2020-08-25 00:00:00',NULL,0,1,'2020-08-26 19:09:09',1,'2020-09-29 19:50:26'),
+ (4,'Photoderm','Gyógyszertárban kapható márka','','2020-08-14 00:00:00',NULL,0,1,'2020-08-26 19:13:58',1,'2020-09-28 19:10:21');
+/*!40000 ALTER TABLE `news` ENABLE KEYS */;
+
+
+--
+-- Definition of table `positions`
+--
+
+DROP TABLE IF EXISTS `positions`;
+CREATE TABLE `positions` (
+  `idposition` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `type` varchar(45) DEFAULT NULL,
+  `code` varchar(45) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`idposition`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `positions`
+--
+
+/*!40000 ALTER TABLE `positions` DISABLE KEYS */;
+INSERT INTO `positions` (`idposition`,`type`,`code`,`name`,`status`) VALUES 
+ (1,'-','-','-',0),
+ (2,'menu','top_menu','Felső menü',1),
+ (3,'content','home_page_doctors','Főoldal szolgáltatások',1),
+ (4,'content','home_page_welcome','Főoldal üdvözlő szöveg',1),
+ (5,'banner','home_page_top_banners','Főoldal slideshow',1);
+/*!40000 ALTER TABLE `positions` ENABLE KEYS */;
+
+
+--
+-- Definition of table `tags`
+--
+
+DROP TABLE IF EXISTS `tags`;
+CREATE TABLE `tags` (
+  `idtag` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idcontent` int(10) unsigned NOT NULL,
+  `idnew` int(10) unsigned NOT NULL,
+  `tag` varchar(255) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `creator` int(10) unsigned NOT NULL,
+  `created` datetime NOT NULL,
+  `editor` int(10) unsigned NOT NULL DEFAULT 1,
+  `edited` datetime DEFAULT NULL,
+  PRIMARY KEY (`idtag`),
+  KEY `fk_tag_content_idx` (`idcontent`),
+  KEY `fk_tag_new_idx` (`idnew`),
+  KEY `fk_tag_creator_idx` (`creator`),
+  KEY `fk_tag_editor_idx` (`editor`),
+  CONSTRAINT `fk_tag_content` FOREIGN KEY (`idcontent`) REFERENCES `contents` (`idcontent`),
+  CONSTRAINT `fk_tag_creator` FOREIGN KEY (`creator`) REFERENCES `users` (`iduser`),
+  CONSTRAINT `fk_tag_editor` FOREIGN KEY (`editor`) REFERENCES `users` (`iduser`),
+  CONSTRAINT `fk_tag_new` FOREIGN KEY (`idnew`) REFERENCES `news` (`idnew`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tags`
+--
+
+/*!40000 ALTER TABLE `tags` DISABLE KEYS */;
+INSERT INTO `tags` (`idtag`,`idcontent`,`idnew`,`tag`,`status`,`creator`,`created`,`editor`,`edited`) VALUES 
+ (1,1,1,'-',0,1,'2020-01-01 00:00:00',1,NULL);
+/*!40000 ALTER TABLE `tags` ENABLE KEYS */;
+
+
+--
+-- Definition of table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `iduser` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `auth_id` varchar(60) DEFAULT NULL COMMENT 'rauth azon.',
+  `ext_id` varchar(60) DEFAULT NULL COMMENT 'külső azonosító számára',
+  `name` varchar(255) DEFAULT NULL COMMENT 'felhasználó neve',
+  `email` varchar(120) DEFAULT NULL COMMENT 'felh email',
+  `role` varchar(45) DEFAULT NULL COMMENT 'fő szerepkör',
+  `hash` text DEFAULT NULL COMMENT 'egyedi hash',
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`iduser`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`iduser`,`auth_id`,`ext_id`,`name`,`email`,`role`,`hash`,`status`) VALUES 
+ (1,'1','1','-','-','-','-',0);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
+
+
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

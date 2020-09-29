@@ -43,6 +43,10 @@ function showMoreMenuItem() {
     jQuery("#more-menu-items").removeClass("hidden");
 }
 
+function openLink(link) {
+    window.location = link;
+}
+
 function sendMail() {
     var data = {
         e_email : jQuery("#e_email").val(),

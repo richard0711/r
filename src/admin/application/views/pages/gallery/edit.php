@@ -2,10 +2,18 @@
 <p class="mb-4">Szerkeszd a galériát</p>
 
 <div class="form-group row">
-    <div class="col-sm-12">
+    <div class="col-sm-6 mb-3 mb-sm-0">
         <label for="galleryName">Megnevezés</label>
         <input type="text" class="form-control" value="<?php echo $gallery["name"]; ?>" id="galleryName" placeholder="Galéria megnevezése">
         <small id="galleryNameHelp" class="form-text text-danger"></small>
+    </div> 
+    <div class="col-sm-3">
+        <label for="galleryPublishedFrom">Publikálás kezdete</label>
+        <input type="text" class="form-control form-control-user" value="<?php echo str_replace(array(" 00:00:00", "-"), array("", "."), $gallery["published_from"]); ?>" id="galleryPublishedFrom" placeholder="Publikálás kezdete">
+    </div> 
+    <div class="col-sm-3">
+        <label for="galleryPublishedTo">Publikálás vége</label>
+        <input type="text" class="form-control form-control-user" value="<?php echo str_replace(array(" 00:00:00", "-"), array("", "."), $gallery["published_to"]); ?>" id="galleryPublishedTo" placeholder="Publikálás vége">
     </div> 
 </div> 
 <div class="form-group row">
@@ -96,7 +104,8 @@
 
 <script>
     jQuery(document).ready(function () {
-
+        jQuery("#galleryPublishedFrom").datepicker();
+        jQuery("#galleryPublishedTo").datepicker();
     });
     
     var actGalleryItemsImageHolder = null;
@@ -167,6 +176,8 @@
         var data = {
             idgallery: <?php echo $gallery["idgallery"]; ?>,
             name: jQuery("#galleryName").val(),
+            published_from: jQuery("#galleryPublishedFrom").val(),
+            published_to: jQuery("#galleryPublishedTo").val(),
             text: jQuery("#galleryText").val(),
             idposition: jQuery("#galleryPosition").val()
         };
@@ -208,7 +219,6 @@
                 gallery_items.push(new_item);
             }
         });
-        debugger;
         if (gallery_items.length > 0) {
             jQuery.ajax({
                 url: "<?php echo ADMIN_API_URL;  ?>gallery_item",

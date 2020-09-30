@@ -62,6 +62,7 @@ class Front_controller extends Public_controller {
                 break;
             case 'content':
                 $page_params["content"] = $this->_getParamsByPage($page, $id, $params);
+                $page_params["other_contents"] = $this->_getParamsByPage('content/list', '', array("limit"=>4,"offset"=>0));
                 $page_view = 'pages/content';
                 break;
             case 'gallery':
@@ -94,6 +95,7 @@ class Front_controller extends Public_controller {
         $common_params["home_page_banners"] = $PublicAPI->get("banner/list", array("position_code" => 'home_page_top'));
         $common_params["home_page_doctors"] = $PublicAPI->get("content/list", array("position_code" => 'home_page_doctors'));
         $common_params["home_page_welcome"] = $PublicAPI->get("content/list", array("position_code" => 'home_page_welcome'));
+        $common_params["home_page_email"] = $PublicAPI->get("content/list", array("position_code" => 'home_page_email'));
         $common_params["home_page_news"] = $PublicAPI->get("news/list");
         if (ENVIRONMENT == 'development') { log_message("debug", "common_params :: ".print_r($common_params, true)); }
         return $common_params;

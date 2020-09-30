@@ -1,29 +1,101 @@
 <!-- CONTENT DETAIL -->
 <section id="news-detail" data-stellar-background-ratio="0.5">
     <div class="container">
-        <!-- CONTENT THUMB -->
-        <div class="news-detail-thumb">
-            <?php if (isset($content["content_items"]) && $content["content_items"]["count"] > 0) { ?>
-                <div class="news-image">
-                    <img src="<?php echo str_replace("public.php/", "", RCMS_URL) . $content["content_items"]["data"][0]["image_path"]; ?>" class="img-responsive" alt="">
+        <div class="col-md-8 col-sm-7">
+            <!-- CONTENT THUMB -->
+            <div class="news-detail-thumb">
+                <?php if (isset($content["content_items"]) && $content["content_items"]["count"] > 0) { ?>
+                    <div class="news-image">
+                        <img src="<?php echo str_replace("public.php/", "", RCMS_URL) . $content["content_items"]["data"][0]["image_path"]; ?>" class="img-responsive" alt="">
+                    </div>
+                <?php } ?>
+                <h3><?php echo $content["title"]; ?></h3>
+                <p>
+                    <?php echo $content["content"]; ?>
+                </p>
+
+                <?php if (isset($content["gallery"]) && isset($content["gallery"]["gallery_items"])) { ?>
+                    <h3>Képek</h3>
+                    <div id="lightGallery" class="row">
+                        <?php if (isset($content["gallery"]["gallery_items"]) && $content["gallery"]["gallery_items"]["count"] > 0) { ?>
+                            <?php foreach ($content["gallery"]["gallery_items"]["data"] as $gitem) { ?>
+                                <div class="gallery-image light-gallery-item col-lg-4 col-xs-12 col-sm-6 col-md-3"
+                                     data-imagecid="<?php echo $gitem['idgallery_item']; ?>" 
+                                     data-src="<?php echo str_replace("public.php/", "", RCMS_URL) . $gitem["image_path"]; ?>" 
+                                     data-sub-html="<?php echo $gitem["name"] . "<br/>" . $gitem["text"]; ?>">
+                                    <div style="background-image: url('<?php echo str_replace("public.php/", "", RCMS_URL) . $gitem["image_path"]; ?>')" 
+                                         class="img-responsive gallery-item-image" 
+                                         alt="<?php echo $gitem["name"]; ?>"></div>
+                                    <p class="gallery-item-text">
+                                        <i class="fa fa-picture-o" aria-hidden="true"></i> <?php echo " " . $gitem["name"]; ?>
+                                        <br/>
+                                        <?php if ($gitem["text"] != '') { ?>
+                                            <?php echo " " . $gitem["text"]; ?></span>
+                                        <?php } else { ?>
+                                            <i>nincs leírás</i>
+                                        <?php } ?>
+                                    </p>
+                                </div>
+                            <?php } ?>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
+
+                <div class="news-social-share">
+                    <h4>Ossza meg a cikket</h4>
+                    <a href="#" class="btn btn-primary"><i class="fa fa-facebook"></i>Facebook</a>
+                    <!--<div class="fb-like" 
+                        data-href="https://www.your-domain.com/your-page.html" 
+                        data-width=""
+                        data-layout="standard" 
+                        data-action="like" 
+                        data-size="small"  
+                        data-share="true">
+                   </div>-->
                 </div>
-            <?php } ?>
-            <h3><?php echo $content["title"]; ?></h3>
-            <p>
-                <?php echo $content["content"]; ?>
-            </p>
-            <div class="news-social-share">
-                <h4>Ossza meg a cikket</h4>
-                <a href="#" class="btn btn-primary"><i class="fa fa-facebook"></i>Facebook</a>
-<!--                <div class="fb-like" 
-                    data-href="https://www.your-domain.com/your-page.html" 
-                    data-width=""
-                    data-layout="standard" 
-                    data-action="like" 
-                    data-size="small"  
-                    data-share="true">
-               </div>-->
             </div>
         </div>
+
+        <div class="col-md-4 col-sm-5">
+            <div class="news-sidebar">
+                <?php if (isset($other_contents) && $other_contents["count"] > 1) { ?>
+                    <div class="recent-post">
+                        <h4>További cikkek</h4>
+                        <?php
+                        $max_count = 3;
+                        $ocontent_counter = 0;
+                        foreach ($other_contents["data"] as $ocontent) {
+                            if ($ocontent["idcontent"] == $content["idcontent"]) {
+                                continue;
+                            } if ($max_count == $ocontent_counter) {
+                                break;
+                            } else {
+                                $ocontent_counter++;
+                            }
+                            ?> 
+                            <div class="media">
+                                <div class="media-object pull-left">
+                                    <a href="<?php echo FULL_BASE_URL . 'p/content/' . $ocontent["idcontent"]; ?>">
+                                        <?php if (isset($ocontent["content_items"]) && $ocontent["content_items"]["count"] > 0) { ?>
+                                            <div style="background: url('<?php echo str_replace("public.php/", "", RCMS_URL) . $ocontent["content_items"]["data"][0]["image_path"]; ?>');" class="circle-div" alt=""></div>
+                                        <?php } else { ?>
+                                            <div style="background: url('<?php echo VIEWS_URL; ?>images/news-image.jpg');" class="circle-div" alt=""></div>
+        <?php } ?>
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        <a href="<?php echo FULL_BASE_URL . 'p/content/' . $ocontent["idcontent"]; ?>"><?php echo $ocontent["title"]; ?></a>
+                                        <br/>
+                                        <small class="text-muted"><?php echo formatted_date_time($ocontent["published"], false, '', 'hun'); ?></small>
+                                    </h4>
+                                </div>
+                            </div>
+                    <?php } ?>
+                    </div>
+<?php } ?>
+            </div>
+        </div>
+
     </div>
 </section>

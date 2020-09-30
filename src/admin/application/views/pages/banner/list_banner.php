@@ -1,6 +1,6 @@
 <div class="table-responsive">
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-        <thead>
+        <thead class="thead-light">
             <tr>
                 <th>Megnevezés</th>
                 <th>Típus</th>
@@ -8,14 +8,6 @@
                 <th></th>
             </tr>
         </thead>
-        <tfoot>
-            <tr>
-                <th>Megnevezés</th>
-                <th>Alcím</th>
-                <th>Almenüpontok</th>
-                <th></th>
-            </tr>
-        </tfoot>
         <tbody>
             <?php foreach ($list["data"] as $item) { ?>
                 <tr>

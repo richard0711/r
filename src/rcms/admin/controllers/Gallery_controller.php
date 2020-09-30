@@ -28,8 +28,16 @@ class Gallery_controller extends Private_controller {
                 if (!$Gallery->get($post["idgallery"], true)) {
                     throw new Exception("Menü nem található!", 500);
                 }
+                if (isset($post["published_from"])) {
+                    $post["published_from"] = str_replace(".", "-", $post["published_from"]);
+                }
+                if (isset($post["published_to"])) {
+                    $post["published_to"] = str_replace(".", "-", $post["published_to"]);
+                }
                 $Gallery->update($post["idgallery"], $post);
             } else {
+                $post["published_from"] = str_replace(".", "-", $post["published_from"]);
+                $post["published_to"] = str_replace(".", "-", $post["published_to"]);
                 $post["idgallery"] = $Gallery->insert($post);
             }
             $result["data"] = $post;
@@ -50,6 +58,9 @@ class Gallery_controller extends Private_controller {
                 //list
                 $get_data = $this->input->get();
                 $gallery = $Gallery->get_gallery_by_filters($get_data);
+                foreach ($gallery["data"] as &$g) {
+                    $g["gallery_items"] = $GalleryItem->get_gallery_items_by_filters(array("idgallery" => $g["idgallery"]));
+                }
             } else {
                 $gallery = $Gallery->get($idgallery, true);
                 $gallery["gallery_items"] = $GalleryItem->get_gallery_items_by_filters(array("idgallery" => $idgallery));

@@ -183,3 +183,31 @@
     background-size: cover;
     background-position: center;
 }
+
+.circle-div {
+    border-radius: 100%;
+    width: 80px;
+    background-size: 100% !important;
+    height: 80px;
+    margin-right: 5px;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+.stories-info {
+    max-width: 220px;
+}
+
+.footer-circle-div {
+    border-radius: 100%;
+    background-size: 100% !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    width: 65px;
+    height: 65px;
+}
+
+.services-info {
+    min-height: 140px;
+    max-height: 140px;
+}

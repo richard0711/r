@@ -3,11 +3,16 @@
     <div class="container">
         <!-- GALLERY THUMB -->
         <div class="gallery-detail-thumb">
+            <?php if (!isset($head_title)) { ?>
             <h3><?php echo $gallery["name"]; ?></h3>
             <p>
                 <?php echo $gallery["text"]; ?>
             </p>
             <hr/>
+            <?php } else { ?>
+            <hr/>
+            <h3><?php echo $head_title; ?></h3>
+            <?php } ?>
             <div id="lightGallery" class="row">
                 <?php if (isset($gallery["gallery_items"]) && $gallery["gallery_items"]["count"] > 0) { ?>
                     <?php foreach ($gallery["gallery_items"]["data"] as $gitem) { ?>

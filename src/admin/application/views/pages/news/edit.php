@@ -234,6 +234,7 @@
         }
 
         function saveNewsItems() {
+        debugger;
             var news_items = [];
             //össze kell szedni a menü itemeket
             jQuery(".newsItem").each(function (index, item) {

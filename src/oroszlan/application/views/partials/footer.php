@@ -22,12 +22,12 @@
                     <?php $max_count = 2; $news_counter = 0; foreach ($home_page_news["data"] as $new) { if ($max_count == $news_counter) { break; } else { $news_counter++; } ?> 
                     <div class="latest-stories">
                         <div class="stories-image">
-                            <a href="<?php echo FULL_BASE_URL . 'news/'.$new["idnew"]; ?>">
+                            <a href="<?php echo FULL_BASE_URL . 'p/news/'.$new["idnew"]; ?>">
                                 <?php if (isset($new["news_items"]) && $new["news_items"]["count"] > 0) { ?>
-                                <img src="<?php echo str_replace("public.php/", "", RCMS_URL).$new["news_items"]["data"][0]["image_path"]; ?>" class="img-responsive" alt="">
+                                <div style="background: url('<?php echo str_replace("public.php/", "", RCMS_URL).$new["news_items"]["data"][0]["image_path"]; ?>');" class="footer-circle-div" alt=""></div>
                                 <?php } else { ?>
                                 <!-- NEWS default image -->
-                                <img src="<?php echo VIEWS_URL; ?>images/news-image.jpg" class="img-responsive" alt="">
+                                <div style="background: url('<?php echo VIEWS_URL; ?>images/news-image.jpg');" class="footer-circle-div" alt=""></div>
                                 <?php } ?>
                             </a>
                         </div>

@@ -47,7 +47,7 @@
                <?php
                 $limit = 10;
                 $offset = 0;
-                $max_btn_count = 6;
+                $max_btn_count = 20;
                 for ($i = 0; $i < (ceil($list["count"]/$limit)); $i++) {
                     if ($i == 0) {
                         echo '<input class="list-pager-active list-pager-btn btn btn-outline-secondary" onclick="selectPage(this);" type="button" value="'.($i+1).'">';

@@ -141,6 +141,7 @@
 
 
 <!-- MAKE AN APPOINTMENT -->
+<?php if (isset($home_page_email) && count($home_page_email["data"]) > 0) { ?>
 <section id="appointment" data-stellar-background-ratio="3">
     <div class="container">
         <div class="row">
@@ -155,16 +156,14 @@
 
                     <!-- SECTION TITLE -->
                     <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
-                        <h2>Lépjen kapcsolatba velünk</h2>
+                        <h2><?php echo $home_page_email["data"][0]["title"]; ?></h2>
+                        <?php if ($home_page_email["data"][0]["short_desc"] != '') { ?>
+                            <p><?php echo $home_page_email["data"][0]["short_desc"]; ?></p>
+                        <?php } ?>
                     </div>
 
                     <div class="wow fadeInUp" data-wow-delay="0.8s">
-                        <div class="col-md-6 col-sm-6">
-                            <label for="name">Név</label>
-                            <input type="text" class="form-control" id="e_name" name="name" placeholder="Teljes név">
-                        </div>
-
-                        <div class="col-md-6 col-sm-6">
+                        <div class="col-md-12 col-sm-12">
                             <label for="email">E-mail cím</label>
                             <input type="email" class="form-control" id="e_email" name="email" placeholder="email@cim.hu">
                         </div>
@@ -187,6 +186,7 @@
         </div>
     </div>
 </section>
+<?php } ?>
 
 
 <!-- GOOGLE MAP -->

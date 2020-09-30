@@ -54,12 +54,14 @@ class Content_controller extends Private_controller {
             $AdminAPI = new AdminAPI();
             $content = $AdminAPI->get('content/'.$idcontent);
             $positions = $AdminAPI->get('positions', array("type"=>'content'));
+            $gallery = $AdminAPI->get('gallery');
             $this->load->view("index", 
                 array(
                     "content" => $this->load->view('pages/content/edit', 
                         array(
                             "content" => $content,
-                            "positions" => $positions
+                            "positions" => $positions,
+                            "gallery" => $gallery
                         ), 
                         true)
                 )

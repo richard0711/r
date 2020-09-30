@@ -39,7 +39,12 @@ class Gallery extends CI_Model {
     }
 
     public function insert($data = array()) {
-        //todo: check fields!
+        if (array_key_exists('published_from', $data) && $data["published_from"] == '') {
+            $data["published_from"] = null;
+        }
+        if (array_key_exists('published_to', $data) && $data["published_to"] == '') {
+            $data["published_to"] = null;
+        }
         if ($this->db->insert($this->table, $data))
             return $this->db->insert_id();
         else 
@@ -47,6 +52,12 @@ class Gallery extends CI_Model {
     }
 
     public function update($id, $data) {
+        if (array_key_exists('published_from', $data) && $data["published_from"] == '') {
+            $data["published_from"] = null;
+        }
+        if (array_key_exists('published_to', $data) && $data["published_to"] == '') {
+            $data["published_to"] = null;
+        }
         $this->db->where($this->table.".".$this->primary_key, $id);
         $res = $this->db->update($this->table, $data);
         return $res;

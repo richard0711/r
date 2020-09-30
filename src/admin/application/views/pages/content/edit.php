@@ -42,6 +42,27 @@
             ?>
         </select>
     </div> 
+    <div class="col-sm-6">
+        <label for="contentGallery">Galériára hivatkozás</label>
+        <select data-id="<?php echo $content["idgallery"]; ?>" 
+                type="text" 
+                class="form-control menuItemGallery" 
+                value="<?php echo $content["idgallery"]; ?>" 
+                id="contentGallery" 
+                placeholder="Galériára hivatkozás">
+            <option value="1">--nincs kiválasztva--</option>>
+            <?php
+            if (isset($gallery) && isset($gallery["data"])) {
+                foreach ($gallery["data"] as $galleryi) {
+                    ?>
+                    <option  <?php echo ($galleryi["idgallery"] == $content["idgallery"]) ? 'selected="selected"' : ''; ?>
+                        value="<?php echo $galleryi["idgallery"]; ?>"><?php echo $galleryi["name"] ?></option>
+                        <?php
+                    }
+                }
+                ?>
+        </select>
+    </div> 
 </div>
 
 <div class="form-group">
@@ -230,6 +251,7 @@
                 content: content,
                 title: jQuery("#contentTitle").val(),
                 published: jQuery("#contentPublished").val(),
+                idgallery: (jQuery("#contentGallery").val() > 1) ? jQuery("#contentGallery").val() : 1,
                 published_to: jQuery("#contentPublishedTo").val(),
                 short_desc: jQuery("#contentShortDesc").val(),
                 idposition: jQuery("#contentPosition").val(),
@@ -261,7 +283,7 @@
             var content_items = [];
             //össze kell szedni a menü itemeket
             jQuery(".contentItem").each(function (index, item) {
-                var new_item = {
+                var c_item = {
                     idcontent_item: (Number(jQuery(item).attr("data-id") > 1)) ? jQuery(item).attr("data-id") : null,
                     title: jQuery(item).find(".contentItemTitle").val(),
                     type: 'image',
@@ -269,8 +291,8 @@
                     item_id: jQuery(item).find(".contentItemIdImage").val(),
                     status: jQuery(item).attr("data-status")
                 };
-                if (Number(new_item.idnew_item) > 1 || (new_item.status == 1)) {
-                    content_items.push(new_item);
+                if (Number(c_item.idcontent_item) > 1 || (c_item.status == 1)) {
+                    content_items.push(c_item);
                 }
             });
             if (content_items.length > 0) {

@@ -40,6 +40,7 @@ class Content extends CI_Model {
         }
         $this->db->where("(".$this->table.".published is not null and ".$this->table.".published <= '".date("Y-m-d")."' and (".$this->table.".published_to >= '".date("Y-m-d")."' or ".$this->table.".published_to is null))");
         $this->db->where($this->table.".status", 1);
+        $this->db->order_by($this->table.".published", "desc");
         $result['count'] = $this->db->count_all_results('', false);
         set_query_limit_and_offset($filters, $this->db);
         $res = $this->db->get();

@@ -46,6 +46,7 @@ class Gallery extends CI_Model {
             $this->db->where($this->table.".idgallery", $filters["idgallery"]);
         }
         $this->db->where($this->table.".status", 1);
+        $this->db->where("(".$this->table.".published_from is not null and ".$this->table.".published_from <= '".date("Y-m-d")."' and (".$this->table.".published_to >= '".date("Y-m-d")."' or ".$this->table.".published_to is null))");
         $result['count'] = $this->db->count_all_results('', false);
         set_query_limit_and_offset($filters, $this->db);
         $res = $this->db->get();

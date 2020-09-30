@@ -8,14 +8,6 @@
                 <th></th>
             </tr>
         </thead>
-        <tfoot class="thead-light">
-            <tr>
-                <th>Cím</th>
-                <th>Publikálva</th>
-                <th>Publikálás vége</th>
-                <th></th>
-            </tr>
-        </tfoot>
         <tbody>
             <?php foreach ($list["data"] as $item) { ?>
                 <tr>

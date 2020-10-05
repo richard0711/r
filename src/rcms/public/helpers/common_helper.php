@@ -24,6 +24,9 @@ if (!function_exists('sanitize_filename'))
 {
     function sanitize_filename($string = "")
     {
+        $mit = array("á","Á","é","É","ő","Ő","ü","Ü","ű","Ű","ó","Ó","í","Í");
+        $mire = array("a","A","e","E","o","O","u","U","u","U","o","O","i","I");
+        $string = str_replace($mit, $mire, $string);
         $bad='/[\/:*?"<>|]/';
         return preg_replace($bad,"",$string);
     }

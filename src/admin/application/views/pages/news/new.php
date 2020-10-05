@@ -144,10 +144,15 @@
                             'tableProperties'
                     ]
             },
+            ckfinder: {
+                uploadUrl: '<?php echo VIEWS_URL; ?>/vendor/ckfinder3511/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+                // Open the file manager in the pop-up window.
+                openerMethod: 'popup'
+            },
             licenseKey: ''
         } )
         .then( editor => {
-            news_editor = editor;
+            content_editor = editor;
         })
         .catch( error => {
             console.error( 'Oops, something went wrong!' );

@@ -462,7 +462,7 @@ header span i {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: local;
-    background-size: contain;
+    background-size: cover;
     height: 550px;
 }
 

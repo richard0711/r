@@ -66,10 +66,10 @@ $config['images'] = array(
 $config['backends'][] = array(
     'name'         => 'default',
     'adapter'      => 'local',
-    'baseUrl'      => '/ckfinder/userfiles/',
-//  'root'         => '', // Can be used to explicitly set the CKFinder user files directory.
+    'baseUrl'            => 'http://localhost/rcms/rcms_api/uploaded_files/',
+    'root'               => '/rcms/rcms_api/uploaded_files/',
     'chmodFiles'   => 0777,
-    'chmodFolders' => 0755,
+    'chmodFolders' => 0777,
     'filesystemEncoding' => 'UTF-8',
 );
 
@@ -80,7 +80,7 @@ $config['defaultResourceTypes'] = '';
 
 $config['resourceTypes'][] = array(
     'name'              => 'Files', // Single quotes not allowed.
-    'directory'         => 'files',
+    'directory'         => '',
     'maxSize'           => 0,
     'allowedExtensions' => '7z,aiff,asf,avi,bmp,csv,doc,docx,fla,flv,gif,gz,gzip,jpeg,jpg,mid,mov,mp3,mp4,mpc,mpeg,mpg,ods,odt,pdf,png,ppt,pptx,qt,ram,rar,rm,rmi,rmvb,rtf,sdc,swf,sxc,sxw,tar,tgz,tif,tiff,txt,vsd,wav,wma,wmv,xls,xlsx,zip',
     'deniedExtensions'  => '',

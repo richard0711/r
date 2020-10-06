@@ -29,10 +29,10 @@
                             <p class="search-list-item-calendar"><i class="fa fa-calendar"></i> <span><?php echo formatted_date_time($new["published"]); ?></span></p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
     <?php } ?>
+            </div>
+        </div>
+    </section>
 <?php } ?>
 <?php if (isset($search_list) && $search_list["contents"]["count"] > 0) { ?>
 

@@ -152,7 +152,7 @@
             licenseKey: ''
         } )
         .then( editor => {
-            content_editor = editor;
+            news_editor = editor;
         })
         .catch( error => {
             console.error( 'Oops, something went wrong!' );

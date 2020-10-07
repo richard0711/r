@@ -446,7 +446,9 @@ header span i {
     background-color: #ffffff;
     border-color: transparent;
 }
-
+.owl-theme .owl-nav.disabled+.owl-dots {
+    margin-top: 0px !important;
+}
 .slider .caption {
     display: flex;
     justify-content: center;
@@ -462,7 +464,8 @@ header span i {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: local;
-    background-size: cover;
+    background-size: contain;
+    background-color: #F5F5F5;
     height: 550px;
 }
 

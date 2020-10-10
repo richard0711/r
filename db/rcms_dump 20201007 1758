@@ -11,7 +11,6 @@
 
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
 --
@@ -316,54 +315,54 @@ CREATE TABLE `images` (
 /*!40000 ALTER TABLE `images` DISABLE KEYS */;
 INSERT INTO `images` (`idimage`,`path`,`extension`,`size`,`title`,`x`,`y`,`status`,`creator`,`created`,`editor`,`edited`) VALUES 
  (1,'-','-','0.0000','-','0.0000','0.0000',0,1,'2020-01-01 00:00:00',1,NULL),
- (2,'uploaded_files/photoderm.jpg','jpg','192146.0000','photoderm','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (3,'uploaded_files/glamur.jpg','jpg','266981.0000','glamur','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (4,'uploaded_files/aqua.png','png','246176.0000','aqua','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (5,'uploaded_files/116370127_3132631923525093_5448893611153776918_n.jpg','jpg','151473.0000','116370127_3132631923525093_5448893611153776918_n','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (6,'uploaded_files/22eve.jpg','jpg','366644.0000','22eve','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (7,'uploaded_files/999.jpg','jpg','254186.0000','999','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (8,'uploaded_files/apos.jpg','jpg','66704.0000','apos','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (9,'uploaded_files/apos.jpg','jpg','66704.0000','apos','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (10,'uploaded_files/oroszlan_logo.jpg','jpg','7983.0000','oroszlan_logo','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (11,'uploaded_files/patikaelol.jpg','jpg','341824.0000','patikaelol','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (12,'uploaded_files/apo.jpg','jpg','97806.0000','apo','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (13,'uploaded_files/photoderm.jpg','jpg','192146.0000','photoderm','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (14,'uploaded_files/photoderm másolat.jpg','jpg','90410.0000','photoderm másolat','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (15,'uploaded_files/apostore_cube-1024x682.jpg','jpg','132456.0000','apostore_cube-1024x682','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (16,'uploaded_files/robot-farmacia-Apostore-Cube.jpg','jpg','388912.0000','robot-farmacia-Apostore-Cube','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (17,'uploaded_files/patikaelol.jpg','jpg','341824.0000','patikaelol','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (18,'uploaded_files/szgy.jpg','jpg','152581.0000','szgy','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (19,'uploaded_files/team-image3.jpg','jpg','39419.0000','team-image3','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (20,'uploaded_files/team-image2.jpg','jpg','39904.0000','team-image2','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (21,'uploaded_files/team-image1.jpg','jpg','44974.0000','team-image1','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (22,'uploaded_files/slider1.jpg','jpg','83969.0000','slider1','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (23,'uploaded_files/hazhozszallitas.jpg','jpg','189538.0000','hazhozszallitas','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (24,'uploaded_files/szgy.jpg','jpg','152581.0000','szgy','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (25,'uploaded_files/25eves_banner.png','png','2252640.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (26,'uploaded_files/25eves_banner.png','png','1142375.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (27,'uploaded_files/25eves_banner.png','png','439873.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (28,'uploaded_files/25eves_banner.png','png','720528.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (29,'uploaded_files/25eves_banner.png','png','2047055.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (30,'uploaded_files/25eves_banner.png','png','964741.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (31,'uploaded_files/25eves_banner.png','png','4101182.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (32,'uploaded_files/25eves_banner.png','png','4104902.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (33,'uploaded_files/25eves_banner.png','png','2152647.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (34,'uploaded_files/25eves_banner.png','png','1704952.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (35,'uploaded_files/118764969_2072873839552012_8780349540534345356_o.jpg','jpg','421840.0000','118764969_2072873839552012_8780349540534345356_o','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (36,'uploaded_files/25eves.jpg','jpg','560518.0000','25eves','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (37,'uploaded_files/25eves.jpg','jpg','560518.0000','25eves','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (38,'uploaded_files/25eves2.jpg','jpg','330616.0000','25eves2','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (39,'uploaded_files/25eves.jpg','jpg','560518.0000','25eves','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (40,'uploaded_files/pigmentbio.jpg','jpg','18575.0000','pigmentbio','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (41,'uploaded_files/bd.jpg','jpg','82303.0000','bd','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (42,'uploaded_files/25eves_banner.png','png','1704952.0000','25eves_banner','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (43,'uploaded_files/kivalo_gyogyszertar.png','png','784749.0000','kivalo_gyogyszertar','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (44,'uploaded_files/service-default2.jpg','jpg','68968.0000','service-default2','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (45,'uploaded_files/service-default2.jpg','jpg','68968.0000','service-default2','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (46,'uploaded_files/service-default2.jpg','jpg','68968.0000','service-default2','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (47,'uploaded_files/service-default2.jpg','jpg','68968.0000','service-default2','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (48,'uploaded_files/service-default2.jpg','jpg','68968.0000','service-default2','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL),
- (49,'uploaded_files/apostore.jpg','jpg','37794.0000','apostore','0.0000','0.0000',1,0,'0000-00-00 00:00:00',1,NULL);
+ (2,'uploaded_files/photoderm.jpg','jpg','192146.0000','photoderm','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (3,'uploaded_files/glamur.jpg','jpg','266981.0000','glamur','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (4,'uploaded_files/aqua.png','png','246176.0000','aqua','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (5,'uploaded_files/116370127_3132631923525093_5448893611153776918_n.jpg','jpg','151473.0000','116370127_3132631923525093_5448893611153776918_n','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (6,'uploaded_files/22eve.jpg','jpg','366644.0000','22eve','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (7,'uploaded_files/999.jpg','jpg','254186.0000','999','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (8,'uploaded_files/apos.jpg','jpg','66704.0000','apos','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (9,'uploaded_files/apos.jpg','jpg','66704.0000','apos','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (10,'uploaded_files/oroszlan_logo.jpg','jpg','7983.0000','oroszlan_logo','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (11,'uploaded_files/patikaelol.jpg','jpg','341824.0000','patikaelol','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (12,'uploaded_files/apo.jpg','jpg','97806.0000','apo','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (13,'uploaded_files/photoderm.jpg','jpg','192146.0000','photoderm','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (14,'uploaded_files/photoderm másolat.jpg','jpg','90410.0000','photoderm másolat','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (15,'uploaded_files/apostore_cube-1024x682.jpg','jpg','132456.0000','apostore_cube-1024x682','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (16,'uploaded_files/robot-farmacia-Apostore-Cube.jpg','jpg','388912.0000','robot-farmacia-Apostore-Cube','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (17,'uploaded_files/patikaelol.jpg','jpg','341824.0000','patikaelol','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (18,'uploaded_files/szgy.jpg','jpg','152581.0000','szgy','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (19,'uploaded_files/team-image3.jpg','jpg','39419.0000','team-image3','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (20,'uploaded_files/team-image2.jpg','jpg','39904.0000','team-image2','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (21,'uploaded_files/team-image1.jpg','jpg','44974.0000','team-image1','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (22,'uploaded_files/slider1.jpg','jpg','83969.0000','slider1','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (23,'uploaded_files/hazhozszallitas.jpg','jpg','189538.0000','hazhozszallitas','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (24,'uploaded_files/szgy.jpg','jpg','152581.0000','szgy','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (25,'uploaded_files/25eves_banner.png','png','2252640.0000','25eves_banner','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (26,'uploaded_files/25eves_banner.png','png','1142375.0000','25eves_banner','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (27,'uploaded_files/25eves_banner.png','png','439873.0000','25eves_banner','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (28,'uploaded_files/25eves_banner.png','png','720528.0000','25eves_banner','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (29,'uploaded_files/25eves_banner.png','png','2047055.0000','25eves_banner','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (30,'uploaded_files/25eves_banner.png','png','964741.0000','25eves_banner','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (31,'uploaded_files/25eves_banner.png','png','4101182.0000','25eves_banner','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (32,'uploaded_files/25eves_banner.png','png','4104902.0000','25eves_banner','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (33,'uploaded_files/25eves_banner.png','png','2152647.0000','25eves_banner','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (34,'uploaded_files/25eves_banner.png','png','1704952.0000','25eves_banner','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (35,'uploaded_files/118764969_2072873839552012_8780349540534345356_o.jpg','jpg','421840.0000','118764969_2072873839552012_8780349540534345356_o','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (36,'uploaded_files/25eves.jpg','jpg','560518.0000','25eves','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (37,'uploaded_files/25eves.jpg','jpg','560518.0000','25eves','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (38,'uploaded_files/25eves2.jpg','jpg','330616.0000','25eves2','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (39,'uploaded_files/25eves.jpg','jpg','560518.0000','25eves','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (40,'uploaded_files/pigmentbio.jpg','jpg','18575.0000','pigmentbio','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (41,'uploaded_files/bd.jpg','jpg','82303.0000','bd','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (42,'uploaded_files/25eves_banner.png','png','1704952.0000','25eves_banner','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (43,'uploaded_files/kivalo_gyogyszertar.png','png','784749.0000','kivalo_gyogyszertar','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (44,'uploaded_files/service-default2.jpg','jpg','68968.0000','service-default2','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (45,'uploaded_files/service-default2.jpg','jpg','68968.0000','service-default2','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (46,'uploaded_files/service-default2.jpg','jpg','68968.0000','service-default2','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (47,'uploaded_files/service-default2.jpg','jpg','68968.0000','service-default2','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (48,'uploaded_files/service-default2.jpg','jpg','68968.0000','service-default2','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL),
+ (49,'uploaded_files/apostore.jpg','jpg','37794.0000','apostore','0.0000','0.0000',1,0,'2020-01-01 00:00:00',1,NULL);
 /*!40000 ALTER TABLE `images` ENABLE KEYS */;
 
 
@@ -652,7 +651,7 @@ INSERT INTO `users` (`iduser`,`auth_id`,`ext_id`,`name`,`email`,`role`,`hash`,`s
 
 
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -11,7 +11,6 @@
 
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
 --
@@ -250,7 +249,7 @@ CREATE TABLE `error_log` (
 
 /*!40000 ALTER TABLE `error_log` DISABLE KEYS */;
 INSERT INTO `error_log` (`iderror_log`,`level`,`message`,`status`,`created`,`creator`,`edited`,`editor`) VALUES 
- (1,'warning','-',0,'0000-00-00 00:00:00',0,NULL,1);
+ (1,'warning','-',0,'2020-01-01 00:00:00',0,NULL,1);
 /*!40000 ALTER TABLE `error_log` ENABLE KEYS */;
 
 
@@ -699,7 +698,7 @@ INSERT INTO `users` (`iduser`,`idimage`,`name`,`email`,`active`,`salt`,`status`,
 
 
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

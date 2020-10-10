@@ -2,11 +2,19 @@
 <p class="mb-4">Hozd létre a kívánt galériát</p>
 
 <div class="form-group row">
-    <div class="col-sm-12">
-        <label for="galleryName">Galéria neve</label>
-        <input type="text" class="form-control" id="galleryName" placeholder="Galéria neve">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+        <label for="galleryName">Megnevezés</label>
+        <input type="text" class="form-control" value="" id="galleryName" placeholder="Galéria megnevezése">
         <small id="galleryNameHelp" class="form-text text-danger"></small>
     </div> 
+    <div class="col-sm-3">
+        <label for="galleryPublishedFrom">Publikálás kezdete</label>
+        <input type="text" class="form-control form-control-user" value="" id="galleryPublishedFrom" placeholder="Publikálás kezdete">
+    </div> 
+    <div class="col-sm-3">
+        <label for="galleryPublishedTo">Publikálás vége</label>
+        <input type="text" class="form-control form-control-user" value="" id="galleryPublishedTo" placeholder="Publikálás vége">
+    </div>
 </div> 
 <div class="form-group row">
     <div class="col-sm-12">
@@ -35,12 +43,15 @@
 
 <script>
     jQuery(document).ready(function () {
-
+jQuery("#galleryPublishedFrom").datepicker();
+        jQuery("#galleryPublishedTo").datepicker();
     });
 
     function save() {
         var data = {
             name: jQuery("#galleryName").val(),
+            published_from: jQuery("#galleryPublishedFrom").val(),
+            published_to: jQuery("#galleryPublishedTo").val(),
             text: jQuery("#galleryText").val(),
             status: 1
         };

@@ -211,3 +211,7 @@
     min-height: 140px;
     max-height: 140px;
 }
+
+.text-muted {
+    font-size: 14px !important; 
+} 

@@ -41,17 +41,36 @@
                     </div>
                 <?php } ?>
 
+                <?php if ($content["contactform"] == 1) { ?>
+                    <section id="appointment" data-stellar-background-ratio="3">
+                        <div class="">
+                            <!-- CONTACT FORM HERE -->
+                            <form id="appointment-form" role="form" method="post">
+                                <div class="wow fadeInUp" data-wow-delay="0.8s">
+                                    <div class="col-md-12 col-sm-12">
+                                        <label for="email">E-mail cím</label>
+                                        <input type="email" class="form-control" id="e_email" name="email" placeholder="email@cim.hu">
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <label for="telephone">Telefonszám</label>
+                                        <input type="tel" class="form-control" id="e_phone" name="phone" placeholder="Telefonszám">
+                                        <label for="Message">Üzenet</label>
+                                        <textarea class="form-control" rows="5" id="e_message" name="message" placeholder="Üzenet"></textarea>
+                                        <button onclick="sendMail();" type="button" class="form-control" id="cf-submit" name="submit">Üzenet elküldése</button>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <span id="emailSuccess" class="text-info hidden"></span>
+                                        <span id="emailError" class="text-danger hidden"></span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                <?php } ?>
+
                 <div class="news-social-share">
                     <h4>Ossza meg a cikket</h4>
-                    <a href="#" class="btn btn-primary"><i class="fa fa-facebook"></i>Facebook</a>
-                    <!--<div class="fb-like" 
-                        data-href="https://www.your-domain.com/your-page.html" 
-                        data-width=""
-                        data-layout="standard" 
-                        data-action="like" 
-                        data-size="small"  
-                        data-share="true">
-                   </div>-->
+                    <div class="fb-like" data-href="http://oroszlangyogyszertar.com" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
                 </div>
             </div>
         </div>
@@ -79,8 +98,8 @@
                                         <?php if (isset($ocontent["content_items"]) && $ocontent["content_items"]["count"] > 0) { ?>
                                             <div style="background: url('<?php echo str_replace("public.php/", "", RCMS_URL) . $ocontent["content_items"]["data"][0]["image_path"]; ?>');" class="circle-div" alt=""></div>
                                         <?php } else { ?>
-                                            <div style="background: url('<?php echo VIEWS_URL; ?>images/news-image.jpg');" class="circle-div" alt=""></div>
-        <?php } ?>
+                                            <div style="background: url('<?php echo VIEWS_URL; ?>images/ujlogo.jpg');" class="circle-div" alt=""></div>
+                                        <?php } ?>
                                     </a>
                                 </div>
                                 <div class="media-body">
@@ -91,9 +110,9 @@
                                     </h4>
                                 </div>
                             </div>
-                    <?php } ?>
+                        <?php } ?>
                     </div>
-<?php } ?>
+                <?php } ?>
             </div>
         </div>
 

@@ -187,7 +187,7 @@
 .circle-div {
     border-radius: 100%;
     width: 80px;
-    background-size: 100% !important;
+    background-size: cover !important;
     height: 80px;
     margin-right: 5px;
     background-repeat: no-repeat !important;
@@ -200,7 +200,7 @@
 
 .footer-circle-div {
     border-radius: 100%;
-    background-size: 100% !important;
+    background-size: cover !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
     width: 65px;

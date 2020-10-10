@@ -16,8 +16,8 @@
                         <?php echo $news["content"]; ?>
                     </p>
                     <div class="news-social-share">
-                        <h4>Ossza meg a cikket</h4>
-                        <a href="#" class="btn btn-primary"><i class="fa fa-facebook"></i>Facebook</a>
+                        <h4>Ossza meg a hírt</h4>
+                        <div class="fb-like" data-href="http://oroszlangyogyszertar.com" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                                             <?php if (isset($new["news_items"]) && $new["news_items"]["count"] > 0) { ?>
                                                 <div style="background: url('<?php echo str_replace("public.php/", "", RCMS_URL) . $new["news_items"]["data"][0]["image_path"]; ?>');" class="circle-div" alt=""></div>
                                             <?php } else { ?>
-                                                <div style="background: url('<?php echo VIEWS_URL; ?>images/news-image.jpg');" class="circle-div" alt=""></div>
+                                                <div style="background: url('<?php echo VIEWS_URL; ?>images/ujlogo.jpg');" class="circle-div" alt=""></div>
                                             <?php } ?>
                                         </a>
                                     </div>

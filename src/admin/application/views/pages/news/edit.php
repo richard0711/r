@@ -234,7 +234,6 @@
         }
 
         function saveNewsItems() {
-        debugger;
             var news_items = [];
             //össze kell szedni a menü itemeket
             jQuery(".newsItem").each(function (index, item) {
@@ -276,61 +275,65 @@
             }
         }
 
-        ClassicEditor.create( document.querySelector( '#editor' ), {
+        ClassicEditor.create(document.querySelector('#editor'), {
             toolbar: {
                 items: [
-                        'undo',
-                        'redo',
-                        'heading',
-                        '|',
-                        'removeFormat',
-                        'bold',
-                        'italic',
-                        'underline',
-                        'strikethrough',
-                        'bulletedList',
-                        'numberedList',
-                        'todoList',
-                        'fontFamily',
-                        'fontSize',
-                        'fontColor',
-                        'highlight',
-                        'fontBackgroundColor',
-                        'alignment',
-                        'indent',
-                        'outdent',
-                        'subscript',
-                        'superscript',
-                        'specialCharacters',
-                        '|',
-                        'insertTable',
-                        'blockQuote',
-                        'horizontalLine',
-                        'code',
-                        '|',
-                        'link',
-                        'imageUpload',
-                        'CKFinder',
-                        'codeBlock',
-                        'exportPdf'
+                    'heading',
+                    '|',
+                    'undo',
+                    'redo',
+                    'removeFormat',
+                    'bold',
+                    'italic',
+                    'underline',
+                    'strikethrough',
+                    'fontColor',
+                    'fontSize',
+                    'fontBackgroundColor',
+                    'fontFamily',
+                    'link',
+                    'highlight',
+                    '|',
+                    'alignment',
+                    'bulletedList',
+                    'numberedList',
+                    'indent',
+                    'outdent',
+                    'horizontalLine',
+                    'insertTable',
+                    '|',
+                    'CKFinder',
+                    'imageUpload',
+                    'imageInsert',
+                    'mediaEmbed',
+                    'blockQuote',
+                    'code',
+                    'codeBlock',
+                    'exportPdf',
+                    'exportWord',
+                    'MathType',
+                    'ChemType',
+                    'specialCharacters',
+                    'subscript',
+                    'superscript'
                 ]
             },
             language: 'hu',
             image: {
-                    toolbar: [
-                            'imageTextAlternative',
-                            'imageStyle:full',
-                            'imageStyle:side'
-                    ]
+                toolbar: [
+                    'imageTextAlternative',
+                    'imageStyle:full',
+                    'imageStyle:side'
+                ]
             },
             table: {
-                    contentToolbar: [
-                            'tableColumn',
-                            'tableRow',
-                            'mergeTableCells',
-                            'tableCellProperties',
-                            'tableProperties'
-                    ]
+                contentToolbar: [
+                    'tableColumn',
+                    'tableRow',
+                    'mergeTableCells',
+                    'tableCellProperties',
+                    'tableProperties'
+                ]
             },
             ckfinder: {
                 uploadUrl: '<?php echo VIEWS_URL; ?>/vendor/ckfinder3511/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
@@ -338,14 +341,11 @@
                 openerMethod: 'popup'
             },
             licenseKey: ''
-        } )
-        .then( editor => {
+        })
+        .then(editor => {
             news_editor = editor;
         })
-        .catch( error => {
-            console.error( 'Oops, something went wrong!' );
-            console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
-            console.warn( 'Build id: m1r7oj2ao0fm-avyfabil7oss' );
-            console.error( error );
-        } );
+        .catch(error => {
+            console.error(error);
+        });
 </script>

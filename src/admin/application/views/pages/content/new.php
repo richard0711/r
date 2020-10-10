@@ -28,19 +28,26 @@
                 id="contentPosition" 
                 placeholder="Pozíció">
             <option value="1">--nincs kiválasztva--</option>>
-            <?php 
-                if (isset($positions) && isset($positions["data"])) {
-                    foreach ($positions["data"] as $position) {
+            <?php
+            if (isset($positions) && isset($positions["data"])) {
+                foreach ($positions["data"] as $position) {
                     ?>
-            <option 
-                value="<?php echo $position["idposition"]; ?>">
-                    <?php echo $position["name"] ?></option>
+                    <option 
+                        value="<?php echo $position["idposition"]; ?>">
+                        <?php echo $position["name"] ?></option>
                     <?php
-                    }
-                } 
+                }
+            }
             ?>
         </select>
     </div> 
+</div>
+<div class="form-group row">
+    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+        <div class="checkbox">
+            <label><input type="checkbox" id="contentContactForm" value="1"> Kapcsolati űrlap megjelenítés a tartalom mellett</label>
+        </div>
+    </div>
 </div>
 
 <div class="form-group">
@@ -86,6 +93,7 @@
                 published_to: jQuery("#contentPublishedTo").val(),
                 short_desc: jQuery("#contentShortDesc").val(),
                 idposition: jQuery("#contentPosition").val(),
+                contactform: (jQuery("#contentContactForm").is(":checked")) ? 1 : 0,
                 status: 1
             };
             jQuery.ajax({
@@ -99,7 +107,7 @@
             }).done(function (response) {
                 if (response.errorCode == 0) {
                     if (response.data && Number(response.data.idcontent) > 1) {
-                        window.location = '<?php echo FULL_BASE_URL.'content/edit/'; ?>' + response.data.idcontent;
+                        window.location = '<?php echo FULL_BASE_URL . 'content/edit/'; ?>' + response.data.idcontent;
                     }
                 } else {
                     jQuery("#errorMessage").html(response.msg);
@@ -110,61 +118,65 @@
             });
         }
 
-        ClassicEditor.create( document.querySelector( '#editor' ), {
+        ClassicEditor.create(document.querySelector('#editor'), {
             toolbar: {
                 items: [
-                        'undo',
-                        'redo',
-                        'heading',
-                        '|',
-                        'removeFormat',
-                        'bold',
-                        'italic',
-                        'underline',
-                        'strikethrough',
-                        'bulletedList',
-                        'numberedList',
-                        'todoList',
-                        'fontFamily',
-                        'fontSize',
-                        'fontColor',
-                        'highlight',
-                        'fontBackgroundColor',
-                        'alignment',
-                        'indent',
-                        'outdent',
-                        'subscript',
-                        'superscript',
-                        'specialCharacters',
-                        '|',
-                        'insertTable',
-                        'blockQuote',
-                        'horizontalLine',
-                        'code',
-                        '|',
-                        'link',
-                        'imageUpload',
-                        'CKFinder',
-                        'codeBlock',
-                        'exportPdf'
+                    'heading',
+                    '|',
+                    'undo',
+                    'redo',
+                    'removeFormat',
+                    'bold',
+                    'italic',
+                    'underline',
+                    'strikethrough',
+                    'fontColor',
+                    'fontSize',
+                    'fontBackgroundColor',
+                    'fontFamily',
+                    'link',
+                    'highlight',
+                    '|',
+                    'alignment',
+                    'bulletedList',
+                    'numberedList',
+                    'indent',
+                    'outdent',
+                    'horizontalLine',
+                    'insertTable',
+                    '|',
+                    'CKFinder',
+                    'imageUpload',
+                    'imageInsert',
+                    'mediaEmbed',
+                    'blockQuote',
+                    'code',
+                    'codeBlock',
+                    'exportPdf',
+                    'exportWord',
+                    'MathType',
+                    'ChemType',
+                    'specialCharacters',
+                    'subscript',
+                    'superscript'
                 ]
             },
             language: 'hu',
             image: {
-                    toolbar: [
-                            'imageTextAlternative',
-                            'imageStyle:full',
-                            'imageStyle:side'
-                    ]
+                toolbar: [
+                    'imageTextAlternative',
+                    'imageStyle:full',
+                    'imageStyle:side'
+                ]
             },
             table: {
-                    contentToolbar: [
-                            'tableColumn',
-                            'tableRow',
-                            'mergeTableCells',
-                            'tableCellProperties',
-                            'tableProperties'
-                    ]
+                contentToolbar: [
+                    'tableColumn',
+                    'tableRow',
+                    'mergeTableCells',
+                    'tableCellProperties',
+                    'tableProperties'
+                ]
             },
             ckfinder: {
                 uploadUrl: '<?php echo VIEWS_URL; ?>/vendor/ckfinder3511/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
@@ -172,14 +184,11 @@
                 openerMethod: 'popup'
             },
             licenseKey: ''
-        } )
-        .then( editor => {
-            content_editor = editor;
         })
-        .catch( error => {
-            console.error( 'Oops, something went wrong!' );
-            console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
-            console.warn( 'Build id: m1r7oj2ao0fm-avyfabil7oss' );
-            console.error( error );
-        } );
+                .then(editor => {
+                    content_editor = editor;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
 </script>

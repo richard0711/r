@@ -28,17 +28,17 @@
                 id="contentPosition" 
                 placeholder="Pozíció">
             <option value="1">--nincs kiválasztva--</option>>
-            <?php 
-                if (isset($positions) && isset($positions["data"])) {
-                    foreach ($positions["data"] as $position) {
+            <?php
+            if (isset($positions) && isset($positions["data"])) {
+                foreach ($positions["data"] as $position) {
                     ?>
-            <option <?php echo ($content["idposition"] == $position["idposition"]) ? 'selected="selected"' : ''; ?>
-                value="<?php echo $position["idposition"]; ?>">
-                    <?php echo $position["name"] ?>
-            </option>
+                    <option <?php echo ($content["idposition"] == $position["idposition"]) ? 'selected="selected"' : ''; ?>
+                        value="<?php echo $position["idposition"]; ?>">
+                            <?php echo $position["name"] ?>
+                    </option>
                     <?php
-                    }
-                } 
+                }
+            }
             ?>
         </select>
     </div> 
@@ -63,6 +63,14 @@
                 ?>
         </select>
     </div> 
+</div>
+
+<div class="form-group row">
+    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+        <div class="checkbox">
+            <label><input <?php echo ($content["contactform"] == 1) ? ' checked="checked" ' : '' ?> type="checkbox" id="contentContactForm" value="1"> Kapcsolati űrlap megjelenítés a tartalom mellett</label>
+        </div>
+    </div>
 </div>
 
 <div class="form-group">
@@ -120,7 +128,7 @@
 </div>
 <br/>
 
- <div data-id="0" data-status="1" id="newContentItem" style="display: none;" class="card card-body">
+<div data-id="0" data-status="1" id="newContentItem" style="display: none;" class="card card-body">
     <div class="text-center">
         <button onclick="delContentItem(this)" class="btn btn-secondary" id="delContentItem_0">
             <i class="fas fa-trash fa-sm"></i>
@@ -183,7 +191,7 @@
         });
 
         var content_editor;
-        
+
         var actContentItemImageHolder = null;
 
         function selectNewImage(input) {
@@ -254,6 +262,7 @@
                 idgallery: (jQuery("#contentGallery").val() > 1) ? jQuery("#contentGallery").val() : 1,
                 published_to: jQuery("#contentPublishedTo").val(),
                 short_desc: jQuery("#contentShortDesc").val(),
+                contactform: (jQuery("#contentContactForm").is(":checked")) ? 1 : 0,
                 idposition: jQuery("#contentPosition").val(),
                 status: 1
             };
@@ -278,7 +287,7 @@
                 jQuery("#errorMessage").html('Hiba a mentés közben!');
             });
         }
-        
+
         function saveContentItems() {
             var content_items = [];
             //össze kell szedni a menü itemeket
@@ -321,61 +330,65 @@
             }
         }
 
-        ClassicEditor.create( document.querySelector( '#editor' ), {
+        ClassicEditor.create(document.querySelector('#editor'), {
             toolbar: {
                 items: [
-                        'undo',
-                        'redo',
-                        'heading',
-                        '|',
-                        'removeFormat',
-                        'bold',
-                        'italic',
-                        'underline',
-                        'strikethrough',
-                        'bulletedList',
-                        'numberedList',
-                        'todoList',
-                        'fontFamily',
-                        'fontSize',
-                        'fontColor',
-                        'highlight',
-                        'fontBackgroundColor',
-                        'alignment',
-                        'indent',
-                        'outdent',
-                        'subscript',
-                        'superscript',
-                        'specialCharacters',
-                        '|',
-                        'insertTable',
-                        'blockQuote',
-                        'horizontalLine',
-                        'code',
-                        '|',
-                        'link',
-                        'imageUpload',
-                        'CKFinder',
-                        'codeBlock',
-                        'exportPdf'
+                    'heading',
+                    '|',
+                    'undo',
+                    'redo',
+                    'removeFormat',
+                    'bold',
+                    'italic',
+                    'underline',
+                    'strikethrough',
+                    'fontColor',
+                    'fontSize',
+                    'fontBackgroundColor',
+                    'fontFamily',
+                    'link',
+                    'highlight',
+                    '|',
+                    'alignment',
+                    'bulletedList',
+                    'numberedList',
+                    'indent',
+                    'outdent',
+                    'horizontalLine',
+                    'insertTable',
+                    '|',
+                    'CKFinder',
+                    'imageUpload',
+                    'imageInsert',
+                    'mediaEmbed',
+                    'blockQuote',
+                    'code',
+                    'codeBlock',
+                    'exportPdf',
+                    'exportWord',
+                    'MathType',
+                    'ChemType',
+                    'specialCharacters',
+                    'subscript',
+                    'superscript'
                 ]
             },
             language: 'hu',
             image: {
-                    toolbar: [
-                            'imageTextAlternative',
-                            'imageStyle:full',
-                            'imageStyle:side'
-                    ]
+                toolbar: [
+                    'imageTextAlternative',
+                    'imageStyle:full',
+                    'imageStyle:side'
+                ]
             },
             table: {
-                    contentToolbar: [
-                            'tableColumn',
-                            'tableRow',
-                            'mergeTableCells',
-                            'tableCellProperties',
-                            'tableProperties'
-                    ]
+                contentToolbar: [
+                    'tableColumn',
+                    'tableRow',
+                    'mergeTableCells',
+                    'tableCellProperties',
+                    'tableProperties'
+                ]
             },
             ckfinder: {
                 uploadUrl: '<?php echo VIEWS_URL; ?>/vendor/ckfinder3511/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
@@ -383,14 +396,12 @@
                 openerMethod: 'popup'
             },
             licenseKey: ''
-        } )
-        .then( editor => {
+        })
+        .then(editor => {
             content_editor = editor;
         })
-        .catch( error => {
-            console.error( 'Oops, something went wrong!' );
-            console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
-            console.warn( 'Build id: m1r7oj2ao0fm-avyfabil7oss' );
-            console.error( error );
-        } );
+        .catch(error => {
+            console.error(error);
+        });
+
 </script>

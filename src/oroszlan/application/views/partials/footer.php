@@ -27,7 +27,7 @@
                                 <div style="background: url('<?php echo str_replace("public.php/", "", RCMS_URL).$new["news_items"]["data"][0]["image_path"]; ?>');" class="footer-circle-div" alt=""></div>
                                 <?php } else { ?>
                                 <!-- NEWS default image -->
-                                <div style="background: url('<?php echo VIEWS_URL; ?>images/news-image.jpg');" class="footer-circle-div" alt=""></div>
+                                <div style="background: url('<?php echo VIEWS_URL; ?>images/ujlogo.jpg');" class="footer-circle-div" alt=""></div>
                                 <?php } ?>
                             </a>
                         </div>

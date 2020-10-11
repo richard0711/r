@@ -70,7 +70,7 @@
 
                 <div class="news-social-share">
                     <h4>Ossza meg a cikket</h4>
-                    <div class="fb-like" data-href="http://oroszlangyogyszertar.com" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
+                    <div class="fb-like" data-href="<?php echo FULL_BASE_URL . 'p/content/' . $content["idcontent"]; ?>" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
                 </div>
             </div>
         </div>

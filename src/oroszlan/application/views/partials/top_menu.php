@@ -9,7 +9,7 @@
             </button>
             <!-- lOGO TEXT HERE -->
             <div class="hidden-xs hidden-sm">
-                <a href="<?php echo BASE_URL; ?>" class="navbar-brand">
+                <a href="<?php echo BASE_URL.config_item('index_page'); ?>" class="navbar-brand">
                     <img class="oroszlan_logo" src="<?php echo VIEWS_URL; ?>images/oroszlan_logo.jpg" />
                 </a>
                 <span class="logo_text">

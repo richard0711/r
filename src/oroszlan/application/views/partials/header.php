@@ -10,7 +10,7 @@
             </div>
             <div class="col-md-4 col-sm-5 visible-xs">
                 <center>
-                    <a href="<?php echo BASE_URL; ?>">
+                    <a href="<?php echo BASE_URL.config_item('index_page'); ?>">
                         <img class="oroszlan_logo_xs" src="<?php echo VIEWS_URL; ?>images/oroszlan_logo.jpg" />
                     </a>
                     <p>

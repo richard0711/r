@@ -488,7 +488,8 @@ header span i {
 
 #about {
     background: url('../images/about-bg.jpg') no-repeat top center;
-    background-size: cover;
+    background-size: auto;
+    background-position: top;
     padding-top: 150px;
     padding-bottom: 150px;
 }

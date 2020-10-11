@@ -106,7 +106,7 @@
                     <?php foreach ($last_gallery["data"] as $item) { ?>
                         <tr>
                             <td><?php echo $item["name"]; ?></td>
-                            <td></td>
+                            <td><?php echo $item["gallery_items"]["count"].' db'; ?></td>
                             <td>
                                 <div class="btn-group">
                                     <a href="<?php echo FULL_BASE_URL . 'gallery/edit/' . $item["idgallery"]; ?>" class="btn-sm btn-secondary" role="button">

@@ -29,10 +29,14 @@ function getMenuItemURL($menu_item = array()) {
     $url = '#';
     if ($menu_item["idcontent"] > 1) {
         $url = FULL_BASE_URL.'p/content/'.$menu_item["idcontent"];
-    } else if ($menu_item["idgallery"] > 1) {
+    } else if ($menu_item["idgallery"] > 1 && $menu_item["is_gallery_list"] == 0) {
         $url = FULL_BASE_URL.'p/gallery/'.$menu_item["idgallery"];
     } else if ($menu_item["url"] != '') {
         $url = $menu_item["url"];
+    } else if ($menu_item["is_gallery_list"] == 1) {
+        $url = FULL_BASE_URL.'p/gallery_list/1';
+    } else if ($menu_item["is_news_list"] == 1) {
+        $url = FULL_BASE_URL.'p/news_list/1';
     }
     return $url;
 }

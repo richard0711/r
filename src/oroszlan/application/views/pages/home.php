@@ -12,16 +12,32 @@
                                     <div class="item" style="background-image: url('<?php echo VIEWS_URL; ?>images/slider2.jpg');">    
                                     <?php } ?>    
                                     <div class="caption">
-                                        <?php if ($banner_item["text"] != '') { ?> 
-                                        <div onclick="openLink('<?php echo FULL_BASE_URL . 'p/content/'.$banner_item["idcontent"]; ?>');" style="background-color: rgba(95, 93, 94, 0.39); padding: 5px; border-radius: 10px;" class="col-md-offset-1 col-md-10">
-                                            <h1><?php echo $banner_item["name"] ?></h1>
-                                            <h3><?php echo $banner_item["text"] ?></h3>
+                                        <?php $url = ''; 
+                                        if ($banner_item["idcontent"] > 1) { 
+                                            $url = FULL_BASE_URL . 'p/content/'.$banner_item["idcontent"];
+                                        } 
+                                        if ($banner_item["url"] != '') { 
+                                            $url = $banner_item["url"];
+                                        } 
+                                        ?>
+                                        <?php if ($url != '') { ?> 
+                                        <?php if ($banner_item["text"] != '') { ?>
+                                            <div onclick="openLink('<?php echo $url; ?>');" style="background-color: rgba(95, 93, 94, 0.39); padding: 5px; border-radius: 10px; cursor: pointer;" class="col-md-offset-1 col-md-10">
+                                                <h1><?php echo $banner_item["name"]; ?></h1>
+                                                <h3><?php echo $banner_item["text"]; ?></h3>
+                                                <br/>
+                                                <a href="<?php echo $url; ?>" class="section-btn btn btn-default smoothScroll">Megtekintés</a>
+                                            </div>
+                                        <?php } else { ?>
+                                            <div onclick="openLink('<?php echo $url; ?>');" style="cursor: pointer;" class="col-md-offset-1 col-md-10">
+                                                <a href="<?php echo $url; ?>" class="section-btn btn btn-default smoothScroll">Megtekintés</a>
+                                            </div>
+                                        <?php } ?>
+                                        <?php } else if ($banner_item["text"] != '') { ?>
+                                        <div style="background-color: rgba(95, 93, 94, 0.39); padding: 5px; border-radius: 10px;" class="col-md-offset-1 col-md-10">
+                                            <h1><?php echo $banner_item["name"]; ?></h1>
+                                            <h3><?php echo $banner_item["text"]; ?></h3>
                                             <br/>
-                                            <?php if ($banner_item["url"] != null && $banner_item["url"] != '') { ?>
-                                                <a href="<?php echo $banner_item["url"] ?>" class="section-btn btn btn-default smoothScroll">Megtekintés</a>
-                                            <?php } else if ($banner_item["idcontent"] > 1) { ?>
-                                                <a href="<?php echo FULL_BASE_URL . 'p/content/'.$banner_item["idcontent"]; ?>" class="section-btn btn btn-default smoothScroll hidden-xs hidden-sm">Megtekintés</a>
-                                            <?php } ?>
                                         </div>
                                         <?php } ?>
                                     </div>

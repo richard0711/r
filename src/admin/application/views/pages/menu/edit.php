@@ -120,6 +120,30 @@
                                     </select>
                                 </div> 
                             </div> 
+                            <div class="form-group ">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <div class="checkbox">
+                                        <label><input 
+                                            <?php if (isset($menu_item["is_gallery_list"]) && $menu_item["is_gallery_list"] == 1) {
+                                                echo ' checked="checked" ';
+                                            } ?>    
+                                            type="checkbox" id="menuItemGalleryList_<?php echo $menu_item["idmenu_item"]; ?>" value="1"
+                                            class="menuItemGalleryList"> Galéria listára vigyen tovább a menüpont</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <div class="checkbox">
+                                        <label><input 
+                                            <?php if (isset($menu_item["is_news_list"]) && $menu_item["is_news_list"] == 1) {
+                                                echo ' checked="checked" ';
+                                            } ?>    
+                                            type="checkbox" id="menuItemNewsList_<?php echo $menu_item["idmenu_item"]; ?>" value="1"
+                                            class="menuItemNewsList"> Hírek listára vigyen tovább a menüpont</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div> 
                     </div> 
                 </div>
@@ -206,6 +230,20 @@
                         </select>
                     </div> 
                 </div> 
+                <div class="form-group ">
+                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="menuItemGalleryList_0" value="1" class="menuItemGalleryList"> Galéria listára vigyen tovább a menüpont</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="menuItemNewsList_0" value="1" class="menuItemNewsList"> Hírek listára vigyen tovább a menüpont</label>
+                        </div>
+                    </div>
+                </div>
             </div> 
         </div> 
     </div>
@@ -292,6 +330,8 @@
                 sub_title: jQuery(item).find(".menuItemSubTitle").val(),
                 idcontent: (jQuery(item).find(".menuItemContent").val() > 1) ? jQuery(item).find(".menuItemContent").val() : 1,
                 idgallery: (jQuery(item).find(".menuItemGallery").val() > 1) ? jQuery(item).find(".menuItemGallery").val() : 1,
+                is_gallery_list: (jQuery(item).find(".menuItemGalleryList").is(":checked")) ? 1 : 0,
+                is_news_list: (jQuery(item).find(".menuItemNewsList").is(":checked")) ? 1 : 0,
                 idmenu: <?php echo $menu["idmenu"]; ?>,
                 url: jQuery(item).find(".menuItemUrl").val(),
                 status: jQuery(item).attr("data-status")

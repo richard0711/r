@@ -47,7 +47,7 @@
 }
 
 .header-top-right {
-    
+
 }
 
 .full-size-search {
@@ -218,4 +218,10 @@
 
 figure > img {
     width: 100% !important;
+}
+
+@media only screen and (max-width: 360px) {
+    .owl-theme .owl-dots .owl-dot {
+        display: none !important;
+    }
 }

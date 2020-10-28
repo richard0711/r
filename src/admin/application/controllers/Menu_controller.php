@@ -42,12 +42,13 @@ class Menu_controller extends Private_controller {
         }
     }
     
-    public function editMenu($idmenu = 1) {
+    public function editMenu($idmenu = 1, $idmenu_item = 1) {
         try {
             //need to get menu data with curl 
             $AdminAPI = new AdminAPI();
             $menu = $AdminAPI->get('menu/'.$idmenu);
             $contents = $AdminAPI->get('contents');
+            $news = $AdminAPI->get('news');
             $positions = $AdminAPI->get('positions', array("type"=>'menu'));
             $gallery = $AdminAPI->get('gallery');
             $this->load->view("index", 
@@ -56,8 +57,10 @@ class Menu_controller extends Private_controller {
                         array(
                             "menu" => $menu,
                             "contents" => $contents,
+                            "news" => $news,
                             "positions" => $positions,
-                            "gallery" => $gallery
+                            "gallery" => $gallery,
+                            "idmenu_item" => $idmenu_item
                         ), 
                         true)
                 )

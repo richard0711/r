@@ -9,7 +9,7 @@
                 </div>
                 <div class="clearfix"></div>
                 <?php foreach ($search_list["news"]["data"] as $new) { ?>
-                    <div style="margin-top: 20px;" class="col-md-4 col-sm-6">
+                    <div style="margin-top: 20px;" class="col-md-3 col-sm-6">
                         <div class="card-thumb wow fadeInUp" data-wow-delay="0.2s">
                             <?php if (isset($new["news_items"]) && $new["news_items"]["count"] > 0) { ?>
                                 <?php $img = str_replace("public.php/", "", RCMS_URL) . $new["news_items"]["data"][0]["image_path"]; ?>
@@ -21,7 +21,7 @@
                                 class="search-list-item-imglink" href="<?php echo FULL_BASE_URL . 'p/news/' . $new["idnew"]; ?>">
                             </a>
                             <div class="services-info">
-                                <h3><a href="<?php echo FULL_BASE_URL . 'p/news/' . $new["idnew"]; ?>"><?php echo $new["title"]; ?></a></h3>
+                                <h5><a href="<?php echo FULL_BASE_URL . 'p/news/' . $new["idnew"]; ?>"><?php echo $new["title"]; ?></a></h5>
                                 <p class="search-list-short-desc">
                                     <?php echo $new["short_desc"]; ?>
                                 </p>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="clearfix"></div>
                 <?php foreach ($search_list["contents"]["data"] as $content) { ?>
-                    <div style="margin-top: 20px;" class="col-md-4 col-sm-6">
+                    <div style="margin-top: 20px;" class="col-md-3 col-sm-6">
                         <div class="card-thumb wow fadeInUp" data-wow-delay="0.2s">
                             <?php if (isset($content["content_items"]) && $content["content_items"]["count"] > 0) { ?>
                                 <?php $img = str_replace("public.php/", "", RCMS_URL) . $content["content_items"]["data"][0]["image_path"]; ?>
@@ -58,7 +58,7 @@
                                 class="search-list-item-imglink" href="<?php echo FULL_BASE_URL . 'p/content/' . $content["idcontent"]; ?>">
                             </a>
                             <div class="services-info">
-                                <h3><a href="<?php echo FULL_BASE_URL . 'p/content/' . $content["idcontent"]; ?>"><?php echo $content["title"]; ?></a></h3>
+                                <h5><a href="<?php echo FULL_BASE_URL . 'p/content/' . $content["idcontent"]; ?>"><?php echo $content["title"]; ?></a></h5>
                                 <p class="search-list-short-desc">
                                     <?php echo $content["short_desc"]; ?>
                                 </p>
@@ -84,7 +84,7 @@
                 </div>
                 <div class="clearfix"></div>
                 <?php foreach ($search_list["gallery"]["data"] as $gallery) { ?>
-                    <div style="margin-top: 20px;" class="col-md-4 col-sm-6">
+                    <div style="margin-top: 20px;" class="col-md-3 col-sm-6">
                         <div class="card-thumb wow fadeInUp" data-wow-delay="0.2s">
                             <?php if (isset($gallery["gallery_items"]) && $gallery["gallery_items"]["count"] > 0) { ?>
                                 <?php $img = str_replace("public.php/", "", RCMS_URL) . $gallery["gallery_items"]["data"][0]["image_path"]; ?>
@@ -96,7 +96,7 @@
                                 class="search-list-item-imglink" href="<?php echo FULL_BASE_URL . 'p/gallery/' . $gallery["idgallery"]; ?>">
                             </a>
                             <div class="services-info">
-                                <h3><a href="<?php echo FULL_BASE_URL . 'p/gallery/' . $gallery["idgallery"]; ?>"><?php echo $gallery["name"]; ?></a></h3>
+                                <h5><a href="<?php echo FULL_BASE_URL . 'p/gallery/' . $gallery["idgallery"]; ?>"><?php echo $gallery["name"]; ?></a></h5>
                                 <p class="search-list-short-desc">
                                     <?php echo $gallery["text"]; ?>
                                 </p>

@@ -9,7 +9,7 @@ http://www.tooplate.com/view/2098-health
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600');
 
 body {
-    background: #ffffff;
+    background: #FDFBFC;
     font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
 }
@@ -64,7 +64,7 @@ p {
     color: #757575;
     font-size: 14px;
     font-weight: normal;
-    line-height: 24px;
+    line-height: normal;
 }
 
 
@@ -349,8 +349,8 @@ header span i {
     color: #555555;
     font-size: 13px;
     font-weight: 500;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
     -webkit-transition: all ease-in-out 0.4s;
     transition: all ease-in-out 0.4s;
 }
@@ -368,7 +368,7 @@ header span i {
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-    color: #393939;
+    /*color: #393939;*/
     background-color: transparent;
 }
 
@@ -465,7 +465,7 @@ header span i {
     background-repeat: no-repeat;
     background-attachment: local;
     background-size: contain;
-    background-color: #F5F5F5;
+    background-color: #EADCD3;
     height: 550px;
 }
 
@@ -533,7 +533,7 @@ header span i {
 }
 
 .services-info {
-    padding: 20px 30px 0 30px;
+    padding: 0px 20px 0 20px;
 }
 
 .services-contact-info {
@@ -784,7 +784,7 @@ header span i {
 
 #appointment .form-control {
     background: #f9f9f9;
-    border: none;
+    /*border: none;*/
     border-radius: 3px;
     box-shadow: none;
     font-size: 14px;
@@ -828,8 +828,27 @@ footer a {
     color: #757575;
 }
 
+footer {
+    background: #CDAB92;
+}
+
 footer a:hover {
     color: #a5c422;
+}
+
+footer h5, footer p, footer span {
+    color: #fff !important;
+}
+
+footer a h5 {
+    color: #000 !important;
+}
+
+footer .latest-stories a h5:hover {
+    color: #D7E7B6 !important;
+}
+footer .contact-info a:hover {
+    color: #D7E7B6 !important
 }
 
 .contact-info {
@@ -913,7 +932,7 @@ footer a:hover {
     border: 1px solid #f2f2f2;
     border-radius: 3px;
     font-size: 20px;
-    color: #393939;
+    color: #000 !important;
     display: inline-block;
     text-align: center;
     width: 40px;
@@ -992,8 +1011,8 @@ footer a:hover {
     }
 
     .navbar-default .navbar-nav li a {
-        padding-right: 15px;
-        padding-left: 15px;
+        padding-right: 10px;
+        padding-left: 10px;
     }
 }
 

@@ -20,3 +20,7 @@ if (jQuery) {
     };
     jQuery.datepicker.setDefaults(jQuery.datepicker.regional.hu);
 }
+
+jQuery(document).ready(function(){
+  jQuery('[data-toggle="tooltip"]').tooltip();
+});

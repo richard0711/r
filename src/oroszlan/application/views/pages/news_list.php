@@ -9,7 +9,7 @@
                 </div>
                 <div class="clearfix"></div>
                 <?php foreach ($news_list["data"] as $new) { ?>
-                    <div style="margin-top: 20px;" class="col-md-4 col-sm-6">
+                    <div style="margin-top: 20px;" class="col-md-3 col-sm-6">
                         <div class="card-thumb wow fadeInUp" data-wow-delay="0.2s">
                             <?php if (isset($new["gallery_items"]) && $new["gallery_items"]["count"] > 0) { ?>
                                 <?php $img = str_replace("public.php/", "", RCMS_URL) . $new["gallery_items"]["data"][0]["image_path"]; ?>
@@ -21,7 +21,7 @@
                                 class="search-list-item-imglink" href="<?php echo FULL_BASE_URL . 'p/news/' . $new["idnew"]; ?>">
                             </a>
                             <div class="services-info">
-                                <h3><a href="<?php echo FULL_BASE_URL . 'p/news/' . $new["idnew"]; ?>"><?php echo $new["title"]; ?></a></h3>
+                                <h5><a href="<?php echo FULL_BASE_URL . 'p/news/' . $new["idnew"]; ?>"><?php echo $new["title"]; ?></a></h5>
                                 <p class="search-list-short-desc">
                                     <?php echo $new["short_desc"]; ?>
                                 </p>

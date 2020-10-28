@@ -10,7 +10,7 @@
 
                     <div class="contact-info">
                         <p><i class="fa fa-phone"></i> (53) 350 182</p>
-                        <p><i class="fa fa-envelope-o"></i> <a href="#">orogytar@gmail.com</a></p>
+                        <p><i class="fa fa-envelope-o"></i> <a href="#" style="color: #000;">orogytar@gmail.com</a></p>
                     </div>
                 </div>
             </div>

@@ -79,7 +79,9 @@ class Content extends CI_Model {
             $this->db->where($this->table.".idcontent", $filters["idcontent"]);
         }
         if (isset($filters["string"]) && $filters["string"] != '') {
-            $this->db->where($this->table.".title like '%".$filters["string"]."%'");
+            $this->db->where("(".$this->table.".title like '%".$filters["string"]."%' or "
+                    . "".$this->table.".short_desc like '%".$filters["string"]."%' or " 
+                    . "".$this->table.".content like '%".$filters["string"]."%')");
         }
         $this->db->where($this->table.".status", 1);
         $result['count'] = $this->db->count_all_results('', false);

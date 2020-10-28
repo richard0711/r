@@ -28,6 +28,7 @@ function search() {
             search_string = jQuery(val).val();
         }
     });
+    
     if (search_string == '') {
         return;
     } else {
@@ -78,12 +79,87 @@ function sendMail() {
     });
 }
 
+function setsubmenu() {
+    if (jQuery(window).width() < 1535 && jQuery(window).width() > 767) {
+        jQuery(".submenu").each(function(num, item){
+            jQuery(item).addClass("revertul");
+        });
+    } else {
+        jQuery(".submenu").each(function(num, item){
+            jQuery(item).removeClass("revertul");
+        });
+    }
+    //végig iterálunk a dropdown menükön és beállítjuk a left propertyt
+    jQuery(".dropdown-menu").each(function(num, item) {
+        if (num > 4) {
+            if (!(jQuery(item).hasClass("submenu"))) {
+                jQuery(item).parent("li").width();
+                jQuery(item).css("left", (-1 * (190 - jQuery(item).parent("li").width())) + "px");
+            }
+        }
+    });
+}
+
 jQuery(document).ready(function() {
+    jQuery(window).resize(function(){
+        if (jQuery(window).width() < 767) {
+            jQuery(".collapse").removeClass("navbar-collapse");
+        } else {
+            jQuery(".collapse").addClass("navbar-collapse");
+        }
+        setsubmenu();
+    });
+    if (jQuery(window).width() < 767) {
+        jQuery(".collapse").removeClass("navbar-collapse");
+    } else {
+        jQuery(".collapse").addClass("navbar-collapse");
+    }
     jQuery(".search-input").on('keyup', function (e) {
         if (e.key === 'Enter' || e.keyCode === 13) {
             search();
         }
     });
     setUpLightGallery();
+    //////////////////////// Prevent closing from click inside dropdown
+    jQuery(document).on('click', '.dropdown-menu', function (e) {
+        e.stopPropagation();
+    });
+
+    // make it as accordion for smaller screens
+    if (jQuery(window).width() < 992) {
+        jQuery('.dropdown-menu a').click(function (e) {
+            e.preventDefault();
+            if ($(this).next('.submenu').length) {
+                $(this).next('.submenu').toggle();
+            }
+            jQuery('.dropdown').on('hide.bs.dropdown', function () {
+                jQuery(this).find('.submenu').hide();
+            });
+            e.stopPropagation();
+            if ($(this).attr("href") != "javascript:void(0);" && 
+                $(this).attr("href") != '#' && 
+                $(this).attr("href") != 'javascript:void(null);' && 
+                ($(this).attr("href").toString().indexOf("http://") >= 0 || 
+                $(this).attr("href").toString().indexOf("https://") >= 0)) {
+                window.location = $(this).attr("href");
+            }
+        });
+    }
+    setsubmenu();
+    jQuery("oembed").each(function(num, item){
+        var oembed = jQuery(item);
+        var url = oembed.attr("url").toString();
+        if (url.indexOf("youtube.com") > 0) {
+            //akkor a .com/watch-ot probáljuk meg replacelni
+            url = url.replace(".com/watch", ".com/embed");
+        } else if (url.indexOf("youtu.be/")) {
+            url = url.replace("youtu.be/", "youtube.com/embed/");
+        }
+        var iframe = jQuery('<iframe width="420px" height="345px" src="'+url+'" frameborder="0" allowfullscreen></iframe>');
+        var figure = jQuery(item).parent("figure");
+        jQuery(item).remove();
+        figure.append(iframe);
+    });
+    
 });
 

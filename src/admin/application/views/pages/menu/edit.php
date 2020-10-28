@@ -1,21 +1,26 @@
+<?php if ($idmenu_item == 1) { ?>
 <h1 class="h3 mb-2 text-gray-800">Menü szerkesztése</h1>
 <p class="mb-4">Szerkeszd a menüt</p>
+<?php $hideMenuData = ''; } else { ?>
+<h1 class="h3 mb-2 text-gray-800">Menüpont szerkesztése</h1>
+<p class="mb-4">Szerkeszd a menüpontot</p>
+<?php $hideMenuData = ' display:none; '; } ?>
 
-<div class="form-group row">
+<div class="form-group row" style="<?php echo $hideMenuData; ?>">
     <div class="col-sm-12">
         <label for="menuTitle">Megnevezés</label>
         <input type="text" class="form-control" value="<?php echo $menu["title"]; ?>" id="menuTitle" placeholder="Menü megnevezése">
         <small id="menuTitleHelp" class="form-text text-danger"></small>
     </div> 
 </div> 
-<div class="form-group row">
+<div class="form-group row" style="<?php echo $hideMenuData; ?>">
     <div class="col-sm-12">
         <label for="menuSubTitle">Alcím</label>
         <input type="text" class="form-control" value="<?php echo $menu["sub_title"]; ?>" id="menuSubTitle" placeholder="Alcím">
         <small id="menuSubTitleHelp" class="form-text text-danger"></small>
     </div>
 </div> 
-<div class="form-group row">
+<div class="form-group row" style="<?php echo $hideMenuData; ?>">
     <div class="col-sm-12">
         <label for="menuPosition">Pozíció</label>
         <select type="text" 
@@ -38,14 +43,15 @@
         </select>
     </div>
 </div>
-<hr/>
-<h1 class="h3 mb-2 text-gray-800">Menüpontok hozzáadása a menühöz</h1>
-<p class="mb-4">Add meg a menüben elérhető pontokat</p>
+<hr style="<?php echo $hideMenuData; ?>" />
+<h1 class="h3 mb-2 text-gray-800" style="<?php echo $hideMenuData; ?>">Menüpontok hozzáadása a menühöz</h1>
+<p style="<?php echo $hideMenuData; ?>" class="mb-4">Add meg a menüben elérhető pontokat</p>
 
 <div class="row" id="menuItemsHolderDiv">
     <?php
     if (isset($menu) && isset($menu["menu_items"]) && $menu["menu_items"]["count"] > 0) {
         foreach ($menu["menu_items"]["data"] as $key => $menu_item) {
+            if ($idmenu_item > 1 && $idmenu_item != $menu_item["idmenu_item"]) { continue; }
             ?>
             <div class="col-lg-4 menuItemCardHolder">
                 <div data-id="<?php echo $menu_item["idmenu_item"]; ?>" data-status="1" class="card card-body menuItem">
@@ -83,7 +89,7 @@
                                             value="<?php echo $menu_item["idcontent"]; ?>" 
                                             id="menuItemContent_<?php echo $menu_item["idmenu_item"]; ?>" 
                                             placeholder="Tartalomra hivatkozás">
-                                        <option value="1">--nincs kiválasztva--</option>>
+                                        <option value="1">--nincs kiválasztva--</option>
                                         <?php
                                         if (isset($contents) && isset($contents["data"])) {
                                             foreach ($contents["data"] as $content) {
@@ -99,6 +105,52 @@
                             </div> 
                             <div class="form-group ">
                                 <div class="">
+                                    <label for="menuItemNews_<?php echo $menu_item["idmenu_item"]; ?>">Hírre hivatkozás</label>
+                                    <select data-id="<?php echo $menu_item["idmenu_item"]; ?>" 
+                                            type="text" 
+                                            class="form-control menuItemNews" 
+                                            value="<?php echo $menu_item["idnews"]; ?>" 
+                                            id="menuItemNews_<?php echo $menu_item["idnews"]; ?>" 
+                                            placeholder="Hírre hivatkozás">
+                                        <option value="1">--nincs kiválasztva--</option>
+                                        <?php
+                                        if (isset($news) && isset($news["data"])) {
+                                            foreach ($news["data"] as $new) {
+                                                ?>
+                                                <option  <?php echo ($new["idnew"] == $menu_item["idnews"]) ? 'selected="selected"' : ''; ?>
+                                                    value="<?php echo $new["idnew"]; ?>"><?php echo $new["title"] ?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                    </select>
+                                </div> 
+                            </div> 
+                            <div class="form-group ">
+                                <div class="">
+                                    <label for="menuItemParent_<?php echo $menu_item["idmenu_item"]; ?>">Szülő menüpont</label>
+                                    <select data-id="<?php echo $menu_item["parent_menu_item_id"]; ?>" 
+                                            type="text" 
+                                            class="form-control menuItemParent" 
+                                            value="<?php echo $menu_item["parent_menu_item_id"]; ?>" 
+                                            id="menuItemParent_<?php echo $menu_item["idmenu_item"]; ?>" 
+                                            placeholder="Szülő menüpont">
+                                        <option value="1">--nincs szülő--</option>>
+                                        <?php
+                                        if (isset($menu["menu_items"]) && isset($menu["menu_items"]["data"])) {
+                                            foreach ($menu["menu_items"]["data"] as $pmenu_item) {
+                                            ?>
+                                            <option  <?php echo ($pmenu_item["idmenu_item"] == $menu_item["parent_menu_item_id"]) ? 'selected="selected"' : ''; ?>
+                                                value="<?php echo $pmenu_item["idmenu_item"]; ?>"><?php echo $pmenu_item["title"] ?></option>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </div> 
+                            </div> 
+                            <div class="form-group ">
+                                <div class="">
                                     <label for="menuItemGallery_<?php echo $menu_item["idmenu_item"]; ?>">Galériára hivatkozás</label>
                                     <select data-id="<?php echo $menu_item["idgallery"]; ?>" 
                                             type="text" 
@@ -106,7 +158,7 @@
                                             value="<?php echo $menu_item["idgallery"]; ?>" 
                                             id="menuItemGallery_<?php echo $menu_item["idmenu_item"]; ?>" 
                                             placeholder="Galériára hivatkozás">
-                                        <option value="1">--nincs kiválasztva--</option>>
+                                        <option value="1">--nincs kiválasztva--</option>
                                         <?php
                                         if (isset($gallery) && isset($gallery["data"])) {
                                             foreach ($gallery["data"] as $galleryi) {
@@ -154,7 +206,7 @@
     ?>
 </div>
 <br/>
-<div class="col-xs-12">
+<div class="col-xs-12" style="<?php echo $hideMenuData; ?>">
     <button onclick="addNewMenuItem()" class="btn btn-secondary" id="addNewMenuItem">
         Új menüpont hozzáadása
     </button>
@@ -201,6 +253,50 @@
                                 foreach ($contents["data"] as $content) {
                                     ?>
                                     <option value="<?php echo $content["idcontent"]; ?>"><?php echo $content["title"] ?></option>
+                                    <?php
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div> 
+                </div> 
+                <div class="form-group ">
+                    <div class="">
+                        <label for="menuItemNews_0">Hírre hivatkozás</label>
+                        <select data-id="0" 
+                                type="text" 
+                                class="form-control menuItemNews" 
+                                value="1" 
+                                id="menuItemNews_0" 
+                                placeholder="Hírre hivatkozás">
+                            <option value="1">--nincs kiválasztva--</option>>
+                            <?php
+                            if (isset($news) && isset($news["data"])) {
+                                foreach ($news["data"] as $new) {
+                                    ?>
+                                    <option value="<?php echo $new["idnew"]; ?>"><?php echo $new["title"] ?></option>
+                                    <?php
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div> 
+                </div> 
+                <div class="form-group ">
+                    <div class="">
+                        <label for="menuItemParent_0">Szülő menüpont</label>
+                        <select data-id="0" 
+                                type="text" 
+                                class="form-control menuItemParent" 
+                                value="1" 
+                                id="menuItemParent_0" 
+                                placeholder="Szülő menüpont">
+                            <option value="1">--nincs szülő--</option>
+                            <?php
+                            if (isset($menu["menu_items"]) && isset($menu["menu_items"]["data"])) {
+                                foreach ($menu["menu_items"]["data"] as $pmenu_item) {
+                                ?>
+                                <option value="<?php echo $pmenu_item["idmenu_item"]; ?>"><?php echo $pmenu_item["title"] ?></option>
                                     <?php
                                 }
                             }
@@ -329,7 +425,9 @@
                 title: jQuery(item).find(".menuItemTitle").val(),
                 sub_title: jQuery(item).find(".menuItemSubTitle").val(),
                 idcontent: (jQuery(item).find(".menuItemContent").val() > 1) ? jQuery(item).find(".menuItemContent").val() : 1,
+                idnews: (jQuery(item).find(".menuItemNews").val() > 1) ? jQuery(item).find(".menuItemNews").val() : 1,
                 idgallery: (jQuery(item).find(".menuItemGallery").val() > 1) ? jQuery(item).find(".menuItemGallery").val() : 1,
+                parent_menu_item_id: (jQuery(item).find(".menuItemParent").val() > 1) ? jQuery(item).find(".menuItemParent").val() : 1,
                 is_gallery_list: (jQuery(item).find(".menuItemGalleryList").is(":checked")) ? 1 : 0,
                 is_news_list: (jQuery(item).find(".menuItemNewsList").is(":checked")) ? 1 : 0,
                 idmenu: <?php echo $menu["idmenu"]; ?>,

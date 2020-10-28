@@ -32,6 +32,7 @@ if ($method == 'GET') {
     $route['menu/list'] = 'Menu_controller/menuList';
     $route['menu/new'] = 'Menu_controller/newMenu';
     $route['menu/edit/(:num)'] = 'Menu_controller/editMenu/$1';
+    $route['menu/edit/(:num)/(:num)'] = 'Menu_controller/editMenu/$1/$2';
     $route['menu/del/(:num)'] = 'Menu_controller/delMenu/$1';
     
     /** news routes: **/

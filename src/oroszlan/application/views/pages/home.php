@@ -90,7 +90,7 @@
             </div>
             <div class="clearfix"></div>
             <?php foreach ($home_page_doctors["data"] as $content) { ?>
-            <div class="col-md-4 col-sm-6">
+            <div class="col-md-3 col-sm-3">
                 <div class="card-thumb wow fadeInUp" data-wow-delay="0.2s">
                     <?php if (isset($content["content_items"]) && $content["content_items"]["count"] > 0) { ?>
                         <?php $img = str_replace("public.php/", "", RCMS_URL) . $content["content_items"]["data"][0]["image_path"]; ?>
@@ -102,7 +102,7 @@
                         class="search-list-item-imglink" href="<?php echo FULL_BASE_URL . 'p/content/' . $content["idcontent"]; ?>">
                     </a>
                     <div class="services-info">
-                        <h3><a href="<?php echo FULL_BASE_URL . 'p/content/' . $content["idcontent"]; ?>"><?php echo $content["title"]; ?></a></h3>
+                        <h5><a href="<?php echo FULL_BASE_URL . 'p/content/' . $content["idcontent"]; ?>"><?php echo $content["title"]; ?></a></h5>
                         <p class="search-list-short-desc">
                             <?php echo $content["short_desc"]; ?>
                         </p>
@@ -128,8 +128,8 @@
                     <h2>Aktualitások</h2>
                 </div>
             </div>
-            <?php $max_count = 3; $news_counter = 0; foreach ($home_page_news["data"] as $new) { if ($max_count == $news_counter) { break; } else { $news_counter++; } ?> 
-            <div class="col-md-4 col-sm-6">
+            <?php $max_count = 4; $news_counter = 0; foreach ($home_page_news["data"] as $new) { if ($max_count == $news_counter) { break; } else { $news_counter++; } ?> 
+            <div class="col-md-3 col-sm-6">
                 <div class="card-thumb wow fadeInUp" data-wow-delay="0.2s">
                     <?php if (isset($new["news_items"]) && $new["news_items"]["count"] > 0) { ?>
                         <?php $img = str_replace("public.php/", "", RCMS_URL) . $new["news_items"]["data"][0]["image_path"]; ?>
@@ -141,7 +141,7 @@
                         class="search-list-item-imglink" href="<?php echo FULL_BASE_URL . 'p/news/' . $new["idnew"]; ?>">
                     </a>
                     <div class="services-info">
-                        <h3><a href="<?php echo FULL_BASE_URL . 'p/news/' . $new["idnew"]; ?>"><?php echo $new["title"]; ?></a></h3>
+                        <h5><a href="<?php echo FULL_BASE_URL . 'p/news/' . $new["idnew"]; ?>"><?php echo $new["title"]; ?></a></h5>
                         <p class="search-list-short-desc">
                             <?php echo $new["short_desc"]; ?>
                         </p>
@@ -163,7 +163,7 @@
         <div class="row">
 
             <div class="col-md-6 col-sm-6">
-                <img src="<?php echo VIEWS_URL; ?>images/appointment-image.jpg" class="img-responsive" alt="">
+                <img src="<?php echo VIEWS_URL; ?>images/appointment-image2.png" class="img-responsive" alt="">
             </div>
 
             <div class="col-md-6 col-sm-6">

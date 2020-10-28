@@ -29,6 +29,9 @@ class MenuItem extends CI_Model {
         if (isset($filters["idmenu"]) && $filters["idmenu"] > 1) {
             $this->db->where($this->table.".idmenu", $filters["idmenu"]);
         }
+        if (isset($filters["parent_menu_item_id"])) {
+            $this->db->where($this->table.".parent_menu_item_id", $filters["parent_menu_item_id"]);
+        }
         $this->db->where($this->table.".status", 1);
         $result['count'] = $this->db->count_all_results('', false);
         set_query_limit_and_offset($filters, $this->db);

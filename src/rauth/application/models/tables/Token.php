@@ -68,6 +68,17 @@ class Token extends CI_Model {
         return $result;
     }
     
+    public function getUUID(){
+        $uuid = strftime('%Y%m%d%H%M%S');
+        $query = $this->db->query('select UUID() as t');
+        if ($query->num_rows() > 0) {
+            foreach ($query->result_array() as $row) {
+                $uuid = $row["t"];
+            }
+        }
+        return $uuid;
+    }
+    
     public function get_result_array($result) {
         $data = array();
         if ($result->num_rows() > 0) {

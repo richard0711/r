@@ -82,6 +82,11 @@ class UserLib {
         }
         $enc_pass = hash('sha256', $salt . $password);
         return array("passwd" => $password, "salt" => $salt, "enc_pass" => $enc_pass);
+        //jelszo letrehozashoz sandboxban futtathato
+        //        $password = "jszo"; 
+        //        $salt = md5(uniqid(rand(), true));
+        //        $enc_pass = hash('sha256', $salt . $password);
+        //        var_dump(array("passwd" => $password, "salt" => $salt, "enc_pass" => $enc_pass));
     }
     
     public function setToken($user = array()) {
@@ -89,7 +94,7 @@ class UserLib {
         $Token = new Token();
         $token_data = array(
             "iduser_system" => $user["iduser_system"],
-            "token" => md5(strftime('%Y%m%d%H%M%S')),
+            "token" => md5($Token->getUUID()),
             "created" => date("Y-m-d H:i:s"),
             "status" => 1
         );

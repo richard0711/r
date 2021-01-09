@@ -9,7 +9,6 @@ http://www.tooplate.com/view/2098-health
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600');
 
 body {
-    background: #FDFBFC;
     font-family: sans-serif, arial;
     overflow-x: hidden;
 }
@@ -858,7 +857,6 @@ footer .contact-info a:hover {
 }
 
 .contact-info .fa {
-    background: silver;
     border-radius: 100%;
     color: #000;
     font-size: 15px;

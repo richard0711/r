@@ -1,8 +1,54 @@
-<section id="szgyholder" class="hidden-xs">
-    <div class="container">
-        &nbsp;
-    </div>
-</section>
+<?php if (isset($home_page_banners) && count($home_page_banners["data"]) > 0) { ?>
+    <section id="home" class="slider" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="row">
+                <div class="owl-carousel owl-theme">
+                    <?php foreach ($home_page_banners["data"] as $banner) { ?>
+                        <?php foreach ($banner["banner_items"]["data"] as $banner_item) { ?>
+                            <?php if ($banner_item["image_path"] != null && $banner_item["image_path"] != '') { ?>
+                                <div class="item" style="background-image: url('<?php echo str_replace("public.php/", "", RCMS_URL) . $banner_item["image_path"]; ?>');">
+                                <?php } else { ?>    
+                                    <div class="item" style="background-image: url('<?php echo VIEWS_URL; ?>images/slider2.jpg');">    
+                                    <?php } ?>    
+                                    <div class="caption">
+                                        <?php $url = ''; 
+                                        if ($banner_item["idcontent"] > 1) { 
+                                            $url = FULL_BASE_URL . 'p/content/'.$banner_item["idcontent"];
+                                        } 
+                                        if ($banner_item["url"] != '') { 
+                                            $url = $banner_item["url"];
+                                        } 
+                                        ?>
+                                        <?php if ($url != '') { ?> 
+                                        <?php if ($banner_item["text"] != '') { ?>
+                                            <div onclick="openLink('<?php echo $url; ?>');" style="background-color: rgba(95, 93, 94, 0.39); padding: 5px; border-radius: 10px; cursor: pointer;" class="col-md-offset-1 col-md-10">
+                                                <h1><?php echo $banner_item["name"]; ?></h1>
+                                                <h3><?php echo $banner_item["text"]; ?></h3>
+                                                <br/>
+                                                <a href="<?php echo $url; ?>" class="section-btn btn btn-default smoothScroll">Megtekintés</a>
+                                            </div>
+                                        <?php } else { ?>
+                                            <div onclick="openLink('<?php echo $url; ?>');" style="cursor: pointer;" class="col-md-offset-1 col-md-10">
+                                                <a href="<?php echo $url; ?>" class="section-btn btn btn-default smoothScroll">Megtekintés</a>
+                                            </div>
+                                        <?php } ?>
+                                        <?php } else if ($banner_item["text"] != '') { ?>
+                                        <div style="background-color: rgba(95, 93, 94, 0.39); padding: 5px; border-radius: 10px;" class="col-md-offset-1 col-md-10">
+                                            <h1><?php echo $banner_item["name"]; ?></h1>
+                                            <h3><?php echo $banner_item["text"]; ?></h3>
+                                            <br/>
+                                        </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php } ?>
 
 <!-- ABOUT -->
 <?php if (isset($home_page_welcome) && isset($home_page_welcome["data"][0]) ) { ?>

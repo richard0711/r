@@ -348,7 +348,7 @@ header span i {
 .navbar-default .navbar-nav li a {
     color: #555555;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: bold;
     padding-right: 10px;
     padding-left: 10px;
     padding-top: 0px;
@@ -467,7 +467,7 @@ header span i {
     background-repeat: no-repeat;
     background-attachment: local;
     background-size: contain;
-    background-color: #EADCD3;
+    background-color: #eaedca;
     height: 550px;
 }
 
@@ -800,14 +800,14 @@ header span i {
 }
 
 #appointment button#cf-submit {
-    background: #a5c422;
+    background: #eaedca;
     color: #000;
     font-weight: 600;
     height: 55px;
 }
 
 #appointment button#cf-submit:hover {
-    background: #393939;
+    background: #fff9e6;
     color: #000;
 }
 
@@ -943,7 +943,7 @@ footer .contact-info a:hover {
 }
 
 .angle-up-btn a:hover {
-    background: #a5c422;
+    background: #eaedca;
     color: #ffffff;
     transform: translateY(-5px);
 }

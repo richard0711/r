@@ -11,6 +11,9 @@
     <meta property="og:title"         content="Nagykőrösi Oroszlán Gyógyszertár" />
     <meta property="og:description"   content="Nagykőrösi Oroszlán Gyógyszertár" />
     <meta property="og:image"         content="<?php echo VIEWS_URL; ?>images/oroszlan_logo.jpg" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <link rel="stylesheet" href="<?php echo VIEWS_URL; ?>css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo VIEWS_URL; ?>css/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo VIEWS_URL; ?>css/animate.css">

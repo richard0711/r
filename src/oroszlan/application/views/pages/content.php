@@ -32,7 +32,7 @@
                                         <?php if ($gitem["text"] != '') { ?>
                                             <?php echo " " . $gitem["text"]; ?></span>
                                         <?php } else { ?>
-                                            <i>nincs leírás</i>
+                                            <i></i>
                                         <?php } ?>
                                     </p>
                                 </div>

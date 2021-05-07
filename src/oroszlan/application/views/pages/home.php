@@ -54,7 +54,11 @@
 
 <!-- ABOUT -->
 <?php if (isset($home_page_welcome) && isset($home_page_welcome["data"][0]) ) { ?>
-<section id="about">
+<?php if (isset($home_page_welcome["data"][0]["content_items"]) && isset($home_page_welcome["data"][0]["content_items"]["data"][0])) { ?>
+<section id="about" style="background: url('<?php echo str_replace("public.php/", "", RCMS_URL) . $home_page_welcome["data"][0]["content_items"]["data"][0]["image_path"]; ?>') no-repeat top center;">
+<?php } else { ?> 
+<section id="about" style="background: url('application/views/images/about-bg.jpg') no-repeat top center;">
+<?php } ?> 
     <div class="container">
         <div class="row">
 

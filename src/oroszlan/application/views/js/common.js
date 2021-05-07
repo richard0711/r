@@ -101,6 +101,7 @@ function setsubmenu() {
 }
 
 jQuery(document).ready(function() {
+//    jQuery(".palyazat2020").on('click', navigateToPalyazatContent);
     jQuery(window).resize(function(){
         if (jQuery(window).width() < 767) {
             jQuery(".collapse").removeClass("navbar-collapse");
@@ -132,7 +133,7 @@ jQuery(document).ready(function() {
             if ($(this).next('.submenu').length) {
                 $(this).next('.submenu').toggle();
             }
-            jQuery('.dropdown').on('hide.bs.dropdown', function () {
+            jQuery('.dropdown').on('hide.bs.dropdown', function (e) {
                 jQuery(this).find('.submenu').hide();
             });
             e.stopPropagation();
@@ -163,3 +164,6 @@ jQuery(document).ready(function() {
     
 });
 
+function navigateToPalyazatContent(e) {
+    window.location = $(this).attr("data-href").toString();
+}

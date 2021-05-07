@@ -52,9 +52,9 @@
                     </div> 
 
                     <ul class="social-icon">
-                        <li><a href="https://www.facebook.com/oroszlannagykoros" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                        <li><a href="https://www.facebook.com/oroszlannagykoros" class="fa fa-facebook-square" attr="facebook icon">&nbsp;</a></li>
                         <!--<li><a href="#" class="fa fa-twitter"></a></li>-->
-                        <li><a href="https://www.instagram.com/oroszlannagykoros/" class="fa fa-instagram"></a></li>
+                        <li><a href="https://www.instagram.com/oroszlannagykoros/" class="fa fa-instagram">&nbsp;</a></li>
                     </ul>
                 </div>
             </div>
@@ -75,4 +75,10 @@
 
         </div>
     </div>
+    <br/>
+    <a href="<?php echo BASE_URL . config_item('index_page'); ?>/p/content/38">
+        <div class="palyazat2020" data-href="<?php echo BASE_URL . config_item('index_page'); ?>/p/content/38">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </a>
 </footer>

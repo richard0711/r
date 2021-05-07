@@ -1,6 +1,6 @@
 <!-- MENU -->
 <section class="navbar navbar-default navbar-static-top" role="navigation">
-    <div class="container">
+    <div class="container menu-container">
         <div class="navbar-header">
             <button class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
@@ -16,7 +16,7 @@
             </div>
             <!-- lOGO TEXT HERE -->
             <div class="hidden-xs hidden-sm">
-                <a href="<?php echo BASE_URL . config_item('index_page'); ?>" class="navbar-brand" style="height: 70px;">
+                <a href="<?php echo BASE_URL; ?>" class="navbar-brand" style="height: 70px;">
                     <img class="oroszlan_logo" src="<?php echo VIEWS_URL; ?>images/oroszlan_logo.jpg" />
                 </a>
                 <span class="logo_text">

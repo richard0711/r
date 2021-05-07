@@ -1,15 +1,21 @@
 .oroszlan_logo { 
-    width: 115px;
+    width: 130px;
     top: -12px;
     position: relative;
     border-radius: 70px;
 }
 
 .oroszlan_logo_xs { 
-    width: 115px;
+    width: 130px;
     border-radius: 70px;
     display: inline-block;
     margin-top: 10px;
+}
+
+@media (min-width: 768px){
+    .menu-container {
+        width: 1180px;
+    }
 }
 
 .logo_text {
@@ -309,6 +315,16 @@ header {
     .submenu.dropdown-menu {
         margin-left: 20px;
     }
+    .palyazat2020 {
+        width: 125px;
+        height: 150px;
+        background: url(../images/palyazat_extra_small.png) no-repeat top center;
+        background-size: 125px 150px;
+        position: fixed;
+        left: 0px;
+        bottom: 0px;
+        z-index: 9999;
+    }
 }
 
 .dropdown-menu {
@@ -331,4 +347,30 @@ header {
         -webkit-transition: all ease-in-out 0.4s;
         transition: all ease-in-out 0.4s;
     }
+    
+    .palyazat2020 {
+        width: 140px;
+        height: 164px;
+        background: url(../images/palyazat_extra_small.png) no-repeat top center;
+        background-size: auto;
+        position: fixed;
+        left: 0px;
+        bottom: 0px;
+        cursor: pointer;
+        z-index: 9999;
+    }
+    .palyazat2020:hover {
+        z-index: 9999;
+        width: 800px;
+        height: 565px;
+        cursor: pointer;
+        background: url(../images/palyazat_small.png) no-repeat top center;
+        background-size: auto;
+        position: fixed;
+        left: 0px;
+        bottom: 0px;
+        border: solid #3D5FAB 1px;
+        border-radius: 0px 300px 0px 0px;
+    }
 }
+

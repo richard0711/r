@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-md-4 col-sm-4">
+            <div class="col-md-3 col-sm-3">
                 <div class="footer-thumb"> 
                     <h4 class="wow fadeInUp" data-wow-delay="0.4s">Elérhetőségeink</h4>
                     <p>A hét minden napján állunk rendelkezésükre.</p>
@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-4"> 
+            <div class="col-md-3 col-sm-3"> 
                 <div class="footer-thumb"> 
                     <h4 class="wow fadeInUp" data-wow-delay="0.4s">Aktualitások</h4>
                     <?php if (isset($home_page_news) && $home_page_news["count"] > 0) { ?>
@@ -42,7 +42,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-4"> 
+            <div class="col-md-3 col-sm-3"> 
                 <div class="footer-thumb">
                     <div class="opening-hours">
                         <h4 class="wow fadeInUp" data-wow-delay="0.4s">Nyitvatartás</h4>
@@ -52,14 +52,23 @@
                     </div> 
 
                     <ul class="social-icon">
-                        <li><a href="https://www.facebook.com/oroszlannagykoros" class="fa fa-facebook-square" attr="facebook icon">&nbsp;</a></li>
+                        <li><a href="https://www.facebook.com/oroszlannagykoros" class="fa fa-facebook-square" attr="facebook icon"></a></li>
                         <!--<li><a href="#" class="fa fa-twitter"></a></li>-->
-                        <li><a href="https://www.instagram.com/oroszlannagykoros/" class="fa fa-instagram">&nbsp;</a></li>
+                        <li><a href="https://www.instagram.com/oroszlannagykoros/" class="fa fa-instagram"></a></li>
                     </ul>
                 </div>
             </div>
+            
+            <div class="col-md-3 col-sm-3"> 
+                <div class="footer-thumb partners">
+                    <h4 class="wow fadeInUp" data-wow-delay="0.4s">Társoldalunk</h4>
+                    <h1 style="font-size: 1em"><a href="https://asztrologia-tanfolyam.hu/" target="_blank">Asztrológia tanfolyam</a></h1>
+                    <h1 style="font-size: 1em"><a href="https://szammisztika-tanfolyam.hu/" target="_blank">Számmisztika tanfolyam</a></h1>
+                    <h1 style="font-size: 1em"><a href="https://reiki-tanfolyam.hu/" target="_blank">Reiki tanfolyam</a></h1>
+                </div>
+            </div>
 
-            <div class="col-md-12 col-sm-12 border-top">
+            <div style="margin-bottom: 250px;" class="col-md-12 col-sm-12 border-top">
                 <div class="col-md-4 col-sm-6">
                    
                 </div>

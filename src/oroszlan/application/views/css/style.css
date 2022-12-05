@@ -316,14 +316,15 @@ header {
         margin-left: 20px;
     }
     .palyazat2020 {
-        width: 125px;
-        height: 150px;
-        background: url(../images/palyazat_extra_small.png) no-repeat top center;
-        background-size: 125px 150px;
+        border-radius: 295px 0px 0px 0px;
+        width: 399px;
+        height: 290px;
+        background: url(../images/palyazat_small.jpg) no-repeat top center;
+        background-size: auto;
         position: fixed;
-        left: 0px;
+        right: 0px;
         bottom: 0px;
-        z-index: 9999;
+        z-index: 100;
     }
 }
 
@@ -349,17 +350,18 @@ header {
     }
     
     .palyazat2020 {
-        width: 140px;
-        height: 164px;
-        background: url(../images/palyazat_extra_small.png) no-repeat top center;
+        border-radius: 295px 0px 0px 0px;
+        width: 399px;
+        height: 290px;
+        background: url(../images/palyazat_small.jpg) no-repeat top center;
         background-size: auto;
         position: fixed;
-        left: 0px;
+        right: 0px;
         bottom: 0px;
         cursor: pointer;
-        z-index: 9999;
+        z-index: 100;
     }
-    .palyazat2020:hover {
+/*    .palyazat2020:hover {
         z-index: 9999;
         width: 800px;
         height: 565px;
@@ -371,6 +373,13 @@ header {
         bottom: 0px;
         border: solid #3D5FAB 1px;
         border-radius: 0px 300px 0px 0px;
-    }
+    }*/
+}
+
+.partners a {
+    color: #000 !important
+}
+.partners a:hover {
+    color: #D7E7B6 !important;
 }
 

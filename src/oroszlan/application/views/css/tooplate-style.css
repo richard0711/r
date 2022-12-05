@@ -967,7 +967,7 @@ footer .contact-info a:hover {
 .social-icon li a {
     border-radius: 100px;
     color: #464646;
-    font-size: 15px;
+    font-size: 20px;
     width: 35px;
     height: 35px;
     line-height: 35px;
@@ -1073,7 +1073,7 @@ footer .contact-info a:hover {
     }
 
     .angle-up-btn {
-        bottom: 10em;
+        bottom: 4em;
     }
 }
 

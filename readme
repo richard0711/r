@@ -1,2 +1,16 @@
-1)initial commit
-2)test_feature
++ tartalomhoz kapcsolati űrlap funkció
++ tartalomba videó ágyazási lehetőség 
+
+orogytarweboldal@gmail.com 
+ezt be lehet állítani a google analiticshez
+
+Vasárnap:
++ élesítés
++ facebook megosztás gombot elhelyeztem élesen kell kipróbálni
++ kell élesen is felvenni majd flaget a contents táblába
++ előnézet funkció. jelenleg csak a hindex.php-ra kell át állítani a base url-t az élesen hogy tudjanak feltölteni
++ adminról leírás
++ Analytics unkommentezése
+
+ majd élesen kell kipróbálni hogy jó-e a youtube videó nem működik!
+

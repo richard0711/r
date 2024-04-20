@@ -1,0 +1,53 @@
+.nav-link-custom {
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
+}
+
+.sidebar-heading {
+    margin-bottom: 10px;
+}
+
+.margin-top-1rem {
+    margin-top: 1rem !important;
+}
+
+fieldset {
+    min-width: 0;
+    padding: 5px;
+    margin: 5px;
+    border: solid gray 1px;
+}
+
+.galleryItemImg {
+    max-width: 200px;
+    max-height: 120px;
+    margin: 0 auto;
+}
+
+.menuItemCardHolder {
+    margin-bottom: 10px;
+}
+
+.galleryItem-card {
+    margin-bottom: 5px;
+}
+
+.list-pager-info {
+    padding-top: 10px;
+    padding-left: 20px;
+}
+
+.list-pager-active {
+    background-color: #4e73df;
+    color: #fff;
+}
+
+.menu-stuct-ul {
+    list-style: none;
+}
+.menu-stuct-ul a {
+    font-weight: bold;
+}
+.menu-stuct-ul a:hover {
+    text-decoration: none;
+}
